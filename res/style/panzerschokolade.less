@@ -1,0 +1,84 @@
+
+@import "../../../../lib/om.style/res/style/normalize";
+
+@flyer-width: 425px;
+@flyer-height: 600px;
+
+body {
+    overflow-x: hidden;
+    background: #000;
+    color: #fff;
+    cursor: help;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+ol {
+    margin:0;
+    padding:0;
+    list-style: none;
+}
+
+header {
+    display: none;
+}
+
+#flyer.grid {
+
+    position: relative;
+    width: 100%;
+
+    //cursor:all-scroll;
+
+    li {
+
+        display: inline;
+    	position: relative;
+    	float: left;
+        //overflow: hidden;
+        //width: 16.6666667%; // Fallback
+        //width: -webkit-calc(100% / 5);
+        width: calc(100% / 5);
+
+        img {
+            display: block;
+            margin: 0px;
+            //padding: 1px;
+            width: 100%;
+            max-width: 425px;
+            max-height: 600px;
+        }
+    }
+
+    @media screen and (max-width: 2125px) {
+        li {
+            width: calc(100% / 5);
+        }
+    }
+    @media screen and (max-width: 1700px) {
+        li {
+            width: calc(100% / 4);
+        }
+    }
+    @media screen and (max-width: 1275px) {
+        li {
+            width: calc(100% / 3);
+        }
+    }
+    @media screen and (max-width: 850px) {
+        li {
+            width: calc(100% / 2);
+        }
+    }
+    @media screen and (max-width: 425px) {
+        li {
+            width: 100%;
+        }
+    }
+}
+
+footer {
+    display: none;
+}

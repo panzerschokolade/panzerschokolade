@@ -1,0 +1,13 @@
+#-lib samba
+-cp src
+-js web/panzerschokolade.js
+-main panzerschokolade.App
+#-D name=panzerschokolade
+#-D version=0.1.0
+#-D no_colors
+#-cp ../../lib/om.parallax/src
+#-debug
+-dce full
+
+-cmd lessc res/style/panzerschokolade.less web/panzerschokolade.css
+-cmd cp res/html/index.html web/index.html
