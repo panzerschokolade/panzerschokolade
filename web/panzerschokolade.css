@@ -98,10 +98,25 @@ input {
 pre {
   overflow: auto;
 }
+.no-user-drag {
+  user-drag: none;
+  -webkit-user-drag: none;
+  -moz-user-drag: none;
+  -ms-user-drag: none;
+  -o-user-drag: none;
+}
+.no-user-select {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+}
 body {
-  padding: 4px;
+  overflow-x: hidden;
   background: #000;
   color: #fff;
+  cursor: help;
 }
 * {
   box-sizing: border-box;
@@ -109,43 +124,63 @@ body {
 ol {
   margin: 0;
   padding: 0;
+  list-style: none;
 }
 header {
   display: none;
 }
-ol#flyer li {
-  display: inline-block;
-  list-style: none;
+#flyer.grid {
+  position: relative;
+  width: 100%;
 }
-ol#flyer li img {
-  display: inline-block;
-  margin: 0;
-  padding: 0;
+#flyer.grid li {
+  display: inline;
+  position: relative;
+  float: left;
+  width: calc(20%);
+}
+#flyer.grid li img {
+  user-drag: none;
+  -webkit-user-drag: none;
+  -moz-user-drag: none;
+  -ms-user-drag: none;
+  -o-user-drag: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  display: block;
+  margin: 0px;
+  width: 100%;
   max-width: 425px;
   max-height: 600px;
-  outline: none;
-  border: 0;
-  background-image: none;
-  -webkit-user-select: none;
-  cursor: help;
+}
+@media screen and (max-width: 2125px) {
+  #flyer.grid li {
+    width: calc(20%);
+  }
+}
+@media screen and (max-width: 1700px) {
+  #flyer.grid li {
+    width: calc(25%);
+  }
+}
+@media screen and (max-width: 1275px) {
+  #flyer.grid li {
+    width: calc(33.33333333%);
+  }
+}
+@media screen and (max-width: 850px) {
+  #flyer.grid li {
+    width: calc(50%);
+  }
+}
+@media screen and (max-width: 425px) {
+  #flyer.grid li {
+    width: 100%;
+  }
 }
 footer {
   display: none;
 }
-/*
-#panzerlax {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    //position: absolute;
-    //clip: rect(10px, 20px, 50px, 50px);
-    //clip-path: url(#clipping);
-}
-#panzerlax img.layer {
-    //-webkit-filter: drop-shadow(10px 10px 40px #000);
-}
-
-@import "../../../../lib/om.parallax/res/style/parallax";
-*/

@@ -1,5 +1,7 @@
 
-@import "../../../../lib/om.style/res/style/normalize";
+@import "normalize";
+@import "mixins/no-user-drag";
+@import "mixins/no-user-select";
 
 @flyer-width: 425px;
 @flyer-height: 600px;
@@ -30,8 +32,6 @@ header {
     position: relative;
     width: 100%;
 
-    //cursor:all-scroll;
-
     li {
 
         display: inline;
@@ -43,6 +43,10 @@ header {
         width: calc(100% / 5);
 
         img {
+
+            .no-user-drag;
+            .no-user-select;
+
             display: block;
             margin: 0px;
             //padding: 1px;

@@ -31,6 +31,10 @@ class App {
 
             console.log( '|>4|\\|7_3|25(|-|0|(014|)3' );
 
+            window.addEventListener( 'contextmenu', function(e) {
+                e.preventDefault();
+            });
+
             //window.requestAnimationFrame( update );
 
             /*
