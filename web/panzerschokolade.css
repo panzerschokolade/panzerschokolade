@@ -14,9 +14,9 @@ body {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 /**
- * Correct `block` display not defined for any HTML5 element in IE 8/9.
- * Correct `block` display not defined for `details` or `summary` in IE 10/11 and Firefox.
- * Correct `block` display not defined for `main` in IE 11.
+	Correct `block` display not defined for any HTML5 element in IE 8/9.
+	Correct `block` display not defined for `details` or `summary` in IE 10/11 and Firefox.
+	Correct `block` display not defined for `main` in IE 11.
 **/
 article,
 aside,
@@ -33,8 +33,8 @@ summary {
   display: block;
 }
 /**
- * 1. Correct `inline-block` display not defined in IE 8/9.
- * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
+	1. Correct `inline-block` display not defined in IE 8/9.
+	2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
 **/
 audio,
 canvas,
@@ -99,29 +99,53 @@ pre {
   overflow: auto;
 }
 body {
+  padding: 4px;
   background: #000;
   color: #fff;
 }
-img {
-  display: inline;
+* {
+  box-sizing: border-box;
+}
+ol {
   margin: 0;
   padding: 0;
+}
+header {
+  display: none;
+}
+ol#flyer li {
+  display: inline-block;
+  list-style: none;
+}
+ol#flyer li img {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  max-width: 425px;
+  max-height: 600px;
   outline: none;
   border: 0;
   background-image: none;
   -webkit-user-select: none;
-  pointer-events: none;
+  cursor: help;
 }
+footer {
+  display: none;
+}
+/*
 #panzerlax {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    //position: absolute;
+    //clip: rect(10px, 20px, 50px, 50px);
+    //clip-path: url(#clipping);
 }
-.parallax .layer {
-  position: absolute;
-  transform-style: preserve-3d;
-  transform: translate3d(0, 0, 0);
-  backface-visibility: hidden;
+#panzerlax img.layer {
+    //-webkit-filter: drop-shadow(10px 10px 40px #000);
 }
+
+@import "../../../../lib/om.parallax/res/style/parallax";
+*/
