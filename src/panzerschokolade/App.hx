@@ -3,6 +3,7 @@ package panzerschokolade;
 import js.Browser.console;
 import js.Browser.document;
 import js.Browser.window;
+import om.api.youtube.YouTube;
 
 class App {
 
@@ -25,6 +26,8 @@ class App {
     }
     */
 
+    static var video : VideoPlayer;
+
     static function main() {
 
         window.onload = function() {
@@ -44,6 +47,36 @@ class App {
                 if( ++cursorIndex == CURSORS.length ) cursorIndex = 0;
             }
             */
+
+            YouTube.init( function(){
+
+                trace( 'Youtube ready' );
+
+                video = new VideoPlayer( document.getElementById( 'youtube-player' ) );
+				video.onEvent = function(e){
+                    /*
+                    trace(e);
+                    switch e {
+                    case video_cued:
+                        //video.play();
+                    }
+                    */
+                }
+
+                video.init( function(){
+
+                        trace( 'Videoplayer ready' );
+
+                        //video.element.addEventListener( 'click', handleClick, false );
+                        //overlay.addEventListener( 'click', handleClick, false );
+
+                        //video.play();
+                        //video.playNext();
+                        //video.play();
+
+                });
+
+            });
         }
     }
 }

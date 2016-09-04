@@ -126,7 +126,24 @@ ol {
   padding: 0;
   list-style: none;
 }
+/*
+::-webkit-scrollbar-track {
+    background: #016FC1;
+}
+::-webkit-scrollbar-thumb {
+	background: #C60042;
+	border-radius: 6px;
+	//background-blend-mode: difference;
+    &:hover {
+        border-radius: 6px;
+        background: #F8ED01;
+    }
+}
+*/
 header {
+  display: none;
+}
+#youtube-player {
   display: none;
 }
 #flyer.grid {
