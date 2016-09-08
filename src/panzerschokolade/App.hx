@@ -17,7 +17,6 @@ class App {
 
         window.requestAnimationFrame( update );
 
-
         //var color = COLORS[index];
         //document.body.style.backgroundColor = color;
 
@@ -32,21 +31,15 @@ class App {
 
         window.onload = function() {
 
-            console.log( '|>4|\\|7_3|25(|-|0|(014|)3' );
+            console.log( Panzerschokolade.TITLE );
+
+            document.title = Panzerschokolade.TITLE +' - '+ Panzerschokolade.QUOTES[Std.int(Math.random()*Panzerschokolade.QUOTES.length-1)].toUpperCase();
 
             window.addEventListener( 'contextmenu', function(e) {
                 e.preventDefault();
             });
 
             //window.requestAnimationFrame( update );
-
-            /*
-            var timer = new haxe.Timer(200);
-            timer.run = function() {
-                document.body.style.cursor = CURSORS[cursorIndex];
-                if( ++cursorIndex == CURSORS.length ) cursorIndex = 0;
-            }
-            */
 
             YouTube.init( function(){
 
@@ -64,18 +57,9 @@ class App {
                 }
 
                 video.init( function(){
-
-                        trace( 'Videoplayer ready' );
-
-                        //video.element.addEventListener( 'click', handleClick, false );
-                        //overlay.addEventListener( 'click', handleClick, false );
-
-                        //video.play();
-                        //video.playNext();
-                        //video.play();
-
+                    trace( 'Videoplayer ready' );
+                    video.play( 'GI6dOS5ncFc' );
                 });
-
             });
         }
     }

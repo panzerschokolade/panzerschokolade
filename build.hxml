@@ -1,11 +1,24 @@
 -cp src
--js web/panzerschokolade.js
--main panzerschokolade.App
--debug
--lib om.api
+#-debug
 -dce full
+--each
 
--cmd lessc res/style/panzerschokolade.less web/panzerschokolade.css --include-path=/home/tong/dev/lib/om.style/res/style/
--cmd cp res/html/index.html web/index.html
+--next
+-php web
+-lib om.web
+-main panzerschokolade.Index
+-resource res/html/index.html@index
+-resource res/html/about.html@about
+-resource res/html/event.html@event
+-cmd cp res/web/htaccess web/.htaccess
+-cmd cp -r res/font/ web/
 -cmd cp -r res/image/flyer/ web/
 -cmd cp -r res/image/favicon.png web/
+#-cmd cp -r res/video/ web/
+-cmd lessc res/style/panzerschokolade.less web/panzerschokolade.css --include-path=/home/tong/dev/lib/om.style/res/style/
+
+--next
+-js web/panzerschokolade.js
+-main panzerschokolade.App
+-lib om.api
+#-cmd cp res/html/index.html web/index.html
