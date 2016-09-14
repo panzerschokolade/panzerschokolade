@@ -14,6 +14,8 @@
 -cmd cp -r res/font/ web/
 -cmd cp -r res/image/flyer/ web/
 -cmd cp -r res/image/favicon.png web/
+-cmd cp res/script/* web/
+-cmd cp -r res/mesh/ web/
 #-cmd cp -r res/video/ web/
 -cmd lessc res/style/panzerschokolade.less web/panzerschokolade.css --include-path=/home/tong/dev/lib/om.style/res/style/
 
@@ -21,4 +23,5 @@
 -js web/panzerschokolade.js
 -main panzerschokolade.App
 -lib om.api
+-cp ../../lib/three.hx/_src/
 #-cmd cp res/html/index.html web/index.html

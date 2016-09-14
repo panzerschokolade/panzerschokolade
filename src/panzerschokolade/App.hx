@@ -3,6 +3,7 @@ package panzerschokolade;
 import js.Browser.console;
 import js.Browser.document;
 import js.Browser.window;
+import js.html.CanvasElement;
 import om.api.youtube.YouTube;
 
 class App {
@@ -12,6 +13,12 @@ class App {
     static var CURSORS = ['n-resize','e-resize','s-resize','w-resize'];
 
     static var cursorIndex = 0;
+    */
+
+    static var video : VideoPlayer;
+
+    static var canvas : CanvasElement;
+    static var dolphin : Dolphin;
 
     static function update( time : Float ) {
 
@@ -20,12 +27,17 @@ class App {
         //var color = COLORS[index];
         //document.body.style.backgroundColor = color;
 
-        document.body.style.cursor = CURSORS[cursorIndex];
-        if( ++cursorIndex == CURSORS.length ) cursorIndex = 0;
-    }
-    */
+        //document.body.style.cursor = CURSORS[cursorIndex];
+        //if( ++cursorIndex == CURSORS.length ) cursorIndex = 0;
 
-    static var video : VideoPlayer;
+        dolphin.update( time );
+    }
+
+    static function handleWindowResize(e){
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        dolphin.renderer.setSize( window.innerWidth, window.innerHeight);
+    }
 
     static function main() {
 
@@ -39,7 +51,6 @@ class App {
                 e.preventDefault();
             });
 
-            //window.requestAnimationFrame( update );
 
             YouTube.init( function(){
 
@@ -47,20 +58,28 @@ class App {
 
                 video = new VideoPlayer( document.getElementById( 'youtube-player' ) );
 				video.onEvent = function(e){
-                    /*
-                    trace(e);
-                    switch e {
-                    case video_cued:
-                        //video.play();
-                    }
-                    */
+
                 }
 
                 video.init( function(){
                     trace( 'Videoplayer ready' );
-                    video.play( 'GI6dOS5ncFc' );
+                    var videoIds = ['GI6dOS5ncFc','6z2Ru_gjv90','rLpYnYJ1QVk'];
+                    var videoId = videoIds[Std.int( Math.random() * (videoIds.length) )];
+                    video.play( videoId );
                 });
             });
+
+            canvas = document.createCanvasElement();
+            canvas.id = 'horse';
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            document.body.appendChild( canvas );
+
+            dolphin = new panzerschokolade.Dolphin( canvas );
+
+            window.requestAnimationFrame( update );
+
+            window.addEventListener( 'resize', handleWindowResize, false );
         }
     }
 }
