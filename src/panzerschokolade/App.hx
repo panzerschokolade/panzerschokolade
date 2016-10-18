@@ -4,9 +4,25 @@ import js.Browser.console;
 import js.Browser.document;
 import js.Browser.window;
 import js.html.CanvasElement;
+import haxe.Timer.delay;
 import om.api.youtube.YouTube;
+import panzerschokolade.app.VideoPlayer;
+import panzerschokolade.app.OverlayAnimation;
+
+using StringTools;
 
 class App {
+
+    //var videoIds = ['GI6dOS5ncFc','6z2Ru_gjv90'];
+    static var VIDEOS = [
+        //'tzDubhD3f2A',
+        //'UDVtMYqUAyw',
+        'r4JmeXXRmZg', // GUY MADDIN - The Heart of the World
+        '138ajKRMzIY', //
+        //'GI6dOS5ncFc', //
+        '6z2Ru_gjv90', //
+        'pcakZb_P_nU' // Wully Bully - Chinese Syle
+    ];
 
     /*
     //static var COLORS = ['#388250','#362214','#C8452E','#B0072A','#C40131','#CFB009','#D7C902','#FB0F94','#0A9FDF','#89B194'];
@@ -15,14 +31,18 @@ class App {
     static var cursorIndex = 0;
     */
 
-    static var video : VideoPlayer;
+    public static var hue = 0;
 
-    static var canvas : CanvasElement;
-    static var dolphin : Dolphin;
+    static var path : String;
+    static var video : VideoPlayer;
+    static var overlay : OverlayAnimation;
 
     static function update( time : Float ) {
 
         window.requestAnimationFrame( update );
+
+        //untyped document.getElementById('flyer').style.webkitFilter = 'hue-rotate('+hue+'deg)';
+        //if( ++hue >= 360 ) hue = 0;
 
         //var color = COLORS[index];
         //document.body.style.backgroundColor = color;
@@ -30,56 +50,140 @@ class App {
         //document.body.style.cursor = CURSORS[cursorIndex];
         //if( ++cursorIndex == CURSORS.length ) cursorIndex = 0;
 
-        dolphin.update( time );
+
+        overlay.update( time );
+
+        switch path {
+        case 'about':
+            document.body.classList.toggle( 'invert' );
+        }
     }
 
-    static function handleWindowResize(e){
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        dolphin.renderer.setSize( window.innerWidth, window.innerHeight);
+    /*
+    static function handleMouseMove(e) {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    }
+    */
+
+    static function handleWindowResize(e) {
+        overlay.setSize( window.innerWidth, window.innerHeight );
+        //overlay.canvas.width = window.innerWidth;
+        //overlay.canvas.height = window.innerHeight;
+        //canvas.width = window.innerWidth;
+        //canvas.height = window.innerHeight;
+        //dolphin.renderer.setSize( window.innerWidth, window.innerHeight);
     }
 
     static function main() {
 
         window.onload = function() {
 
-            console.log( Panzerschokolade.TITLE );
+            path = window.location.pathname.substring( Panzerschokolade.ROOT.length );
+            if( path.startsWith( '/' ) ) path = path.substr(1);
+
+            console.log( '%c'+Panzerschokolade.TITLE, 'color:#C40131;font-size:60px;' );
+            console.debug( 'PATH:'+path+'|' );
 
             document.title = Panzerschokolade.TITLE +' - '+ Panzerschokolade.QUOTES[Std.int(Math.random()*Panzerschokolade.QUOTES.length-1)].toUpperCase();
 
             window.addEventListener( 'contextmenu', function(e) {
                 e.preventDefault();
+                window.location.href = 'about';
             });
 
+            var videoId : String = null;
 
-            YouTube.init( function(){
+            switch path {
+            case '','start':
+                videoId = 'GI6dOS5ncFc';
+            case 'about':
+                //overlay.canvas.style.opacity = '0.7';
+                videoId = 'r4JmeXXRmZg';
+                /*
+            case '666':
 
-                trace( 'Youtube ready' );
+                var canvas = document.createCanvasElement();
+        		canvas.classList.add( 'pentagram' );
+        		canvas.width = window.innerWidth;
+        		canvas.height = window.innerHeight;
+                document.body.appendChild( canvas );
 
-                video = new VideoPlayer( document.getElementById( 'youtube-player' ) );
-				video.onEvent = function(e){
+        		var x = Std.int( window.innerWidth / 2 );
+        		var y = Std.int( window.innerHeight / 2 );
+        		var rotate = Math.PI/2;
+        		var radiusW = window.innerWidth / 3.3;
+        		var radiusH = window.innerHeight / 3.3;
+        		var radius = (radiusW < radiusH) ? radiusW : radiusH;
 
-                }
+        		var i = 0;
+        		var j = 4 * Math.PI;
+        		var k = 0.0;
 
-                video.init( function(){
-                    trace( 'Videoplayer ready' );
-                    var videoIds = ['GI6dOS5ncFc','6z2Ru_gjv90','rLpYnYJ1QVk'];
-                    var videoId = videoIds[Std.int( Math.random() * (videoIds.length) )];
-                    video.play( videoId );
+                var ctx = canvas.getContext2d();
+        		ctx.clearRect( 0, 0, canvas.width, canvas.height );
+
+        		ctx.strokeStyle = '#00ff00';
+        		ctx.lineWidth = 4;
+        		ctx.beginPath();
+        		while( k <= 4 * Math.PI ) {
+        			var dx = x + radius * Math.cos( k + rotate );
+        			var dy = y + radius * Math.sin( k + rotate );
+        			ctx.lineTo( dx, dy );
+        			k += (4 * Math.PI) / 5;
+                    /*
+        			if( i < 5 ) {
+        				var cover = covers.children[i];
+        				if( cover != null ) {
+        					var coverRadius = cover.offsetWidth/2;
+        					cover.style.left = Std.int( dx - coverRadius )+'px';
+        					cover.style.top = Std.int( dy - coverRadius )+'px';
+        				}
+        			}
+                    * /
+        			i++;
+        		}
+        		ctx.moveTo( x + radius, y );
+                ctx.arc( x, y, radius, 0, Math.PI * 2, false );
+                ctx.closePath();
+        		//ctx.stroke();
+        		//ctx.lineWidth = 1;
+                //ctx.arc( x, y, radius+10, 0, Math.PI * 2, false );
+
+        		ctx.stroke();
+                */
+
+            default:
+                //ideoId = VIDEOS[Std.int( Math.random() * (VIDEOS.length) )];
+            }
+
+            if( videoId == null ) videoId = VIDEOS[Std.int( Math.random() * (VIDEOS.length-1) )];
+
+            overlay = new OverlayAnimation();
+            document.body.appendChild( overlay.canvas );
+            
+            delay( function(){
+
+                YouTube.init( function(){
+
+                    trace( 'Youtube ready' );
+
+                    video = new VideoPlayer( document.getElementById( 'youtube-player' ) );
+                    video.onEvent = function(e){
+                    }
+
+                    video.init( function(){
+                        trace( 'Videoplayer ready' );
+                        video.play( videoId );
+                    });
                 });
-            });
 
-            canvas = document.createCanvasElement();
-            canvas.id = 'horse';
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            document.body.appendChild( canvas );
-
-            dolphin = new panzerschokolade.Dolphin( canvas );
+            }, 500 );
 
             window.requestAnimationFrame( update );
 
-            window.addEventListener( 'resize', handleWindowResize, false );
+            //document.body.addEventListener( 'mousemove', handleMouseMove, false );
+            //window.addEventListener( 'resize', handleWindowResize, false );
         }
     }
 }

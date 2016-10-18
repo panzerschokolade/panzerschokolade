@@ -1,4 +1,4 @@
-package panzerschokolade;
+package panzerschokolade.app;
 
 import js.Browser.document;
 import js.Browser.window;
@@ -61,7 +61,7 @@ class VideoPlayer {
 	}
 
 	function handlePlayerStateChange(e) {
-		trace(e);
+		//trace(e);
 		//onEvent( e.data );
 		/*
 		switch e {
@@ -77,15 +77,15 @@ class VideoPlayer {
 	}
 
 	function handlePlaybackQualityChange(e) {
-		trace(e);
+		//trace(e);
 	}
 
 	function handlePlaybackRateChange(e) {
-		trace(e);
+		//trace(e);
 	}
 
 	function handlePlayerError(e) {
-		trace(e);
+		//trace(e);
 		//onEvent( error( e.data ) );
 	}
 }

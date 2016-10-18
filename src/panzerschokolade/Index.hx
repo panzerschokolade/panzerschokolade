@@ -7,25 +7,26 @@ import haxe.web.Dispatch;
 
 class Index {
 
-	//static inline var ROOT = '/web/drylungs.at/web/';
-	static inline var ROOT = '';
-
 	//static var iWsAdmin = false;
 
 	static function main() {
 
-		var path = Web.getURI().substr( ROOT.length );
+
+		var path = Web.getURI().substr( Panzerschokolade.ROOT.length );
 		var params = Web.getParams();
 
 		var isMobile = om.Web.isMobile();
+		var description = Panzerschokolade.QUOTES[Std.int(Math.random()*Panzerschokolade.QUOTES.length)].toUpperCase();
 
 		Template.globals = {
-			//title: '',
-			//description: '',
-			//copyright: '',
+
 			mobile: isMobile,
 			desktop: !isMobile,
-			platform: isMobile?'mobile':'desktop',
+			deviceType: isMobile ? 'mobile' : 'desktop',
+
+			title: '|>4|\\|7_3|25(|-|0|(014|)3 - '+description,
+			description: 'Mystery Of Mankind',
+			themeColor: '#000',
 		};
 
 		var dispatcher = new Dispatch( path, params );
@@ -42,7 +43,7 @@ class Index {
 			*/
 		}
 
-		var root = new panzerschokolade.Router();
+		var root = new panzerschokolade.control.Router();
 		try dispatcher.dispatch( root ) catch( e : DispatchError ) {
 			Sys.print(e);
 		}

@@ -1,6 +1,14 @@
 
 class Panzerschokolade {
 
+	public static inline var ROOT =
+		#if debug
+			'/web/panzerschokolade.tk/web/';
+		#else
+			'';
+		#end
+
+
 	public static var TITLE = '|>4|\\|7_3|25(|-|0|(014|)3';
 
 	public static var QUOTES = [
@@ -14,6 +22,8 @@ class Panzerschokolade {
 		'zart schmelzende schokokugeln aus feinem kokos',
 		'mehr grünflächen für alle',
 		'ich war ich bin ich werde sein',
-		'es gibt kein richtiges leben im falschen'
+		'es gibt kein richtiges leben im falschen',
+		'sign out - turn off - restart',
+		'interkultureller austausch zwischen mensch und maschine'
 	];
 }

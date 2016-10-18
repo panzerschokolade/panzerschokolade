@@ -6,30 +6,15 @@
 @flyer-width: 425px;
 @flyer-height: 600px;
 
+@keyframes fadeIn {
+    from { opacity: 0; }
+    100% { opacity: 1; }
+}
 
 /*
 @font-face {
     font-family: Anonymous;
     src: url('font/Anonymous Pro.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: Avestan;
-    src: url('font/NotoSansAvestan-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: Bamum;
-    src: url('font/NotoSansBamum-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: Brahmi;
-    src: url('font/NotoSansBrahmi-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -50,8 +35,8 @@ body {
 
     overflow-x: hidden;
 
-    //font-family: Brahmi;
-    //font-size: 14px;
+    font-family: Helvetica,Arial,sans;
+    font-size: 12px;
 
     background: #000;
     color: #fff;
@@ -73,6 +58,10 @@ ol {
     list-style: none;
 }
 
+::selection {
+    background: #144192;
+    color: #C60042;
+}
 
 ::-webkit-scrollbar-track {
     background: #C60042;
@@ -87,46 +76,21 @@ ol {
     }
 }
 
-
-#youtube-player {
-    display: none;
+.invert {
+    -webkit-filter: invert(100%);
 }
+
 
 header {
     display: none;
-    //position: relative;
-    //z-index: 1;
-    //width: 800px;
-    //margin: 0 auto;
-    //color: #144192;
 }
-
-/*
-main {
-
-    position: relative;
-    z-index: 1;
-    width: 800px;
-    margin: 0 auto;
-    background: #CB1D26;
-
-    box-shadow:
-         20px  20px 30px rgba(0,0,0,0.4),
-        -20px -20px 30px rgba(0,0,0,0.4);
-}
-*/
 
 #flyer.grid {
 
-    //position: fixed;
-    //top: 0;
-    //right: 0;
-    //left: 0;
-    //bottom: 0;
-    //z-index: 0;
-
     width: 100%;
     padding: 1px;
+
+    //-webkit-filter: hue(100%);
 
     li {
 
@@ -206,19 +170,51 @@ main {
     }
 }
 
-canvas#horse {
+.about {
+    padding: 20px;
+}
+
+video.spirits {
     position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    //width: 100%;
-    //height: 100%;
+    width: 100%;
+    height: 100%;
+}
+
+canvas.overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     .no-user-drag;
     .no-user-select;
     pointer-events: none;
+    z-index: 10000000;
 }
 
 footer {
     display: none;
+}
+
+#youtube-player {
+    display: none;
+    /*
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    .no-user-drag;
+    .no-user-select;
+    z-index: 10000;
+    */
+    pointer-events: none;
 }
