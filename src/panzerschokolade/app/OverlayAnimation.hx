@@ -3,7 +3,23 @@ package panzerschokolade.app;
 import js.Browser.document;
 import js.Browser.window;
 import js.html.CanvasElement;
-import three.Lib;
+import three.animation.AnimationMixer;
+import three.animation.AnimationClip;
+import three.cameras.PerspectiveCamera;
+import three.extras.SceneUtils;
+import three.geometries.BoxGeometry;
+import three.helpers.PointLightHelper;
+import three.lights.AmbientLight;
+import three.lights.PointLight;
+import three.math.Color;
+import three.materials.MeshBasicMaterial;
+import three.materials.MeshPhongMaterial;
+import three.materials.MeshLambertMaterial;
+import three.loaders.JSONLoader;
+import three.objects.Mesh;
+import three.renderers.Renderer;
+import three.renderers.WebGLRenderer;
+import three.scenes.Scene;
 //import panzerschokolade.three.Tesseract;
 
 class OverlayAnimation {
@@ -83,7 +99,7 @@ class OverlayAnimation {
 		*/
 
 		var material = new MeshPhongMaterial( {
-			color: 0xffffff, side: FrontSide, shininess: 0, opacity: 1
+			color: new Color(0xffffff), side: FrontSide, shininess: 0, opacity: 1
 		} );
 		//material.transparent = true;
 
@@ -91,21 +107,23 @@ class OverlayAnimation {
 		//tesseract.rotation.z = -Math.PI/2;
 		//scene.add( tesseract );
 
-		new JSONLoader().load( 'mesh/horse.json', function(g,m) {
-			dolphin = new Mesh( g, new MeshLambertMaterial( {
-				//vertexColors: Colors.FaceColors,
-				morphTargets: true
-			} ) );
-			var scaleFactor = 0.02;
-			dolphin.scale.set( scaleFactor, scaleFactor, scaleFactor );
-			dolphin.position.y = -1.8;
-			scene.add( dolphin );
+		new JSONLoader().load( 'mesh/horse.json',
+			function(g,m) {
+				dolphin = new Mesh( g, new MeshLambertMaterial( {
+					//vertexColors: Colors.FaceColors,
+					morphTargets: true
+				} ) );
+				var scaleFactor = 0.02;
+				dolphin.scale.set( scaleFactor, scaleFactor, scaleFactor );
+				dolphin.position.y = -1.8;
+				scene.add( dolphin );
 
-			mixer = new AnimationMixer( dolphin );
+				mixer = new AnimationMixer( dolphin );
 
-			var clip = AnimationClip.CreateFromMorphTargetSequence( 'gallop', g.morphTargets, 30 );
-			mixer.clipAction( clip ).setDuration( 1 ).play();
-		});
+				var clip = AnimationClip.CreateFromMorphTargetSequence( 'gallop', g.morphTargets, 30 );
+				mixer.clipAction( clip ).setDuration( 1 ).play();
+			}
+		);
 
 		timeLastFrame = om.Time.now();
 

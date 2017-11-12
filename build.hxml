@@ -1,11 +1,12 @@
 -cp src
-#-debug
+-debug
 -dce full
 --each
 
 --next
 -php web
 -lib om.web
+-lib hx3compat
 -main panzerschokolade.Index
 
 -resource res/html/about.html@about

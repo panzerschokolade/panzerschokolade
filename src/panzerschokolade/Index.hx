@@ -11,11 +11,10 @@ class Index {
 
 	static function main() {
 
-
 		var path = Web.getURI().substr( Panzerschokolade.ROOT.length );
 		var params = Web.getParams();
 
-		var isMobile = om.Web.isMobile();
+		var isMobile = om.System.isMobile();
 		var description = Panzerschokolade.QUOTES[Std.int(Math.random()*Panzerschokolade.QUOTES.length)].toUpperCase();
 
 		Template.globals = {
@@ -29,8 +28,8 @@ class Index {
 			themeColor: '#000',
 		};
 
-		var dispatcher = new Dispatch( path, params );
-		dispatcher.onMeta = function(meta,value) {
+		var router = new haxe.web.Dispatch( path, params );
+		router.onMeta = function(meta,value) {
 			/*
 			//trace(m,v);
 			switch meta {
@@ -44,7 +43,7 @@ class Index {
 		}
 
 		var root = new panzerschokolade.control.Router();
-		try dispatcher.dispatch( root ) catch( e : DispatchError ) {
+		try router.dispatch( root ) catch( e : DispatchError ) {
 			Sys.print(e);
 		}
 

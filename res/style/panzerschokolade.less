@@ -50,6 +50,16 @@ body {
 
 a {
     cursor: n-resize;
+    text-decoration: none;
+    //transition: font-size 0.2s;
+
+    &:hover {
+        //font-size: 100px;
+        //text-decoration: underline;
+
+        transform: translate(100px) rotate(20deg);
+        transform-origin: 0 -250px;
+    }
 }
 
 ol {
@@ -77,12 +87,44 @@ ol {
 }
 
 .invert {
+    filter: invert(100%);
+    -moz-filter: invert(100%);
     -webkit-filter: invert(100%);
 }
 
 
 header {
-    display: none;
+
+    position: fixed;
+    top: 0px;
+    left: 0px;
+
+    * {
+        //background: #000;
+        color: #fff;
+        padding: 6px 4px 5px 4px;
+    }
+
+    h1 {
+        display: inline-block;
+        //display: none;
+        font-size: 11px;
+        cursor: grab;
+    }
+
+    nav {
+        font-size: 11px;
+        font-family: monospace;
+        display: inline-block;
+        a {
+            cursor: grab;
+        }
+        &:hover {
+            transform: scaleY(-1);
+        }
+    }
+
+    z-index: 1000000;
 }
 
 #flyer.grid {
@@ -116,7 +158,7 @@ header {
             max-width: 425px;
             max-height: 600px;
 
-            //animation: fade-in 2s ease-in-out;
+            animation: fadeIn 0.5s ease-in-out;
 
             .no-user-drag;
             .no-user-select;
@@ -171,7 +213,7 @@ header {
 }
 
 .about {
-    padding: 20px;
+    padding: 12px;
 }
 
 video.spirits {
@@ -195,7 +237,10 @@ canvas.overlay {
     .no-user-drag;
     .no-user-select;
     pointer-events: none;
-    z-index: 10000000;
+    z-index: 10000;
+    animation: fadeIn 1s ease-in-out;
+    //-webkit-filter: drop-shadow(20px 20px 50px #000000);
+    //-moz-filter: drop-shadow(20px 20px 50px #000000);
 }
 
 footer {
@@ -204,17 +249,5 @@ footer {
 
 #youtube-player {
     display: none;
-    /*
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    .no-user-drag;
-    .no-user-select;
-    z-index: 10000;
-    */
     pointer-events: none;
 }

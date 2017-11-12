@@ -13,7 +13,6 @@ using StringTools;
 
 class App {
 
-    //var videoIds = ['GI6dOS5ncFc','6z2Ru_gjv90'];
     static var VIDEOS = [
         //'tzDubhD3f2A',
         //'UDVtMYqUAyw',
@@ -44,12 +43,8 @@ class App {
         //untyped document.getElementById('flyer').style.webkitFilter = 'hue-rotate('+hue+'deg)';
         //if( ++hue >= 360 ) hue = 0;
 
-        //var color = COLORS[index];
-        //document.body.style.backgroundColor = color;
-
         //document.body.style.cursor = CURSORS[cursorIndex];
         //if( ++cursorIndex == CURSORS.length ) cursorIndex = 0;
-
 
         overlay.update( time );
 
@@ -59,20 +54,8 @@ class App {
         }
     }
 
-    /*
-    static function handleMouseMove(e) {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-    }
-    */
-
     static function handleWindowResize(e) {
         overlay.setSize( window.innerWidth, window.innerHeight );
-        //overlay.canvas.width = window.innerWidth;
-        //overlay.canvas.height = window.innerHeight;
-        //canvas.width = window.innerWidth;
-        //canvas.height = window.innerHeight;
-        //dolphin.renderer.setSize( window.innerWidth, window.innerHeight);
     }
 
     static function main() {
@@ -87,10 +70,8 @@ class App {
 
             document.title = Panzerschokolade.TITLE +' - '+ Panzerschokolade.QUOTES[Std.int(Math.random()*Panzerschokolade.QUOTES.length-1)].toUpperCase();
 
-            window.addEventListener( 'contextmenu', function(e) {
-                e.preventDefault();
-                window.location.href = 'about';
-            });
+            overlay = new OverlayAnimation();
+            document.body.appendChild( overlay.canvas );
 
             var videoId : String = null;
 
@@ -98,9 +79,10 @@ class App {
             case '','start':
                 videoId = 'GI6dOS5ncFc';
             case 'about':
-                //overlay.canvas.style.opacity = '0.7';
                 videoId = 'r4JmeXXRmZg';
-                /*
+                overlay.canvas.style.opacity = '0.7';
+
+            /*
             case '666':
 
                 var canvas = document.createCanvasElement();
@@ -159,9 +141,7 @@ class App {
 
             if( videoId == null ) videoId = VIDEOS[Std.int( Math.random() * (VIDEOS.length-1) )];
 
-            overlay = new OverlayAnimation();
-            document.body.appendChild( overlay.canvas );
-            
+            /*
             delay( function(){
 
                 YouTube.init( function(){
@@ -179,8 +159,14 @@ class App {
                 });
 
             }, 500 );
-
+            */
+            
             window.requestAnimationFrame( update );
+
+            window.addEventListener( 'contextmenu', function(e) {
+                e.preventDefault();
+                window.location.href = 'about';
+            });
 
             //document.body.addEventListener( 'mousemove', handleMouseMove, false );
             //window.addEventListener( 'resize', handleWindowResize, false );
