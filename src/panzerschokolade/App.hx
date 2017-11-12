@@ -141,7 +141,6 @@ class App {
 
             if( videoId == null ) videoId = VIDEOS[Std.int( Math.random() * (VIDEOS.length-1) )];
 
-            /*
             delay( function(){
 
                 YouTube.init( function(){
@@ -159,7 +158,6 @@ class App {
                 });
 
             }, 500 );
-            */
             
             window.requestAnimationFrame( update );
 
