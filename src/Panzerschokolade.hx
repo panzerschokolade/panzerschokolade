@@ -24,6 +24,7 @@ class Panzerschokolade {
 		'ich war ich bin ich werde sein',
 		'es gibt kein richtiges leben im falschen',
 		'sign out - turn off - restart',
-		'interkultureller austausch zwischen mensch und maschine'
+		'interkultureller austausch zwischen mensch und maschine',
+		'das tut mir mehr weh wie dir'
 	];
 }
