@@ -6,7 +6,7 @@ import js.html.CanvasElement;
 import three.animation.AnimationMixer;
 import three.animation.AnimationClip;
 import three.cameras.PerspectiveCamera;
-import three.extras.SceneUtils;
+//import three.extras.SceneUtils;
 import three.geometries.BoxGeometry;
 import three.helpers.PointLightHelper;
 import three.lights.AmbientLight;
@@ -31,12 +31,11 @@ class OverlayAnimation {
 
 	var scene : Scene;
 	var camera : PerspectiveCamera;
-	var mesh : Mesh;
 	var pointLight1 : PointLight;
 	var pointLight2 : PointLight;
 	var pointLight3 : PointLight;
-//	var tesseract : Tesseract;
-	var dolphin : Mesh;
+	var mesh : Mesh;
+	//	var tesseract : Tesseract;
 
 	var targetRotationX = 0.0;
 	var targetRotationOnMouseDownX = 0.0;
@@ -109,19 +108,22 @@ class OverlayAnimation {
 
 		new JSONLoader().load( 'mesh/horse.json',
 			function(g,m) {
-				dolphin = new Mesh( g, new MeshLambertMaterial( {
+				mesh = new Mesh( g, new MeshLambertMaterial( {
 					//vertexColors: Colors.FaceColors,
 					morphTargets: true
 				} ) );
 				var scaleFactor = 0.02;
-				dolphin.scale.set( scaleFactor, scaleFactor, scaleFactor );
-				dolphin.position.y = -1.8;
-				scene.add( dolphin );
+				mesh.scale.set( scaleFactor, scaleFactor, scaleFactor );
+				mesh.position.y = -1.8;
+				scene.add( mesh );
 
-				mixer = new AnimationMixer( dolphin );
+				mixer = new AnimationMixer( mesh );
 
 				var clip = AnimationClip.CreateFromMorphTargetSequence( 'gallop', g.morphTargets, 30 );
 				mixer.clipAction( clip ).setDuration( 1 ).play();
+
+				//var clip = AnimationClip.CreateFromMorphTargetSequence( 'gallop', g.morphTargets, 30 );
+				//mixer.clipAction( clip ).setDuration( 1 ).play();
 			}
 		);
 
@@ -154,23 +156,23 @@ class OverlayAnimation {
 		tesseract.update( time );
 		*/
 
-		if( dolphin != null ) {
+		if( mesh != null ) {
 
 			mixer.update( delta * 0.001 );
 
-			dolphin.rotation.y += ( targetRotationX - dolphin.rotation.y ) * 0.1;
-			finalRotationY = (targetRotationY - dolphin.rotation.x);
-			dolphin.rotation.x += finalRotationY * 0.05;
-			//finalRotationY = (targetRotationY - dolphin.rotation.x);
+			mesh.rotation.y += ( targetRotationX - mesh.rotation.y ) * 0.1;
+			finalRotationY = (targetRotationY - mesh.rotation.x);
+			mesh.rotation.x += finalRotationY * 0.05;
+			//finalRotationY = (targetRotationY - mesh.rotation.x);
 
-			if (dolphin.rotation.x  <= 1 && dolphin.rotation.x >= -1 ) {
-	   			dolphin.rotation.x += finalRotationY * 0.1;
+			if (mesh.rotation.x  <= 1 && mesh.rotation.x >= -1 ) {
+	   			mesh.rotation.x += finalRotationY * 0.1;
 			}
-			if( dolphin.rotation.x  > 1 ) {
-	  			dolphin.rotation.x = 1;
+			if( mesh.rotation.x  > 1 ) {
+	  			mesh.rotation.x = 1;
 			}
-			if( dolphin.rotation.x  < -1 ) {
-				dolphin.rotation.x = -1;
+			if( mesh.rotation.x  < -1 ) {
+				mesh.rotation.x = -1;
 			}
 		}
 

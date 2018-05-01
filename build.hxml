@@ -8,7 +8,6 @@
 -lib om.web
 -lib hx3compat
 -main panzerschokolade.Index
-
 -resource res/html/about.html@about
 -resource res/html/index.html@index
 -resource res/html/login.html@login
@@ -16,13 +15,13 @@
 -resource res/html/spirits.html@spirits
 -resource res/html/666.html@666
 
--cmd cp res/web/htaccess web/.htaccess
--cmd cp -r res/font/ web/
--cmd cp -r res/image/flyer/ web/
--cmd cp -r res/image/favicon.png web/
--cmd cp -r res/script/ web/
--cmd cp -r res/mesh/ web/
--cmd cp -r res/video/ web/
+-cmd cp -u res/web/htaccess web/.htaccess
+-cmd cp -u -r res/font/ web/
+-cmd cp -u -r res/image/flyer/ web/
+-cmd cp -u -r res/image/favicon.png web/
+-cmd cp -u -r res/script/ web/
+-cmd cp -u -r res/mesh/ web/
+-cmd cp -u -r res/video/ web/
 #-cmd cp -r res/video/ web/
 -cmd lessc res/style/panzerschokolade.less web/panzerschokolade.css --include-path=/home/tong/dev/lib/om.style/res/style/
 

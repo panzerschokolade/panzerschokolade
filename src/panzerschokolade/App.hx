@@ -66,7 +66,7 @@ class App {
             if( path.startsWith( '/' ) ) path = path.substr(1);
 
             console.log( '%c'+Panzerschokolade.TITLE, 'color:#C40131;font-size:60px;' );
-            console.debug( 'PATH:'+path+'|' );
+            //console.debug( 'PATH:'+path+'|' );
 
             document.title = Panzerschokolade.TITLE +' - '+ Panzerschokolade.QUOTES[Std.int(Math.random()*Panzerschokolade.QUOTES.length-1)].toUpperCase();
 
@@ -140,6 +140,7 @@ class App {
             }
 
             if( videoId == null ) videoId = VIDEOS[Std.int( Math.random() * (VIDEOS.length-1) )];
+            //videoId = VIDEOS[Std.int( Math.random() * (VIDEOS.length-1) )];
 
             delay( function(){
 
@@ -158,7 +159,7 @@ class App {
                 });
 
             }, 500 );
-            
+
             window.requestAnimationFrame( update );
 
             window.addEventListener( 'contextmenu', function(e) {

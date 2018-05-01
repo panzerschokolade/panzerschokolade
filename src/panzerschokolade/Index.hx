@@ -7,23 +7,21 @@ import haxe.web.Dispatch;
 
 class Index {
 
-	//static var iWsAdmin = false;
+	//static var isAdmin = false;
 
 	static function main() {
 
 		var path = Web.getURI().substr( Panzerschokolade.ROOT.length );
 		var params = Web.getParams();
 
-		var isMobile = om.System.isMobile();
+		var isMobile = om.Runtime.isMobile();
 		var description = Panzerschokolade.QUOTES[Std.int(Math.random()*Panzerschokolade.QUOTES.length)].toUpperCase();
 
 		Template.globals = {
-
 			mobile: isMobile,
 			desktop: !isMobile,
 			deviceType: isMobile ? 'mobile' : 'desktop',
-
-			title: '|>4|\\|7_3|25(|-|0|(014|)3 - '+description,
+			title: 'ʍ¥§ŁɘȐӋ ๏Ӻ ʍДÑԞіŋÐ • '+description,
 			description: 'Mystery Of Mankind',
 			themeColor: '#000',
 		};

@@ -8,8 +8,7 @@ class Panzerschokolade {
 			'';
 		#end
 
-
-	public static var TITLE = '|>4|\\|7_3|25(|-|0|(014|)3';
+	public static var TITLE = 'ʍ¥§ŁɘȐӋ ๏Ӻ ʍДÑԞіŋÐ';
 
 	public static var QUOTES = [
 		'dedicated to egosystonic amphetamin psychosis',
