@@ -1,9 +1,9 @@
 package panzerschokolade;
 
-import php.Web;
-import sys.io.File;
 import haxe.Template;
 import haxe.web.Dispatch;
+import php.Web;
+import sys.io.File;
 
 class Index {
 
@@ -13,7 +13,6 @@ class Index {
 
 		var path = Web.getURI().substr( Panzerschokolade.ROOT.length );
 		var params = Web.getParams();
-
 		var isMobile = om.Runtime.isMobile();
 		var description = Panzerschokolade.QUOTES[Std.int(Math.random()*Panzerschokolade.QUOTES.length)].toUpperCase();
 
