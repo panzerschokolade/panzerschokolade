@@ -14,12 +14,13 @@ using StringTools;
 class App {
 
     static var VIDEOS = [
-        //'tzDubhD3f2A',
-        //'UDVtMYqUAyw',
+        'tzDubhD3f2A', // Jurassic Park Theme
+        //'VK5uG2fN6HE', // Phurpa
+        'GbUeK1PP7-s', // Home Alone Theme
         'r4JmeXXRmZg', // GUY MADDIN - The Heart of the World
-        '138ajKRMzIY', //
-        //'GI6dOS5ncFc', //
-        '6z2Ru_gjv90', //
+        //'138ajKRMzIY', // Ceephax Acid Crew
+        'GI6dOS5ncFc', // 1 Hour of Ancient Egyptian Music
+        //'6z2Ru_gjv90', // Menschen & Mächte
         'pcakZb_P_nU' // Wully Bully - Chinese Syle
     ];
 
@@ -29,8 +30,6 @@ class App {
 
     static var cursorIndex = 0;
     */
-
-    public static var hue = 0;
 
     static var path : String;
     static var video : VideoPlayer;
@@ -76,8 +75,11 @@ class App {
             var videoId : String = null;
 
             switch path {
+
             case '','start':
-                videoId = 'GI6dOS5ncFc';
+                //videoId = 'GI6dOS5ncFc';
+                //videoId = 'GbUeK1PP7-s';
+
             case 'about':
                 videoId = 'r4JmeXXRmZg';
                 overlay.canvas.style.opacity = '0.7';
@@ -136,7 +138,8 @@ class App {
                 */
 
             default:
-                //ideoId = VIDEOS[Std.int( Math.random() * (VIDEOS.length) )];
+                //videoId = VIDEOS[Std.int( Math.random() * (VIDEOS.length) )];
+
             }
 
             if( videoId == null ) videoId = VIDEOS[Std.int( Math.random() * (VIDEOS.length-1) )];
@@ -149,8 +152,7 @@ class App {
                     trace( 'Youtube ready' );
 
                     video = new VideoPlayer( document.getElementById( 'youtube-player' ) );
-                    video.onEvent = function(e){
-                    }
+                    //video.onEvent = function(e){}
 
                     video.init( function(){
                         trace( 'Videoplayer ready' );
@@ -171,4 +173,5 @@ class App {
             //window.addEventListener( 'resize', handleWindowResize, false );
         }
     }
+
 }

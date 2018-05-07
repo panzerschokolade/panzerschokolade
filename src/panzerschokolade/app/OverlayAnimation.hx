@@ -6,7 +6,6 @@ import js.html.CanvasElement;
 import three.animation.AnimationMixer;
 import three.animation.AnimationClip;
 import three.cameras.PerspectiveCamera;
-//import three.extras.SceneUtils;
 import three.geometries.BoxGeometry;
 import three.helpers.PointLightHelper;
 import three.lights.AmbientLight;
@@ -17,16 +16,14 @@ import three.materials.MeshPhongMaterial;
 import three.materials.MeshLambertMaterial;
 import three.loaders.JSONLoader;
 import three.objects.Mesh;
-import three.renderers.Renderer;
 import three.renderers.WebGLRenderer;
 import three.scenes.Scene;
-//import panzerschokolade.three.Tesseract;
 
 class OverlayAnimation {
 
 	public var canvas(default,null) : CanvasElement;
 
-	var renderer : Renderer;
+	var renderer : WebGLRenderer;
 	var timeLastFrame : Float;
 
 	var scene : Scene;
@@ -35,17 +32,14 @@ class OverlayAnimation {
 	var pointLight2 : PointLight;
 	var pointLight3 : PointLight;
 	var mesh : Mesh;
-	//	var tesseract : Tesseract;
 
 	var targetRotationX = 0.0;
 	var targetRotationOnMouseDownX = 0.0;
-
 	var targetRotationY = 0.0;
 	var targetRotationOnMouseDownY = 0.0;
 
 	var mouseX = 0;
 	var mouseXOnMouseDown = 0.0;
-
 	var mouseY = 0;
 	var mouseYOnMouseDown = 0.0;
 
@@ -65,12 +59,12 @@ class OverlayAnimation {
 
 		renderer = new WebGLRenderer( { canvas: canvas, antialias : false, alpha: true } );
 		//renderer.setClearColor( new Color(0x000000) );
-		//renderer = new CanvasRenderer( { antialias : true } );
+		renderer.setPixelRatio( window.devicePixelRatio );
 		renderer.setSize( window.innerWidth, window.innerHeight );
 
 		scene = new Scene();
 
-		camera = new PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.001, 10000 );
+		camera = new PerspectiveCamera( 65, window.innerWidth / window.innerHeight, 0.001, 10000 );
 		camera.position.set( 0, 0, 5 );
 		camera.lookAt( scene.position );
 		scene.add( camera );
@@ -97,14 +91,18 @@ class OverlayAnimation {
 		scene.add( spotLight );
 		*/
 
+		/*
 		var material = new MeshPhongMaterial( {
 			color: new Color(0xffffff), side: FrontSide, shininess: 0, opacity: 1
 		} );
 		//material.transparent = true;
+		*/
 
-		//tesseract = new Tesseract( 1.5, 0.2, 0.05, 0.01, material );
-		//tesseract.rotation.z = -Math.PI/2;
-		//scene.add( tesseract );
+		/*
+		var tesseract = new panzerschokolade.three.Tesseract( 1.5, 0.2, 0.05, 0.01, material );
+		tesseract.rotation.z = -Math.PI/2;
+		scene.add( tesseract );
+		*/
 
 		new JSONLoader().load( 'mesh/horse.json',
 			function(g,m) {
