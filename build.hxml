@@ -1,6 +1,6 @@
 -cp src
--debug
 -dce full
+-debug
 --each
 
 --next
@@ -22,13 +22,10 @@
 -cmd cp -u -r res/script/ web/
 -cmd cp -u -r res/mesh/ web/
 -cmd cp -u -r res/video/ web/
-#-cmd cp -r res/video/ web/
--cmd lessc res/style/panzerschokolade.less web/panzerschokolade.css --include-path=/home/tong/dev/lib/om.style/res/style/
+-cmd lessc res/style/app.less web/app.css --include-path=/home/tong/dev/lib/om.style/res/style/
 
 --next
 -js web/panzerschokolade.js
 -main panzerschokolade.App
 -lib om.api
 -lib three.hx
-#-cp ../../lib/three.hx.C/_src
-#-cmd cp res/html/index.html web/index.html

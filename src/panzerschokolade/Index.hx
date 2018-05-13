@@ -20,11 +20,12 @@ class Index {
 			mobile: isMobile,
 			desktop: !isMobile,
 			deviceType: isMobile ? 'mobile' : 'desktop',
-			title: 'ʍ¥§ŁɘȐӋ ๏Ӻ ʍДÑԞіŋÐ • '+description,
+			title: Panzerschokolade.TITLE+' • '+description,
 			description: 'Mystery Of Mankind',
 			themeColor: '#000',
 		};
 
+		var root = new panzerschokolade.control.Router();
 		var router = new haxe.web.Dispatch( path, params );
 		router.onMeta = function(meta,value) {
 			/*
@@ -38,12 +39,11 @@ class Index {
 			}
 			*/
 		}
-
-		var root = new panzerschokolade.control.Router();
 		try router.dispatch( root ) catch( e : DispatchError ) {
 			Sys.print(e);
 		}
 
 		Web.flush();
 	}
+
 }

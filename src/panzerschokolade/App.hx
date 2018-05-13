@@ -15,19 +15,21 @@ class App {
 
     static var VIDEOS = [
         'tzDubhD3f2A', // Jurassic Park Theme
-        //'VK5uG2fN6HE', // Phurpa
-        'GbUeK1PP7-s', // Home Alone Theme
-        'r4JmeXXRmZg', // GUY MADDIN - The Heart of the World
+    //    'GbUeK1PP7-s', // Home Alone Theme
+        //'r4JmeXXRmZg', // GUY MADDIN - The Heart of the World
         //'138ajKRMzIY', // Ceephax Acid Crew
         'GI6dOS5ncFc', // 1 Hour of Ancient Egyptian Music
         //'6z2Ru_gjv90', // Menschen & Mächte
-        'pcakZb_P_nU' // Wully Bully - Chinese Syle
+        //'pcakZb_P_nU' // Wully Bully - Chinese Syle
+        //'0dEkm0Mczzw', // Persia & Armenia Music
+        //'tFTo7wEEajM', // Surachai
+        'fKBuKcDPjzM', // Psychic TV - The Orchids
+        //'o81A31hlgEA', // Megaloschemos II (Bulgarian Orthodox Hymn)
+        '_nwo4DSCFBc' // Beliefs Unlimited of John C. Lilly
     ];
 
     /*
-    //static var COLORS = ['#388250','#362214','#C8452E','#B0072A','#C40131','#CFB009','#D7C902','#FB0F94','#0A9FDF','#89B194'];
     static var CURSORS = ['n-resize','e-resize','s-resize','w-resize'];
-
     static var cursorIndex = 0;
     */
 
@@ -142,7 +144,7 @@ class App {
 
             }
 
-            if( videoId == null ) videoId = VIDEOS[Std.int( Math.random() * (VIDEOS.length-1) )];
+            if( videoId == null ) videoId = VIDEOS[Std.int( Math.random() * (VIDEOS.length) )];
             //videoId = VIDEOS[Std.int( Math.random() * (VIDEOS.length-1) )];
 
             delay( function(){
@@ -166,7 +168,7 @@ class App {
 
             window.addEventListener( 'contextmenu', function(e) {
                 e.preventDefault();
-                window.location.href = 'about';
+                //window.location.href = 'about';
             });
 
             //document.body.addEventListener( 'mousemove', handleMouseMove, false );
