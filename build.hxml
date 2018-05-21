@@ -4,7 +4,7 @@
 --each
 
 --next
--php web
+-php bin
 -lib om.web
 -lib hx3compat
 -main panzerschokolade.Index
@@ -15,17 +15,17 @@
 -resource res/html/spirits.html@spirits
 -resource res/html/666.html@666
 
--cmd cp -u res/web/htaccess web/.htaccess
--cmd cp -u -r res/font/ web/
--cmd cp -u -r res/image/flyer/ web/
--cmd cp -u -r res/image/favicon.png web/
--cmd cp -u -r res/script/ web/
--cmd cp -u -r res/mesh/ web/
--cmd cp -u -r res/video/ web/
--cmd lessc res/style/app.less web/app.css --include-path=/home/tong/dev/lib/om.style/res/style/
+-cmd cp -u res/web/htaccess bin/.htaccess
+-cmd cp -u -r res/font/ bin/
+-cmd cp -u -r res/image/flyer/ bin/
+#-cmd cp -u -r res/image/favicon.png bin/
+-cmd cp -u -r res/script/ bin/
+-cmd cp -u -r res/mesh/ bin/
+-cmd cp -u -r res/video/ bin/
+-cmd lessc res/style/app.less bin/app.css --no-color --include-path=/home/tong/dev/lib/om.style/res/style/
 
 --next
--js web/panzerschokolade.js
+-js bin/panzerschokolade.js
 -main panzerschokolade.App
 -lib om.api
 -lib three.hx

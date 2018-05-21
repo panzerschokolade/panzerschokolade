@@ -15,7 +15,7 @@ class App {
 
     static var VIDEOS = [
         'tzDubhD3f2A', // Jurassic Park Theme
-    //    'GbUeK1PP7-s', // Home Alone Theme
+        'GbUeK1PP7-s', // Home Alone Theme
         //'r4JmeXXRmZg', // GUY MADDIN - The Heart of the World
         //'138ajKRMzIY', // Ceephax Acid Crew
         'GI6dOS5ncFc', // 1 Hour of Ancient Egyptian Music
@@ -25,7 +25,9 @@ class App {
         //'tFTo7wEEajM', // Surachai
         'fKBuKcDPjzM', // Psychic TV - The Orchids
         //'o81A31hlgEA', // Megaloschemos II (Bulgarian Orthodox Hymn)
-        '_nwo4DSCFBc' // Beliefs Unlimited of John C. Lilly
+        '_nwo4DSCFBc', // Beliefs Unlimited of John C. Lilly
+        //'7p5T156l4tg', // Qiyan Music of Al-Andalus
+        //'QzT46g-my0U' // Songs of Templars
     ];
 
     /*
@@ -35,7 +37,7 @@ class App {
 
     static var path : String;
     static var video : VideoPlayer;
-    static var overlay : OverlayAnimation;
+//    static var overlay : OverlayAnimation;
 
     static function update( time : Float ) {
 
@@ -47,16 +49,16 @@ class App {
         //document.body.style.cursor = CURSORS[cursorIndex];
         //if( ++cursorIndex == CURSORS.length ) cursorIndex = 0;
 
-        overlay.update( time );
+    //    overlay.update( time );
 
         switch path {
         case 'about':
-            document.body.classList.toggle( 'invert' );
+            //document.body.classList.toggle( 'invert' );
         }
     }
 
     static function handleWindowResize(e) {
-        overlay.setSize( window.innerWidth, window.innerHeight );
+        //overlay.setSize( window.innerWidth, window.innerHeight );
     }
 
     static function main() {
@@ -69,12 +71,12 @@ class App {
             console.log( '%c'+Panzerschokolade.TITLE, 'color:#C40131;font-size:60px;' );
             //console.debug( 'PATH:'+path+'|' );
 
-            document.title = Panzerschokolade.TITLE +' - '+ Panzerschokolade.QUOTES[Std.int(Math.random()*Panzerschokolade.QUOTES.length-1)].toUpperCase();
+            //document.title = Panzerschokolade.TITLE +' - '+ Panzerschokolade.QUOTES[Std.int(Math.random()*Panzerschokolade.QUOTES.length-1)].toUpperCase();
 
-            overlay = new OverlayAnimation();
-            document.body.appendChild( overlay.canvas );
+            //overlay = new OverlayAnimation();
+            //document.body.appendChild( overlay.canvas );
 
-            var videoId : String = null;
+            //var videoId : String = null;
 
             switch path {
 
@@ -83,8 +85,8 @@ class App {
                 //videoId = 'GbUeK1PP7-s';
 
             case 'about':
-                videoId = 'r4JmeXXRmZg';
-                overlay.canvas.style.opacity = '0.7';
+                //videoId = 'r4JmeXXRmZg';
+            //    overlay.canvas.style.opacity = '0.7';
 
             /*
             case '666':
@@ -144,18 +146,16 @@ class App {
 
             }
 
-            if( videoId == null ) videoId = VIDEOS[Std.int( Math.random() * (VIDEOS.length) )];
+            //if( videoId == null ) videoId = VIDEOS[Std.int( Math.random() * (VIDEOS.length) )];
             //videoId = VIDEOS[Std.int( Math.random() * (VIDEOS.length-1) )];
 
+            /*
             delay( function(){
 
                 YouTube.init( function(){
-
                     trace( 'Youtube ready' );
-
                     video = new VideoPlayer( document.getElementById( 'youtube-player' ) );
                     //video.onEvent = function(e){}
-
                     video.init( function(){
                         trace( 'Videoplayer ready' );
                         video.play( videoId );
@@ -163,6 +163,7 @@ class App {
                 });
 
             }, 500 );
+            */
 
             window.requestAnimationFrame( update );
 

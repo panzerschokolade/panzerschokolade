@@ -3,7 +3,7 @@ class Panzerschokolade {
 
 	public static inline var ROOT =
 		#if debug
-			'/web/panzerschokolade.tk/web/';
+			'/web/panzerschokolade.tk/bin/';
 		#else
 			'';
 		#end
@@ -29,5 +29,5 @@ class Panzerschokolade {
 	];
 
 	public static var COLORS = ['#388250','#362214','#C8452E','#B0072A','#C40131','#CFB009','#D7C902','#FB0F94','#0A9FDF','#89B194'];
-	
+
 }

@@ -1,4 +1,4 @@
-package panzerschokolade.control;
+package panzerschokolade.web;
 
 import sys.io.File;
 import php.Web;

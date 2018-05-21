@@ -25,7 +25,7 @@ class Index {
 			themeColor: '#000',
 		};
 
-		var root = new panzerschokolade.control.Router();
+		var root = new panzerschokolade.web.Router();
 		var router = new haxe.web.Dispatch( path, params );
 		router.onMeta = function(meta,value) {
 			/*
