@@ -7,8 +7,6 @@ import sys.io.File;
 
 class Index {
 
-	//static var isAdmin = false;
-
 	static function main() {
 
 		var path = Web.getURI().substr( Panzerschokolade.ROOT.length );
