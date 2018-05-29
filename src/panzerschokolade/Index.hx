@@ -17,10 +17,10 @@ class Index {
 		Template.globals = {
 			mobile: isMobile,
 			desktop: !isMobile,
-			deviceType: isMobile ? 'mobile' : 'desktop',
+			device_type: isMobile ? 'mobile' : 'desktop',
 			title: Panzerschokolade.TITLE+' • '+description,
 			description: 'Mystery Of Mankind',
-			themeColor: '#000',
+			theme_color: '#000',
 		};
 
 		var root = new panzerschokolade.web.Router();

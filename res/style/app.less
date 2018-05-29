@@ -1,5 +1,5 @@
 
-@import "reset";
+//@import "reset";
 @import "mixins/no-user-drag";
 @import "mixins/no-user-select";
 
@@ -74,13 +74,14 @@ ol, ul {
     opacity: 1;
 }
 
+/*
 header {
 
     position: fixed;
     top: 0px;
     left: 0px;
+    z-index: 1000;
 
-    /*
     * {
         //background: #000;
         color: #fff;
@@ -106,9 +107,13 @@ header {
         }
     }
 
-    z-index: 1000;
-    */
 }
+*/
+
+header {
+    display: none;
+}
+
 
 footer {
     display: none;
@@ -208,4 +213,7 @@ footer {
 #youtube-player {
     display: none;
     pointer-events: none;
+}
+
+.about {
 }

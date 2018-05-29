@@ -2,21 +2,13 @@
 <html>
 	<head>
 
-		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-8372252-18"></script>
-		<script>
-		  window.dataLayer = window.dataLayer || [];
-		  function gtag(){dataLayer.push(arguments);}
-		  gtag('js', new Date());
-		  gtag('config', 'UA-8372252-18');
-		</script>
-
 		<meta charset="utf-8">
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="description" content="Mystery Of Mankind">
 		<meta name="keywords" content="panzer,panzerschokolade,core,space,ritual,noize">
         <meta name="viewport" content="width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0">
-		<meta name="theme-color" content="::themeColor::">
+		<meta name="theme-color" content="::theme_color::">
 
 		::if mobile::
 		<meta name="mobile-web-app-capable" content="yes">
@@ -26,7 +18,8 @@
 		<title>::title::</title>
 
 		<link rel="icon" type="image/png" href="http://panzerschokolade.disktree.net/favicon.png">
-		<link rel="stylesheet" type="text/css" href="app.css">
+
+		<link rel="stylesheet" type="text/css" href="app-::device_type::.css">
 
 		<script defer src="script/three.js"></script>
 		<script defer src="panzerschokolade.js"></script>
@@ -36,19 +29,18 @@
 	<body id="panzerschokolade">
 
 		<header>
-			<!--
 			<nav>
-				<a href="/">ҎΔÑƵΣЯ§©Ң๏Ԟ๏ĹȺԂΣ</a>
-				<a href="about" title="Ąɮ۝Ʊͳ">??</a>
+				<a href="about">?</a>
 			</nav>
-			-->
 		</header>
 
 		<main>::content::</main>
 
 		<footer>&#169; The Fuck You Coorperation</footer>
 
+		<!--
 		<div id="youtube-player"></div>
+		-->
 
 	</body>
 

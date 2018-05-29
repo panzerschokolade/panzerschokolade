@@ -12,8 +12,8 @@ class Router {
 	public function new() {}
 
 	public function doDefault( ?path : String ) {
+		//trace(path);
 		/*
-		trace(path);
 		var r = ~/[0-9][0-9]/;
 		if( r.match( path ) ) {
 			trace("SOMEPART&Y NR");
@@ -21,18 +21,20 @@ class Router {
 			printSite( Resource.getString( 'start' ) );
 		}
 		*/
-		printSite( Resource.getString( 'start' ) );
+
+		var res = Resource.getString( 'start' );
+		printSite( res );
 	}
 
 	public function doAbout() {
 		printSite( Resource.getString( 'about' ) );
 	}
 
-	inline function doStart() doDefault();
-	inline function doEvent() doDefault();
-	inline function doEvents() doDefault();
-	inline function do666() printSite( Resource.getString( '666' ) );
-	inline function doSpirits() printSite( Resource.getString( 'spirits' ) );
+	//inline function doStart() doDefault();
+	//inline function doEvent() doDefault();
+	//inline function doEvents() doDefault();
+	//inline function do666() printSite( Resource.getString( '666' ) );
+	//inline function doSpirits() printSite( Resource.getString( 'spirits' ) );
 
 	/*
 	//public function doLogin( ?username : String ) {
