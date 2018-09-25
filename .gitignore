@@ -1,2 +1,5 @@
 _*
-bin/
+bin/*.php
+bin/css
+bin/lib
+bin/res

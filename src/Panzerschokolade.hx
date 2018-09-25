@@ -1,12 +1,14 @@
 
 class Panzerschokolade {
 
+	/*
 	public static inline var ROOT =
 		#if debug
 		'/pro/disktree/panzerschokolade/bin/';
 		#else
 		'';
 		#end
+		*/
 
 	public static var COLORS = [
 		'#388250',
@@ -32,13 +34,17 @@ class Panzerschokolade {
 		"gott will es",
 		"zart schmelzende schokokugeln aus feinem kokos",
 		"mehr grünflächen für alle",
-		"ich war ich bin ich werde sein",
+		"ich war – ich bin – ich werde sein",
 		"es gibt kein richtiges leben im falschen",
 		"sign out - turn off - restart",
+		"was nichts kostet ist nichts wert",
 		"interkultureller austausch zwischen mensch und maschine",
 		"das tut mir mehr weh wie dir",
 		"the only winning move is not to play",
-		"it's not enough to win, everyone else must also lose"
+		"it's not enough to win, everyone else must also lose",
+		"der feind sieht dein licht",
+		"zeit ist geld",
+		"ewige blumenkraft",
 	];
 
 }

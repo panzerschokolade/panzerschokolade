@@ -1,34 +1,7 @@
+-php bin
+-main panzerschokolade.Web
 -cp src
+-lib om.web
 -dce full
 #-debug
---each
-
---next
--php bin
--lib om.web
--main panzerschokolade.Index
--resource res/html/about.html@about
--resource res/html/index.html@index
--resource res/html/login.html@login
--resource res/html/start.html@start
--resource res/html/spirits.html@spirits
--resource res/html/666.html@666
-
--cmd cp -u res/web/htaccess bin/.htaccess
--cmd cp -ru res/font/ bin/
--cmd cp -ru res/image/flyer/ bin/
-#-cmd cp -ru res/image/parallax bin/
--cmd cp -ru res/icon/ bin/
--cmd cp -u res/icon/favicon.png bin/
--cmd cp -ru res/mesh/ bin/
--cmd cp -ru res/script/ bin/
--cmd cp -ru res/video/ bin/
--cmd lessc res/style/app-desktop.less bin/app-desktop.css --no-color --include-path=/home/tong/dev/lib/om.style/res/style/
--cmd lessc res/style/app-mobile.less bin/app-mobile.css --no-color --include-path=/home/tong/dev/lib/om.style/res/style/
-
---next
--js bin/panzerschokolade.js
--main panzerschokolade.App
--lib om.api
--lib om.parallax
--lib three.hx
+-cmd lessc res/style/index.less bin/css/style.css --include-path=$DEV_PATH/lib/enron/src --no-color --source-map
