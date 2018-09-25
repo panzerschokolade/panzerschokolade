@@ -5,7 +5,7 @@ import php.Web;
 import haxe.Json;
 import haxe.Resource;
 import haxe.Template;
-import haxe.web.Dispatch;
+import om.web.Dispatch;
 
 class Router {
 

@@ -39,6 +39,8 @@ class App {
     static var video : VideoPlayer;
 //    static var overlay : OverlayAnimation;
 
+    static var parallax : om.Parallax;
+
     static function update( time : Float ) {
 
         window.requestAnimationFrame( update );
@@ -51,10 +53,21 @@ class App {
 
     //    overlay.update( time );
 
+    /*
         switch path {
         case 'about':
             //document.body.classList.toggle( 'invert' );
         }
+        */
+
+        //parallax.update();
+    }
+
+    static function handleMouseMove(e) {
+        //parallax.offsetX = e.clientX / window.innerWidth;
+        //parallax.offsetY = e.clientY / window.innerHeight;
+    //    parallax.offsetX = (window.innerWidth/2-e.clientX) / (window.innerWidth);
+    //    parallax.offsetY = e.clientY / window.innerHeight;
     }
 
     static function handleWindowResize(e) {
@@ -165,6 +178,8 @@ class App {
             }, 500 );
             */
 
+            //parallax = om.Parallax.fromElement( document.querySelector( '.parallax' ) );
+
             window.requestAnimationFrame( update );
 
             window.addEventListener( 'contextmenu', function(e) {
@@ -172,8 +187,15 @@ class App {
                 //window.location.href = 'about';
             });
 
+            //window.addEventListener( 'mousemove', handleMouseMove, false );
+
             //document.body.addEventListener( 'mousemove', handleMouseMove, false );
             //window.addEventListener( 'resize', handleWindowResize, false );
+
+            //var parallaxElement = document.querySelector( '.parallax' );
+            //trace( parallaxElement );
+
+
         }
     }
 

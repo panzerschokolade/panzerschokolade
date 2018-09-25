@@ -1,7 +1,7 @@
 package panzerschokolade;
 
 import haxe.Template;
-import haxe.web.Dispatch;
+import om.web.Dispatch;
 import php.Web;
 import sys.io.File;
 
@@ -11,7 +11,7 @@ class Index {
 
 		var path = Web.getURI().substr( Panzerschokolade.ROOT.length );
 		var params = Web.getParams();
-		var isMobile = om.Runtime.isMobile();
+		var isMobile = om.System.isMobile();
 		var description = Panzerschokolade.QUOTES[Std.int(Math.random()*Panzerschokolade.QUOTES.length)].toUpperCase();
 
 		Template.globals = {
@@ -24,7 +24,7 @@ class Index {
 		};
 
 		var root = new panzerschokolade.web.Router();
-		var router = new haxe.web.Dispatch( path, params );
+		var router = new Dispatch( path, params );
 		router.onMeta = function(meta,value) {
 			/*
 			//trace(m,v);
