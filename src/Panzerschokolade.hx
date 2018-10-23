@@ -1,15 +1,6 @@
 
 class Panzerschokolade {
 
-	/*
-	public static inline var ROOT =
-		#if debug
-		'/pro/disktree/panzerschokolade/bin/';
-		#else
-		'';
-		#end
-		*/
-
 	public static var COLORS = [
 		'#388250',
 		'#362214',

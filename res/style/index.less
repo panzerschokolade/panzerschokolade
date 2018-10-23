@@ -1,14 +1,14 @@
 
-@import "enron/reset";
-@import "enron/typo";
-@import "enron/user";
+@import "enron/typography";
+@import "enron/interaction";
 
 body {
 	overflow-x: hidden;
 	font-family: sans;
-	.body2;
+	.typo-body1;
 	background: #000;
     color: #fff;
+	cursor: help;
 }
 
 ::selection {
@@ -68,6 +68,8 @@ nav {
 }
 
 footer {
+	display: none;
+	/*
 	position: fixed;
 	right: 0;
 	bottom: 0;
@@ -75,15 +77,23 @@ footer {
 	padding: 0.5rem 0.75rem;
 	background: #000;
 	box-shadow: -4px 0 8px rgba(0,0,0,0.9);
+	*/
 }
 
 ol.flyers {
 	display: grid;
 	grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
+	//grid-auto-rows: minmax(50%, auto);
+	//grid-template-rows: repeat(auto-fill,minmax(200px,1fr));
 	grid-gap: 1px;
 	margin: 1px;
+	@media screen and (orientation:landscape) and (max-width: 600px) {
+		grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+	}
 	img {
 		width: 100%;
+		//height: 100%;
+		max-width: 100%;
 		.no-user-drag;
 		.no-user-select;
 	}
@@ -92,6 +102,4 @@ ol.flyers {
 article.about {
 	margin: 48px auto 0 auto;
 	max-width: 1000px;
-	p {
-	}
 }

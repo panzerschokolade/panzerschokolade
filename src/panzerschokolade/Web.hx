@@ -2,6 +2,7 @@ package panzerschokolade;
 
 import om.Template;
 import om.web.Dispatch;
+import sys.FileSystem;
 import sys.io.File;
 
 using om.ArrayTools;
@@ -13,7 +14,8 @@ class Web {
 
 	function doDefault( ?id : String ) {
 		switch id {
-		case null,'index': id = 'start';
+		case null,'index':
+			id = 'start';
 		default:
 		}
 		printSite( id );
