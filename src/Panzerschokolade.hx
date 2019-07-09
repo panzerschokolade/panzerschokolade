@@ -36,6 +36,7 @@ class Panzerschokolade {
 		"der feind sieht dein licht",
 		"zeit ist geld",
 		"ewige blumenkraft",
+		"die freiheit ist nur einen handgriff entfernt",
 	];
 
 }

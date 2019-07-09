@@ -1,7 +1,9 @@
 -php bin
 -main panzerschokolade.Web
 -cp src
+-lib om.core
 -lib om.web
+-lib om.tpl
 -dce full
-#-debug
+-debug
 -cmd lessc res/style/index.less bin/css/style.css --include-path=$DEV_PATH/lib/enron/src --no-color --source-map
