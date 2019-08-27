@@ -5,5 +5,5 @@
 -lib om.web
 -lib om.tpl
 -dce full
--debug
 -cmd lessc res/style/index.less bin/css/style.css --include-path=$DEV_PATH/lib/enron/src --no-color --source-map
+-debug

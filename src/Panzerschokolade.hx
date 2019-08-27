@@ -1,4 +1,5 @@
 
+@:keep
 class Panzerschokolade {
 
 	public static var COLORS = [
@@ -36,7 +37,11 @@ class Panzerschokolade {
 		"der feind sieht dein licht",
 		"zeit ist geld",
 		"ewige blumenkraft",
+		"we weep for a bird's cry, but are blind for a fish's tears",
+		"blessed are those who have a voice",
+		"laugh, and the world will laugh with you. cry, and you will cry alone",
 		"die freiheit ist nur einen handgriff entfernt",
+		"was zusammen gehört – es wächst zusammen"
 	];
 
 }

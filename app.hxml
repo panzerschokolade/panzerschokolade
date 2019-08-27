@@ -1,0 +1,6 @@
+-js bin/app.js
+-main panzerschokolade.App
+-cp src
+-lib om.core
+-dce full
+-debug

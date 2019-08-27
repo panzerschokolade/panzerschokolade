@@ -1,4 +1,5 @@
 _*
+bin/*.js*
 bin/*.php
 bin/css
 bin/lib

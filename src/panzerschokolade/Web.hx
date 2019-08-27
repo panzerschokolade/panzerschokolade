@@ -1,5 +1,7 @@
 package panzerschokolade;
 
+#if sys
+
 import om.Template;
 import om.web.Dispatch;
 import sys.FileSystem;
@@ -33,13 +35,28 @@ class Web {
 	}
 
 	static function main() {
-
+		
+		/*
 		var ROOT =
 			#if debug
 			'/pro/disktree/panzerschokolade/bin/';
 			#else
 			'';
 			#end
+			*/
+
+		var host = om.Web.getHostName();
+		//trace(host);
+		//if( host == 'localhost' )
+
+		var ROOT = switch host {
+		case 'localhost': '/pro/disktree/panzerschokolade/bin/';
+		default: '';
+		}
+		
+		var uri = om.Web.getURI();
+		//trace(uri);
+		//return;
 
 		var path = om.Web.getURI().substr( ROOT.length ).removeTrailingSlashes();
 		var params = om.Web.getParams();
@@ -56,3 +73,5 @@ class Web {
 	}
 
 }
+
+#end
