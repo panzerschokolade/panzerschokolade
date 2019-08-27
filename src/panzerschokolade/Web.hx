@@ -31,39 +31,28 @@ class Web {
 	}
 
 	static function getTemplate( name : String ) {
-		return new Template( File.getContent( 'htm/$name.html' ) );
+		var path = 'htm/$name.html';
+		if( !FileSystem.exists( path ) ) path = 'htm/404.html';
+		return new Template( File.getContent( path ) );
 	}
 
 	static function main() {
-		
-		/*
-		var ROOT =
-			#if debug
-			'/pro/disktree/panzerschokolade/bin/';
-			#else
-			'';
-			#end
-			*/
-
+	
 		var host = om.Web.getHostName();
-		//trace(host);
-		//if( host == 'localhost' )
+		var uri = om.Web.getURI();
+		var params = om.Web.getParams();
 
 		var ROOT = switch host {
 		case 'localhost': '/pro/disktree/panzerschokolade/bin/';
 		default: '';
 		}
 		
-		var uri = om.Web.getURI();
-		//trace(uri);
-		//return;
-
-		var path = om.Web.getURI().substr( ROOT.length ).removeTrailingSlashes();
-		var params = om.Web.getParams();
+		var path = uri.substr( ROOT.length ).removeTrailingSlashes();
 		var isMobile = om.System.isMobile();
 
 		Template.globals = {
 			title: Panzerschokolade.TITLE+' – '+Panzerschokolade.QUOTES.random().toUpperCase(),
+			page: path,
 			theme_color: '#000',
 		};
 
