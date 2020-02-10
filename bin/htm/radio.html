@@ -5,6 +5,8 @@
 }
 body {
 	background: #C40131;
+
+  	animation: hue_rotate 13s infinite;
 }
 h1 {
 	font-family: 'FontTitle';
@@ -36,11 +38,9 @@ canvas.spectrum {
 	z-index: -1;
 	-webkit-user-select: none;
 	pointer-events: none;
-	/*
-	animation: hue_rotate 60s infinite;
-	*/
+	animation: hue_rotate 5s infinite;
 }
 </style>
-<h1 class="start">RADIOAKTIV</h1>
+<h1 class="start">PLAY</h1>
 <canvas class="spectrum"></canvas>
 <script defer src="scr/radio.js"></script>

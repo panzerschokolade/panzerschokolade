@@ -4,3 +4,5 @@
 -lib om.core
 -dce full
 -debug
+-D source-header=
+-cmd lessc res/style/index.less bin/css/app.css --include-path=$DEV/lib/enron/src --source-map

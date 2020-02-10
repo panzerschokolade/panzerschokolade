@@ -1,5 +1,9 @@
-@import "enron/typography";
+
 @import "enron/interaction";
+@import "enron/typo";
+
+@font-family-title: Roboto;
+@font-family-regular: Roboto;
 
 @keyframes fade_in {
   from {
@@ -97,47 +101,58 @@ video {
   display: block;
 }
 
+///////////////////////////////////////////////////////////////////////////////////
+
 header {
   display: none;
-  z-index: 1;
+  z-index: 100;
   .no-user-drag;
   .no-user-select;
 }
 
 nav {
+  animation: hue_rotate 16s infinite;
 
-	animation: hue_rotate 16s infinite;
-	
-	//display: none;
-	position: fixed;
-	//bottom: 50%;
+  display: none;
+  position: fixed;
+  //bottom: 50%;
   bottom: 1vh;
   right: 1vw;
-  z-index: 1000;
+  z-index: 100;
   text-transform: uppercase;
   .no-user-drag;
   .no-user-select;
+
+  box-shadow: 4px 4px 12px 0px rgba(0, 0, 0, 0.9),
+    -4px -4px 12px 0px rgba(0, 0, 0, 0.5);
   /*
-  position: fixed;
-  background: #000;
-  a {
-	animation: hue_rotate 20s infinite;
-	padding: 20px;
-	writing-mode: vertical-rl;
-	text-orientation: upright;
+	position: fixed;
+	background: #000;
+	a {
+		animation: hue_rotate 20s infinite;
+		padding: 20px;
+		writing-mode: vertical-rl;
+		text-orientation: upright;
 }
 */
-a {
-	font-family: monospace;
-	background: #ff0000;
-	padding: 10px;
-	animation: hue_rotate 10s infinite;
-}
+  a {
+    font-family: monospace;
+    font-size: 20px;
+    background: #ff0000;
+    padding: 10px;
+    animation: hue_rotate 10s infinite;
+  }
 }
 
 main {
   //padding-bottom: 100px;
-  z-index: 2;
+  //padding: 16px 16px 48px 16px;
+  z-index: 10;
+}
+
+main article {
+  padding: 16px 16px 48px 16px;
+  //max-width: 1000px;
 }
 
 footer {
@@ -153,22 +168,16 @@ footer {
 	*/
 }
 
-// --- Pages
+///////////////////////////////////////////////////////////////////////////////////
 
 main ol.flyers {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  //grid-auto-rows: minmax(50%, auto);
-  //grid-template-rows: repeat(auto-fill,minmax(200px,1fr));
-  grid-gap: 1px;
-  margin: 1px;
-  @media screen and (orientation: landscape) and (max-width: 600px) {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  }
+	column-width: 400px;
+	column-gap: 1px;
+	column-count: 10;
   img {
     width: 100%;
-    //height: 100%;
-    max-width: 100%;
+	max-width: 100%;
+	margin-bottom: 1px;
     .no-user-drag;
     .no-user-select;
   }
@@ -176,8 +185,8 @@ main ol.flyers {
 
 main article.about {
   //margin: 48px auto 0 auto;
-  max-width: 1000px;
-  padding: 100px 100px;
+  //max-width: 1000px;
+  //padding: 100px 100px;
   color: #ff0000;
   animation: hue_rotate 13s infinite;
 }
