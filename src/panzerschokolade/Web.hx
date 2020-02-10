@@ -37,13 +37,13 @@ class Web {
 	}
 
 	static function main() {
-	
+
 		var host = om.Web.getHostName();
 		var uri = om.Web.getURI();
 		var params = om.Web.getParams();
 
 		var ROOT = switch host {
-		case 'localhost': '/pro/disktree/panzerschokolade/bin/';
+		case 'localhost','192.168.0.10': '/web/panzerschokolade/bin/';
 		default: '';
 		}
 		
@@ -51,7 +51,9 @@ class Web {
 		var isMobile = om.System.isMobile();
 
 		Template.globals = {
-			title: Panzerschokolade.TITLE+' – '+Panzerschokolade.QUOTES.random().toUpperCase(),
+			title: Panzerschokolade.TITLE,
+			quote: Panzerschokolade.QUOTES.random(),
+			quotes: Panzerschokolade.QUOTES,
 			page: path,
 			theme_color: '#000',
 		};

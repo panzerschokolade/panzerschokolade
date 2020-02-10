@@ -1,0 +1,10 @@
+User-agent: *
+Disallow: /css/
+Disallow: /fnt/
+Disallow: /htm/
+Disallow: /ico/
+Disallow: /lib/
+Disallow: /res/
+Disallow: /scr/
+Disallow: /video/
+Disallow: /web/
