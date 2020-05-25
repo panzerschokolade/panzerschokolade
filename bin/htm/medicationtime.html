@@ -1,0 +1,31 @@
+<style media="screen">
+	video {
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+	@keyframes hue_rotate {
+		0% { filter:hue-rotate(0deg); }
+		100% { filter:hue-rotate(360deg); }
+	}
+	h1 {
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%,-50%);
+		text-transform: uppercase;
+		user-select: none;
+		color: #0000f0;
+		text-align: center;
+		animation: hue_rotate 10s infinite;
+	}
+</style>
+<video id="pills" src="video/pills-7.mp4" autoplay loop></video>
+<h1>::quote::</h1>
+<script>
+var video = document.getElementById("pills");
+document.body.onclick = function(){
+	video.play();
+}
+</script>
