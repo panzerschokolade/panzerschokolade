@@ -22,6 +22,8 @@ h1 {
 	left: 50%;
 	margin: 0 auto;
 	transform: translate(-50%,-50%);
+	text-transform: uppercase;
+	text-align: center;
 	color: #D7C902;
 	cursor: crosshair;
 	-webkit-user-select: none;
@@ -40,7 +42,19 @@ canvas.spectrum {
 	pointer-events: none;
 	animation: hue_rotate 5s infinite;
 }
+#link {
+	position: fixed;
+	top: 8px;
+	left: 8px;
+	text-transform: uppercase;
+}
 </style>
 <h1 class="start">PLAY</h1>
 <canvas class="spectrum"></canvas>
 <script defer src="scr/radio.js"></script>
+<div id="link">
+	<div>::quote::</div>
+	<div>
+		<a href="http://rrr.disktree.net:8443/panzerradio.m3u">M3U</a>
+	</div>
+</div>
