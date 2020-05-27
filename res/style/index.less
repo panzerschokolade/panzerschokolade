@@ -2,6 +2,20 @@
 @import "enron/interaction";
 @import "enron/typo";
 
+/*
+#388250
+#362214
+#C8452E
+#B0072A
+#C40131
+#CFB009
+#D7C902
+#FB0F94
+#0A9FDF
+#89B194
+*/
+
+
 @font-family-title: Roboto;
 @font-family-regular: Roboto;
 
@@ -26,7 +40,7 @@
 body {
   overflow-x: hidden;
 
-  font-family: sans;
+  font-family: monospace;
   .typo-body1;
 
   background: #000;
@@ -104,43 +118,40 @@ video {
 ///////////////////////////////////////////////////////////////////////////////////
 
 header {
-  display: none;
   z-index: 100;
   .no-user-drag;
   .no-user-select;
+  display: none;
 }
 
 nav {
-  animation: hue_rotate 16s infinite;
-
-  display: none;
   position: fixed;
-  //bottom: 50%;
-  bottom: 1vh;
-  right: 1vw;
-  z-index: 100;
+  top: 4px;
+  right: 4px;
+  z-index: 1000;
+  display: flex;
   text-transform: uppercase;
   .no-user-drag;
   .no-user-select;
-
-  box-shadow: 4px 4px 12px 0px rgba(0, 0, 0, 0.9),
-    -4px -4px 12px 0px rgba(0, 0, 0, 0.5);
-  /*
-	position: fixed;
-	background: #000;
-	a {
-		animation: hue_rotate 20s infinite;
-		padding: 20px;
-		writing-mode: vertical-rl;
-		text-orientation: upright;
-}
-*/
+  //animation: hue_rotate 16s infinite;
   a {
     font-family: monospace;
-    font-size: 20px;
-    background: #ff0000;
-    padding: 10px;
+    background: #fff000;
+    padding: 4px 10px;
+    margin-right: 1px;
     animation: hue_rotate 10s infinite;
+  }
+  :nth-child(1) {
+    background: #ff0000;
+  }
+  :nth-child(2) {
+    background: #00ff00;
+  }
+  :nth-child(3) {
+    background: #0000ff;
+  }
+  :nth-child(4) {
+    background: #f000f0;
   }
 }
 
