@@ -48,7 +48,6 @@ class Panzerschokolade {
 
 	public static inline function getRandomQuote() {
 		return QUOTES[Std.int(QUOTES.length-1)];
-
 	}
 
 }

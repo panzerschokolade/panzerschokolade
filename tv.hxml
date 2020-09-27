@@ -1,0 +1,7 @@
+-js web/tv/tv.js
+-main panzerschokolade.TV
+-cp src
+-lib om.core
+-dce full
+-debug
+-D source-header=

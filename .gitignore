@@ -1,6 +1,5 @@
 _*
-bin/*.js*
-bin/*.php
-bin/css
-bin/lib
-bin/res
+web/*.js*
+web/*/*.js*
+web/css/*.css*
+web/tv/video/

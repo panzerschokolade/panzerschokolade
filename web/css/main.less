@@ -2,20 +2,6 @@
 @import "enron/interaction";
 @import "enron/typo";
 
-/*
-#388250
-#362214
-#C8452E
-#B0072A
-#C40131
-#CFB009
-#D7C902
-#FB0F94
-#0A9FDF
-#89B194
-*/
-
-
 @font-family-title: Roboto;
 @font-family-regular: Roboto;
 
@@ -38,6 +24,9 @@
 }
 
 body {
+
+  margin: 0;
+  padding: 0;
   overflow-x: hidden;
 
   font-family: monospace;
@@ -117,6 +106,7 @@ video {
 
 ///////////////////////////////////////////////////////////////////////////////////
 
+/*
 header {
   z-index: 100;
   .no-user-drag;
@@ -176,29 +166,6 @@ footer {
 	padding: 0.5rem 0.75rem;
 	background: #000;
 	box-shadow: -4px 0 8px rgba(0,0,0,0.9);
-	*/
+	* /
 }
-
-///////////////////////////////////////////////////////////////////////////////////
-
-main ol.flyers {
-	display: grid;
-	grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
-	column-gap: 1px;
-	grid-gap: 1px;	
-	margin: 1px;
-	img {
-		width: 100%;
-		max-width: 100%;
-		.no-user-drag;
-		.no-user-select;
-	}
-}
-
-main article.about {
-  //margin: 48px auto 0 auto;
-  //max-width: 1000px;
-  //padding: 100px 100px;
-  color: #ff0000;
-  animation: hue_rotate 13s infinite;
-}
+*/
