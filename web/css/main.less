@@ -1,6 +1,6 @@
 
 @import "enron/interaction";
-@import "enron/typo";
+@import "enron/typography";
 
 @font-family-title: Roboto;
 @font-family-regular: Roboto;
@@ -24,17 +24,13 @@
 }
 
 body {
-
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-
   font-family: monospace;
   .typo-body1;
-
   background: #000;
   color: #fff;
-
   cursor: help;
 }
 
@@ -93,7 +89,7 @@ h6 {
   .typo-h6();
 }
 
-ol {
+ol, ul {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -104,68 +100,8 @@ video {
   display: block;
 }
 
-///////////////////////////////////////////////////////////////////////////////////
-
-/*
-header {
-  z-index: 100;
-  .no-user-drag;
-  .no-user-select;
-  display: none;
+article {
+	margin: 0 auto;
+	padding: 2rem 0;
+	max-width: 800px;
 }
-
-nav {
-  position: fixed;
-  top: 4px;
-  right: 4px;
-  z-index: 1000;
-  display: flex;
-  text-transform: uppercase;
-  .no-user-drag;
-  .no-user-select;
-  //animation: hue_rotate 16s infinite;
-  a {
-    font-family: monospace;
-    background: #fff000;
-    padding: 4px 10px;
-    margin-right: 1px;
-    animation: hue_rotate 10s infinite;
-  }
-  :nth-child(1) {
-    background: #ff0000;
-  }
-  :nth-child(2) {
-    background: #00ff00;
-  }
-  :nth-child(3) {
-    background: #0000ff;
-  }
-  :nth-child(4) {
-    background: #f000f0;
-  }
-}
-
-main {
-  //padding-bottom: 100px;
-  //padding: 16px 16px 48px 16px;
-  z-index: 10;
-}
-
-main article {
-  padding: 16px 16px 48px 16px;
-  max-width: 800px;
-}
-
-footer {
-  display: none;
-  /*
-	position: fixed;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	padding: 0.5rem 0.75rem;
-	background: #000;
-	box-shadow: -4px 0 8px rgba(0,0,0,0.9);
-	* /
-}
-*/

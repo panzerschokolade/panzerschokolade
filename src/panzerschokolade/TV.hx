@@ -22,9 +22,9 @@ class TV {
 
 	static function main() {
         
-		window.onload = function() {
+		window.addEventListener( 'load', function() {
 
-			video = cast document.body.querySelector('video');
+			video = cast document.body.querySelector('video.tv');
 			playlist = [for (i in 0...NUM_VIDEOS) i].shuffle();
 			video.onpause = function(e) {
 				loadNextVideo();
@@ -39,6 +39,6 @@ class TV {
                     document.exitFullscreen();
                 }
 			}
-		}
+		});
 	}
 }
