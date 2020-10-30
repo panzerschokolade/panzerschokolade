@@ -1,8 +1,0 @@
--php bin
--main panzerschokolade.Web
--cp src
--lib om.core
--lib om.web
--lib om.tpl
--dce full
--debug
