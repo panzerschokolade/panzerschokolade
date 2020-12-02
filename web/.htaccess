@@ -1,22 +1,4 @@
-
-#AddType application/x-web-app-manifest+json manifest.json
-
-#AddType font/ttf .ttf
-#AddType application/font-woff            .woff
-#AddType application/vnd.ms-fontobject    .eot
-#AddType application/x-font-opentype      .otf
-#AddType application/x-font-ttf           .ttf
-#AddType image/svg+xml                    .svg
 AddType image/webp .webp
 
 ErrorDocument 404 /strobe/index.html
 
-#RewriteEngine On
-#Redirect /haarp /tv
-
-#RewriteCond %{SCRIPT_FILENAME} !-d
-#RewriteCond %{SCRIPT_FILENAME} !-f
-#RewriteRule ^(.*)/?$ index.php?$1 [L]
-
-#RewriteCond %{HTTPS} off
-#RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
