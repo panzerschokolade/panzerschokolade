@@ -1,5 +1,5 @@
 _*
 web/*.js*
 web/*/*.js*
-web/css/*.css*
+web/*.css*
 web/tv/video/

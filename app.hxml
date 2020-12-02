@@ -6,4 +6,4 @@
 -dce full
 -debug
 -D source-header=
--cmd lessc web/css/main.less web/css/main.css --include-path=$DEV/lib/enron/src --source-map
+-cmd lessc web/style.less web/style.css --include-path=$DEV/lib/enron/src --source-map
