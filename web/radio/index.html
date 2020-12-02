@@ -13,25 +13,77 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
 
-    <base href="/">
-
     <title>Ӎ¥§ŁƎȐӋ ѺӺ ӍɅͶԞіŋÐ</title>
 
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <!-- <link rel="stylesheet" type="text/css" href="css/main.css"> -->
 
     <style>
+        :root {
+            --background: #000;
+            --f_high: #fff;
+            --f_med: #fff;
+            --f_low: #fff;
+            --f_inv: #000;
+            --b_high: #000;
+            --b_med: #000;
+            --b_low: #000;
+            --b_inv: #fff;
+        }
         body {
-            background: #000;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            margin: 0;
+            font-family: monospace;
+            background: var(--background);
+            color: var(--f_med);
+        }
+        a {
+            color: var(--f_med);
+        }
+        header {
+            padding: 1rem;
+        }
+        header, main {
+            z-index: 100;
+        }
+        button.control {
+            font-size: 7rem;
+            border: none;
+	        outline: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            margin: 0 auto;
+            transform: translate(-50%,-50%);
+            background: var(--f_med);
+            color: var(--background);
+            cursor: pointer;
+            user-select: none;
+        }
+        canvas.spectrum {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: -1;
+            -webkit-user-select: none;
+            pointer-events: none;
         }
     </style>
 
-    <script src="app.js" async></script>
+    <script src="radio.js" async></script>
 
 </head>
 
 <body>
-    <a href="http://rrr.disktree.net:8443/panzerradio.m3u">panzerradio.m3u</a>
+    <header>
+        <a href="http://rrr.disktree.net:8000/panzerradio.m3u">panzerradio.m3u</a>
+    </header>
+    <button class="control">PLAY</button>
+    <canvas class="spectrum"></canvas>
 </body>
 
 </html>
