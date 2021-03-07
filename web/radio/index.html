@@ -16,7 +16,7 @@
     <title>Ӎ¥§ŁƎȐӋ ѺӺ ӍɅͶԞіŋÐ</title>
 
     <link rel="icon" type="image/png" href="/favicon.png">
-    <!-- <link rel="stylesheet" type="text/css" href="css/main.css"> -->
+    <link rel="stylesheet" type="text/css" href="/style.css">
 
     <style>
         :root {
@@ -38,6 +38,7 @@
             font-family: monospace;
             background: var(--background);
             color: var(--f_med);
+            cursor: help;
         }
         a {
             color: var(--f_med);
@@ -49,7 +50,8 @@
             z-index: 100;
         }
         button.control {
-            font-size: 7rem;
+            font: italic bold 8em Helvetica;
+            letter-spacing: -12px;
             border: none;
 	        outline: none;
             position: fixed;
@@ -57,10 +59,11 @@
             left: 50%;
             margin: 0 auto;
             transform: translate(-50%,-50%);
-            background: var(--f_med);
-            color: var(--background);
+            background: none;
+            color: red;
             cursor: pointer;
             user-select: none;
+            animation: hue_rotate 23s infinite;
         }
         canvas.spectrum {
             position: fixed;
@@ -71,6 +74,9 @@
             z-index: -1;
             -webkit-user-select: none;
             pointer-events: none;
+            background: #0000ff;
+            cursor: help;
+            animation: hue_rotate 23s infinite;
         }
     </style>
 
@@ -80,7 +86,7 @@
 
 <body>
     <header>
-        <a href="http://rrr.disktree.net:8000/panzerradio.m3u">panzerradio.m3u</a>
+        <a href="https://rrr.disktree.net:8443/panzerradio.m3u">panzerradio.m3u</a>
     </header>
     <button class="control">PLAY</button>
     <canvas class="spectrum"></canvas>
