@@ -43,7 +43,8 @@ class Panzerschokolade {
 		"laugh, and the world will laugh with you. cry, and you will cry alone",
 		"die freiheit ist nur einen handgriff entfernt",
 		"was zusammen gehört – es wächst zusammen",
-		"in der liebe und der kunst ist alles erlaubt"
+		"in der liebe und der kunst ist alles erlaubt",
+		"music is the weapon of the future"
 	];
 
 	public static inline function getRandomQuote() {
