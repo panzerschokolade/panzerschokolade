@@ -44,7 +44,8 @@ class Panzerschokolade {
 		"die freiheit ist nur einen handgriff entfernt",
 		"was zusammen gehört – es wächst zusammen",
 		"in der liebe und der kunst ist alles erlaubt",
-		"music is the weapon of the future"
+		"music is the weapon of the future",
+		"fick dich"
 	];
 
 	public static inline function getRandomQuote() {

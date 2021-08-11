@@ -11,6 +11,8 @@ import js.lib.Uint8Array;
 
 class Radio {
 
+	static final URI = "https://rrr.disktree.net:8443/schokolade";
+
 	static var audioElement : AudioElement;
 	static var canvas : CanvasElement;
 	static var ctx : CanvasRenderingContext2D;
@@ -36,7 +38,7 @@ class Radio {
 		var hh = canvas.height/2;
 
 		ctx.strokeStyle = color;
-		ctx.lineWidth = 1;
+		ctx.lineWidth = 4;
 		ctx.beginPath();
 		for( i in 0...analyser.frequencyBinCount ) {
 			v = i / 180 * Math.PI;
@@ -66,7 +68,6 @@ class Radio {
 			}
 
 			var btn = body.querySelector("button.control");
-			//btn.textContent = Panzerschokolade.getRandomQuote();
 
 			btn.onclick = function() {
 
@@ -92,11 +93,6 @@ class Radio {
 				sourceElement.src = URI;
 				audioElement.appendChild( sourceElement );
 				audioElement.play();
-				/*
-				audioElement.onloadedmetadata = function(e) {
-					trace(e);
-				}
-				*/
 
 				audioElement.onpause = function(e) {
 					trace(e);
@@ -111,16 +107,9 @@ class Radio {
 
 					btn.remove();
 
-					//body.style.backgroundColor = '#FB0F94';
-
-					//document.querySelector(".preload").remove();
-
 					var audio = new AudioContext();
 
-					//var gain
-
 					analyser = audio.createAnalyser();
-					//analyser.fftSize = 2048;
 					analyser.fftSize = 2048;
 					//analyser.smoothingTimeConstant = 0.8;
 					//analyser.minDecibels = -140;
@@ -136,9 +125,6 @@ class Radio {
 					window.requestAnimationFrame( update );
 				}
 			}
-
-
 		});
     }
-
 }
