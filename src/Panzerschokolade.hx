@@ -45,7 +45,8 @@ class Panzerschokolade {
 		"was zusammen gehört – es wächst zusammen",
 		"in der liebe und der kunst ist alles erlaubt",
 		"music is the weapon of the future",
-		"fick dich"
+		"fick dich",
+		"by entering the portal … you agree to get sprayed with pheromonies"
 	];
 
 	public static inline function getRandomQuote() {
