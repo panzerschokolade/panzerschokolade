@@ -29,7 +29,9 @@ import js.html.VideoElement;
 using om.ArrayTools;
 
 class TV {
-	static inline var NUM_VIDEOS = 1300;
+
+	static inline var BASE_URL = 'https://panzerschokolade.disktree.net';
+	static inline var NUM_VIDEOS = 1577;
 
 	static var playlist:Array<Int>;
 	static var index = 0;
@@ -40,7 +42,7 @@ class TV {
 			index = 0;
 			playlist = [for (i in 0...NUM_VIDEOS) i].shuffle();
 		}
-		video.src = 'tv/video/' + playlist[index] + '.mp4';
+		video.src = '$BASE_URL/tv/video/' + playlist[index] + '.mp4';
 	}
 
 	static function main() {

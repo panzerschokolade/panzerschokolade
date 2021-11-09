@@ -15,10 +15,18 @@
 
     <title>Ӎ¥§ŁƎȐӋ ѺӺ ӍɅͶԞіŋÐ</title>
 
-    <link rel="icon" type="image/png" href="/favicon.png">
-    <link rel="stylesheet" type="text/css" href="/style.css">
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <link rel="stylesheet" type="text/css" href="../style.css">
 
     <style>
+        @keyframes essig {
+            0% {
+                filter: hue-rotate(0deg);
+            }
+            100% {
+                filter: hue-rotate(360deg);
+            }
+        }
         :root {
             --background: #000;
             --f_high: #fff;
@@ -44,7 +52,13 @@
             color: var(--f_med);
         }
         header {
+            display: flex;
+            flex-direction: row;
             padding: 1rem;
+        }
+        header > a:not(:last-child)::after {
+            content: "|";
+            margin: 0 0ch;
         }
         header, main {
             z-index: 100;
@@ -76,7 +90,7 @@
             pointer-events: none;
             background: #0000ff;
             cursor: help;
-            animation: hue_rotate 23s infinite;
+            animation: essig 23s infinite;
         }
     </style>
 
@@ -86,7 +100,8 @@
 
 <body>
     <header>
-        <a href="https://rrr.disktree.net:8443/panzerradio.m3u">panzerradio.m3u</a>
+        <a href="https://rrr.disktree.net:8443/schokolade.m3u" download>M3U</a>
+        <a href="https://rrr.disktree.net:8443/schokolade">OGG</a>
     </header>
     <button class="control">PLAY</button>
     <canvas class="spectrum"></canvas>

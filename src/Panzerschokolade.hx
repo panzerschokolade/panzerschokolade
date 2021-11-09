@@ -46,11 +46,13 @@ class Panzerschokolade {
 		"in der liebe und der kunst ist alles erlaubt",
 		"music is the weapon of the future",
 		"fick dich",
-		"by entering the portal … you agree to get sprayed with pheromonies"
+		"mutig voran, den Blick auf die Sonne, der Urquell des lebens",
+		"by entering the portal … you agree to get sprayed with pheromonies",
+		"niemand ist ein panzer"
 	];
 
 	public static inline function getRandomQuote() {
-		return QUOTES[Std.int(QUOTES.length-1)];
+		return QUOTES[Std.int((QUOTES.length-1)*Math.random())];
 	}
 
 }

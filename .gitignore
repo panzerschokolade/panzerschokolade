@@ -3,3 +3,4 @@ web/*.js*
 web/*/*.js*
 web/*.css*
 web/tv/video/
+nginx.conf

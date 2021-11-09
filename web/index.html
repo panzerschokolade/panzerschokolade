@@ -19,9 +19,38 @@
 
 		<style>
 			header {
-				z-index: 100;
-				display: none;
-			  }
+				position: fixed;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%,-50%);
+				/* top: 0;
+				left: 0;
+				right: 0; */
+				/* top: 4vh;
+				left: 4vw;
+				right: 4vw;
+				bottom: 4vw; */
+				/* max-width: 800px;
+				z-index: 1000;
+				display: grid;
+				place-content: center; */
+				/* width: 100%; */
+				/* text-align: center; */
+				/* display: none; */
+			}
+			header img.title {
+				width: 100%;
+				filter: drop-shadow(2px 4px 12px rgba(0,0,0,0.8));
+			}
+			nav {
+				position: fixed;
+				top: 0.5rem;
+				right: 0.5rem;
+				z-index: 1000;
+			}
+			nav > * {
+				background: black;
+			}
 			main ol.flyers {
 				display: grid;
 				grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
@@ -49,16 +78,16 @@
 				min-height: 400px;
 			}
 			@media only screen and (min-width: 850px) {
-				/* li.tv {
-					grid-column: span 2;
-				} */
-			}
-			@media only screen and (min-width: 1700px) {
 				li.tv {
-					grid-column: span 4;
-					grid-row: span 2;
+					/* grid-column: span 2; */
 				}
 			}
+			/* @media only screen and (min-width: 1700px) {
+				 li.tv {
+					grid-column: span 4;
+					grid-row: span 2;
+				} 
+			} */
 			li.strobe > img {
 				width: 100%;
 				height: 100%;
@@ -67,7 +96,7 @@
 				grid-column: span 3;
 			}
 			li.upcoming {
-				grid-column: span 2;
+				grid-column: span 1;
 			}
 		</style>
 
@@ -77,20 +106,33 @@
 
 	<body>
 		<header>
-			<h1>PANZERSCHOKOLADE</h1>
-			<h2>Ӎ¥§ŁƎȐӋ ѺӺ ӍɅͶԞіŋÐ</h2>
+			<!-- <img class="title" id="sz" src="image/panzer-4.png", alt="Panzer"> -->
 		</header>
+		<nav>
+			<a href="radio">RAD</a>
+			<a href="tv">VUU</a>
+			<a href="strobe">BKK</a>
+			<a href="medication">7</a>
+			<a href="idz">IDZ</a>
+		</nav>
 		<main>
 			<ol class="flyers">
 				<!-- <li class="tv">
 					<video src="video/pills-720p.mp4" width="100%" height="100%" autoplay muted loop style="pointer-events: none; object-fit: cover;" poster="video/pills.jpg"></video>
 					 <iframe src="tv" frameborder="0" width="100%" height="100%"></iframe> 
 					 <iframe src="exptv" frameborder="0" width="100%" height="100%"></iframe>
+					</li> -->
+				<!-- <li class="tv">
+					<iframe src="https://player.twitch.tv/?channel=duesenstream&parent=panzerschokolade.disktree.net" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>
 				</li> -->
-				<li class="upcoming">
+				
+				<!-- <li class="tv">
+					<iframe width="100%" height="400" src="https://www.mixcloud.com/widget/iframe/?light=1&feed=%2Fpanzerschokolade%2F" frameborder="0" ></iframe>
+				</li> -->
+				<li>
 					<picture>
-						<source srcset="image/fff/panzerschokolade_moneyfesta.webp" type="image/webp">
-						<img src="image/fff/panzerschokolade_moneyfesta.jpg"></img>
+						<source srcset="image/fff/panzerschokolade-tropicana-4.webp" type="image/webp">
+						<img src="image/fff/panzerschokolade-tropicana-4.jpg" alt="8-8"></img>
 					</picture>
 				</li>
 				<li class="tv">
@@ -99,7 +141,13 @@
 				<li class="tv">
 					<iframe src="tv/" frameborder="0" width="100%" height="100%"></iframe>
 				</li>
-		
+			
+				<li>
+					<picture>
+						<source srcset="image/fff/panzerschokolade_moneyfesta.webp" type="image/webp">
+						<img src="image/fff/panzerschokolade_moneyfesta.jpg" alt="8-8"></img>
+					</picture>
+				</li>
 				<li>
 					<picture>
 						<source srcset="image/fff/panzerschokolade_gleetcholade_2.webp" type="image/webp">
@@ -263,9 +311,6 @@
 						<img src="image/fff/panzerschokolade_4.jpg" alt="Panzerschokolade #4"></img>
 					</picture>
 				</li>
-				<!-- <li class="strobe">
-					<img src="image/strobe.gif"></img>
-				</li> -->
 				<li>
 					<picture>
 						<img src="image/fff/panzerschokolade_3.gif" alt="Panzerschokolade #3"></img>
@@ -288,6 +333,9 @@
 						<source srcset="image/fff/panzerschokolade_1.webp" type="image/webp">
 						<img src="image/fff/panzerschokolade_1.jpg" alt="Panzerschokolade #1"></img>
 					</picture>
+				</li>
+				<li class="strobe">
+					<img src="image/strobe.gif"></img>
 				</li>
 			</ol>
 		</main>
