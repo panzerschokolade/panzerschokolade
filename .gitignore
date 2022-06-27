@@ -1,6 +1,10 @@
-_*
-web/*.js*
-web/*/*.js*
-web/*.css*
-web/tv/video/
+data/
+node_modules/
+public/
+resources/
+static/js/
+static/*.js*
+static/style.css*
+.hugo_build.lock
 nginx.conf
+

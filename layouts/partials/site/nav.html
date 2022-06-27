@@ -1,0 +1,4 @@
+{{ $page := . }}
+{{ range .Site.Menus.nav }}
+    <a href="{{ .URL }}" class="{{ if $page.IsMenuCurrent "nav" . }}active{{ end }}">{{ .Name }}</a>
+{{ end }}

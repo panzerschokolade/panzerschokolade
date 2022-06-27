@@ -1,0 +1,12 @@
+{{ define "main" }}
+<ol class="events">
+    {{ range .Pages }}
+    <li>
+        <a href="{{ .Permalink }}">
+            <img src="{{ .Params.flyer }}"></img>
+        </a>
+    </li>
+    {{ end }}
+</ol>
+{{ end }}
+

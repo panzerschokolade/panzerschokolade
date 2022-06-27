@@ -1,0 +1,11 @@
+{{ $page := . }}
+{{ $src := $page.Params.mixcloud }}
+{{ $width := "100%" }}
+{{ $height := "100%" }}
+<iframe
+    class="mixcloud"
+    src="https://www.mixcloud.com/widget/iframe/?&amp;feed=%2F{{$src}}%2F"
+    frameborder="0"
+    width="100%"
+    height="400"
+></iframe>

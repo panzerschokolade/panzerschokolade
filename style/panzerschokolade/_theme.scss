@@ -1,0 +1,14 @@
+:root {
+    --bg: #000;
+    --fg: #fee;
+    --acc: red; //ed2c3e
+}
+
+body {
+    background: var(--bg);
+    color: var(--fg);
+}
+
+a {
+    color: var(--fg);
+}

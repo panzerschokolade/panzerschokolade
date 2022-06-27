@@ -1,0 +1,25 @@
+{
+  "name": "panzerschokolade",
+  "version": "0.0.0",
+  "description": "https://kore.panzerkunst.wtf",
+  "private": true,
+  "scripts": {
+    "clean": "rm -f static/style.css*",
+    "dev:style": "sass style/main.scss static/style.css --watch",
+    "dev:hugo": "hugo server -D",
+    "build:style": "sass style/main.scss static/style.css --no-source-map --style compressed",
+    "build:hugo": "hugo",
+    "build": "npm run build:style && npm run build:hugo"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/disktree/panzerschokolade.git"
+  },
+  "author": "tong@disktree.net",
+  "license": "ISC",
+  "homepage": "https://github.com/disktree/panzerschokolade/blob/master/README.md",
+  "devDependencies": {
+    "sass": "^1.53.0"
+  }
+}
+

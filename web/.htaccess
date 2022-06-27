@@ -1,4 +1,0 @@
-AddType image/webp .webp
-
-ErrorDocument 404 /strobe/index.html
-

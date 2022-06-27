@@ -1,5 +1,5 @@
--js web/radio/radio.js
+-js static/radio.js
 -main panzerschokolade.Radio
--cp src
+-cp sources
 -dce full
 -debug

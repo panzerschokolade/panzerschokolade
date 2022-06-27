@@ -1,0 +1,21 @@
+{{ define "main" }}
+<article>
+    <h2>{{ .Title }}</h2>
+    <div>{{ .Content }}</div>
+    <style>
+        main {
+            background: green;
+            animation: essig 11s infinite;
+        }
+        main > article {
+            animation: essig 33s infinite;
+            color: blue;
+        }
+        main > article h2 {
+            animation: essig 48s infinite;
+            color: blue;
+        }
+    </style>
+</article>
+{{ end }}
+

@@ -1,0 +1,9 @@
+{{ define "main" }}
+    <img src="../{{ .Params.flyer }}"></img>
+    <!--{{ .Params.date }}-->
+
+    {{ if .Params.mixcloud }}
+        {{ partial "mixcloud" . }}
+    {{ end }}
+{{ end }}
+

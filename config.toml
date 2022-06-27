@@ -1,0 +1,7 @@
+baseURL = 'http://panzerschokolade.ftl/'
+languageCode = 'en-us'
+title = 'Panzerschokolade'
+
+[params.social]
+    twitter = "adolf_eichhorn"
+    mixcloud = "panzerschokolade"

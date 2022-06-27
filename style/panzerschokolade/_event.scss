@@ -1,0 +1,13 @@
+ol.events {
+	display: grid;
+	grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
+	column-gap: 1px;
+	grid-gap: 1px;	
+	margin: 1px;
+    > li {
+        list-style:none;
+        img {
+           width: 100%;
+       }
+    }
+}
