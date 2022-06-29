@@ -1,10 +1,9 @@
 {{ define "main" }}
 <ol class="events">
-    {{ range .Pages }}
+    {{ range $event := where .Site.Pages "Type" "event" }}
     <li>
-        <a href="{{ .Permalink }}">
-            <img src="{{ .Params.flyer }}"></img>
-        </a>
+        <!--<a href="{{ .Permalink }}">-->
+        <img src="{{ .Params.flyer }}"></img>
     </li>
     {{ end }}
 </ol>

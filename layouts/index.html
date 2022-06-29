@@ -1,7 +1,18 @@
 {{ define "main" }}
 <!--<img src="strobe.gif" width="200" height="200">-->
-<h2 id="roland-panzer-says"></h2>
+ <!--<h2 id="roland-panzer-says"></h2>-->
 <!--{{ partial "events" .}}-->
-<!--{{ partial "radio" .}}-->
+<!--<ol class="events">
+    <li>
+        <iframe src="radio/" width="100%" height="100%"></iframe>
+    </li>
+    {{ range $event := where .Site.Pages "Type" "event" }}
+    {{ if $event.IsPage }}
+    <li>
+        <img src="{{ .Site.BaseURL }}/event/{{ .Params.flyer }}"></img>
+    </li>
+    {{ end }}
+    {{ end }}
+</ol>-->
 {{ end }}
 

@@ -12,7 +12,7 @@ body {
     }
     > nav {
         display: flex;
-        padding: 0.25rem;
+        //padding: 0.25rem;
         text-transform: uppercase;
         > a {
             margin-right: 0.5ch;
@@ -31,7 +31,7 @@ body {
     }
     > footer {
         display: flex;
-        justify-content: flex-end;
+        justify-content: flex-start;
         padding: 1rem;
         font-size: 50%;
         text-transform: uppercase;
