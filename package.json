@@ -6,10 +6,10 @@
   "scripts": {
     "clean": "rm -f static/style.css*",
     "dev:style": "sass style/main.scss static/style.css --watch",
-    "dev:hugo": "hugo server -D",
     "build:style": "sass style/main.scss static/style.css --no-source-map --style compressed",
     "build:hugo": "hugo",
-    "build": "npm run build:style && npm run build:hugo"
+    "build": "npm run build:style && npm run build:hugo",
+    "start": "hugo server -D"
   },
   "repository": {
     "type": "git",
