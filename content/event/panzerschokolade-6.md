@@ -1,5 +1,0 @@
----
-title: Panzerschokolade#6
-date: 2014-07-19
-flyer: panzerschokolade-6.jpg
----
