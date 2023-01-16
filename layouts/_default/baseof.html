@@ -16,13 +16,15 @@
         {{ template "_internal/opengraph.html" . }}
         {{ template "_internal/schema.html" . }}
 
+        <base href="{{ .Site.BaseURL }}">
+
         <title>{{block "title" .}}{{ .Site.Title }}{{ end }}{{ with .Page.Title }}/{{.}}{{end}}</title>
 
-        <link rel="icon" type="image/png" href="{{$root}}/favicon.png">
-        <link rel="stylesheet" href="{{ $root }}/style.css">
-        <link rel="alternate" href="feed" type="application/atom+xml" title="panzerschokolade"/>
+        <link rel="icon" type="image/png" href="favicon.png">
+        <link rel="stylesheet" href="style.css">
+        <link rel="alternate" href="event/index.xml" type="application/atom+xml" title="panzerschokolade"/>
 
-        <script src="{{$root}}/app.js" async></script>
+        <script src="app.js" async></script>
 
         {{ range $js := .Params.customJS }}
         <script src="{{ $.Site.BaseURL }}/{{ $js }}"></script>
