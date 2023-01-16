@@ -1,9 +1,34 @@
+
+{{ define "partials/flyer2" }}
+    <!-- {{ .File.ContentBaseName }} -->
+
+    {{ $sizes := split (.Scratch.Get "sizes") " " }}
+    {{ $format := .Scratch.Get "format" | default "" }}
+    <!-- { { $resize_str := print "x " $format }} -->
+
+    {{ with $res := .Resources.Get "flyer" }}
+        {{ .Params.title }}
+        {{ $srcset := slice }}
+        {{ range $size := $sizes }}
+            {{ if ge $res.Width $size }}
+                {{ $srcset = $srcset | append (print ($res.Resize (print $size "x " $format)).RelPermalink (print " " $size "w")) }}
+            {{ end }}
+        {{ end }}
+        {{ $srcsetstr := delimit $srcset ", " }}
+        <img src="{{ .RelPermalink }}" srcset="{{ $srcsetstr }}"></img>
+    {{ end }}
+    <!-- <img src="/{{ .File.Dir }}{{ .Params.flyer }}"></img> -->
+{{ end }}
+
+
 {{ define "main" }}
 <ol class="events">
     {{ range .Pages }}
+    {{ .Scratch.Set "sizes" "400 300 200" }}
     <li>
-        <a href="{{ .Permalink }}">
-            <img src="{{ .Params.flyer }}"></img>
+        <a href="{{ .Permalink }}" title="{{ .Params.description }}">
+            <!-- { { .Scratch.Set "format" "webm" }} -->
+            {{ partial "flyer" . }}
         </a>
     </li>
     {{ end }}

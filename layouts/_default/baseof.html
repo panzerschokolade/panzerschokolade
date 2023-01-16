@@ -13,9 +13,11 @@
         <meta name="mobile-web-app-capable" content="yes">
         <meta name="keywords" content="{{ with .Params.Keywords }}{{ delimit . ", " }}{{ else }}{{ .Site.Params.Keywords }}{{ end }}">
         <meta name="description" content='{{ .Param "description" }}'>
+        {{ template "_internal/opengraph.html" . }}
+        {{ template "_internal/schema.html" . }}
 
         <title>{{block "title" .}}{{ .Site.Title }}{{ end }}{{ with .Page.Title }}/{{.}}{{end}}</title>
-        
+
         <link rel="icon" type="image/png" href="{{$root}}/favicon.png">
         <link rel="stylesheet" href="{{ $root }}/style.css">
         <link rel="alternate" href="feed" type="application/atom+xml" title="panzerschokolade"/>
@@ -28,7 +30,6 @@
 
     </head>
 	<body>
-        {{ $.Site.Params.customJS }}
         <header>{{ block "header" . }}{{- partial "site/header.html" . -}}{{ end }}</header>
         <nav>{{ block "nav" . }}{{- partial "site/nav.html" . -}}{{ end }}</nav>
 		<main>{{ block "main" . }}{{- partial "site/main.html" . -}}{{ end }}</main>

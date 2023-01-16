@@ -2,12 +2,14 @@
 <ol class="events">
     {{ range where .Site.RegularPages "Section" "event" }}
     <li>
-        <a href="{{ .Permalink }}">
-            <img src="event/{{ .Params.flyer }}"></img>
-        </a>
+        {{ partial "flyer" . }}
+        <!-- <a href="{{ .Permalink }}" title="{{ .Params.description }}"> -->
+            <!-- { { .Scratch.Set "format" "webm" }} -->
+        <!-- </a> -->
     </li>
     {{ end }}
 </ol>
-<iframe width="100%" height="200px" src="radio"></iframe>
+-->
+<!-- <iframe width="100%" height="200px" src="radio"></iframe> -->
 {{ end }}
 

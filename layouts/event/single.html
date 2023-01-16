@@ -1,9 +1,47 @@
 {{ define "main" }}
-    <img src="../{{ .Params.flyer }}"></img>
-    <!--{{ .Params.date }}-->
-
+    <!-- <img src="{{ .Params.flyer }}"></img> -->
+<!--
     {{ if .Params.mixcloud }}
         {{ partial "mixcloud" . }}
     {{ end }}
-{{ end }}
+-->
+
+
+
+    <ul class="gallery">
+        {{ range $res := .Resources.Match "photos/*.jpg" }}
+        <li>
+
+
+            <figure>
+                <picture>
+
+                    {{ if ge $res.Width 500 }}
+                    {{ with $res.Resize "500x webp" }}
+                    <source srcset="{{ .RelPermalink }} 500w" media="(max-width: 500px)">
+                    {{ end }}
+                    {{ end }}
+
+                    {{ if ge $res.Width 1000 }}
+                    {{ with $res.Resize "1000x webp" }}
+                    <source srcset="{{ .RelPermalink }} 1000w" media="(max-width: 1000px)">
+                    {{ end }}
+                    {{ end }}
+
+                    {{ if ge $res.Width 2000 }}
+                    {{ with $res.Resize "2000x webp" }}
+                    <source srcset="{{ .RelPermalink }} 2000w" media="(max-width: 2000px)">
+                    {{ end }}
+                    {{ end }}
+
+                    <img src="{{ $res.RelPermalink }}" alt="">
+
+                </picture>
+                <figcaption>DDDDDDDDDDDDDDDDDDDDDDDDDDD</figcaption>
+            </figure>
+        </li>
+        {{ end }}
+    </ul>
+
+  {{ end }}
 
