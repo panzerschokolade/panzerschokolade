@@ -1,6 +1,6 @@
 ---
 title: Panzerschokolade#24
-description: "Omni out - liebe für alle"
+description: "Omni out - Liebe für alle"
 date: 2022-10-22
 resources:
 - name: flyer
