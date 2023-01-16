@@ -1,6 +1,17 @@
 baseURL = 'https://panzerschokolade.disktree.net'
 languageCode = 'en-us'
+defaultContentLanguage = "en"
 title = 'Panzerschokolade'
+
+disableHugoGeneratorInject = true
+
+[imaging]
+    quality = 90
+
+[outputs]
+    home = ["HTML"]
+    section = ["HTML"]
+    page = ["HTML"]
 
 [params.social]
     twitter = "adolf_eichhorn"
