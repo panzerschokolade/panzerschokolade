@@ -1,0 +1,26 @@
+{{ define "main" }}
+<video id="tv" autoplay muted></video>
+<style>
+    video#tv {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        user-select: none;
+    }
+</style>
+<script>
+    const videos = [{{ range $res := .Resources.Match "videos/*.mp4" }}"{{.Permalink}}",{{ end }}];
+    const video = document.body.querySelector("#tv");
+    let index = 0;
+    video.src = videos[index];
+    function playPrevVideo() {
+        video.src = videos[index = (index === 0) ? videos.length-1 : index-1];
+    }
+    function playNextVideo() {
+        video.src = videos[index = (index === videos.length) ? 0 : index+1];
+    }
+    document.body.oncontextmenu = e => { e.preventDefault(); playPrevVideo(); return false; }
+    document.body.onclick = e => playNextVideo();
+    window.onkeydown = e => playNextVideo();
+</script>
+{{ end }}
