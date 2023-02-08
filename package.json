@@ -4,7 +4,7 @@
   "description": "https://kore.panzerkunst.wtf",
   "private": true,
   "scripts": {
-    "clean": "rm -f static/style.css*",
+    "clean": "rm -rf public && rm -f static/style.css*",
     "dev:style": "sass style/main.scss static/style.css --watch",
     "build:style": "sass style/main.scss static/style.css --no-source-map --style compressed",
     "build:hugo": "hugo",

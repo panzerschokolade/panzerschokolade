@@ -1,9 +1,0 @@
--js static/app.js
--main panzerschokolade.App
--cp sources
--lib om.core
--lib om.text
--dce full
--debug
--D source-header=
--D js-es=6
