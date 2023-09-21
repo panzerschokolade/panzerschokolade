@@ -1,9 +1,14 @@
-baseURL = 'https://panzerschokolade.disktree.net'
+baseURL = 'https://panzerschokolade.klingt.org'
 languageCode = 'en-us'
 defaultContentLanguage = "en"
 title = 'Panzerschokolade'
+description = "Ewige Blumenkraft"
+keywords = ["disktree"]
 
 disableHugoGeneratorInject = true
+disablePathToLower = true
+enableRobotsTXT = true
+newcontenteditor = "nvim"
 
 [imaging]
     quality = 90
@@ -14,5 +19,6 @@ disableHugoGeneratorInject = true
     page = ["HTML"]
 
 [params.social]
-    twitter = "adolf_eichhorn"
+    twitter = "eichhorny"
     mixcloud = "panzerschokolade"
+

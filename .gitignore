@@ -1,3 +1,4 @@
+content/tv/videos/
 data/
 node_modules/
 public/
@@ -7,4 +8,4 @@ static/*.js*
 static/style.css*
 .hugo_build.lock
 nginx.conf
-
+publish.sh
