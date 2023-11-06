@@ -5,6 +5,7 @@ title = 'Panzerschokolade'
 description = "Ewige Blumenkraft"
 keywords = ["disktree"]
 
+buildFuture = true
 disableHugoGeneratorInject = true
 disablePathToLower = true
 enableRobotsTXT = true
