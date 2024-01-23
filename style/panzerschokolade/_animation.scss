@@ -1,8 +1,11 @@
 @keyframes essig {
     0% {
-        filter: hue-rotate(0deg);
+        filter:hue-rotate(0deg);
     }
+    // 50% {
+    //   filter: contrast(1000%);
+    // }
     100% {
         filter: hue-rotate(360deg);
     }
-}
+  }

@@ -1,5 +1,10 @@
+@use "break";
+
 :root {
     --font-size: 16px;
+    @include break.max(md) {
+      --font-size: 13px;
+    }
 }
 
 html {
@@ -13,7 +18,8 @@ a {
 }
 
 h1, h2, h3, h4 {
-    line-height: 2em;
+    //line-height: 2em;
+    margin: 1em 0 1em 0;
 }
 h1 {
     font-size: 4rem;
