@@ -1,18 +1,49 @@
 {{ define "main" }}
-    <!-- <img src="{{ .Params.flyer }}"></img> -->
-<!--
-    {{ if .Params.mixcloud }}
-        {{ partial "mixcloud" . }}
+<article class="event">
+
+    {{ with .Resources.Get "flyer" }}
+    <!-- <img class="flyer" src="{{ .Permalink }}"></img> -->
     {{ end }}
--->
 
-
+    {{ if .Params.mixcloud }}
+    {{ partial "mixcloud" . }}
+    {{ end }}
+  
+    <script>
+        const VIDEOS = [{{ range $res := .Resources.Match "photos/*.mp4" }}"{{ .Permalink }}",{{ end }}];
+        if( VIDEOS.length > 0) {
+            const video = document.createElement("video");
+            document.body.querySelector("body > main").append(video);
+            video.autopay = true;
+            video.controls = false;
+            video.src = VIDEOS[0];
+            let isVideoPlaying = false;
+            let videoIndex = Math.floor(Math.random() * VIDEOS.length);
+            function toggleVideoPlayback() {
+                if(isVideoPlaying) {
+                    video.pause();
+                    isVideoPlaying = false;
+                } else {
+                    video.play();
+                    isVideoPlaying = true;
+                }
+            }
+            function playNextVideo() {
+                console.log('play next video');
+                if(++videoIndex === VIDEOS.length) videoIndex = 0;
+                video.src= VIDEOS[videoIndex];
+                console.log(video.src);
+                isVideoPlaying = true;
+                video.play();
+            }
+            video.onclick = _ => playNextVideo();
+            video.onended = _ => playNextVideo();
+        }
+    </script>
 
     <ul class="gallery">
         {{ range $res := .Resources.Match "photos/*.jpg" }}
         <li>
-
-
             <figure>
                 <picture>
 
@@ -43,5 +74,19 @@
         {{ end }}
     </ul>
 
-  {{ end }}
+    <nav class="prev_next">
+        {{with .PrevInSection}}
+        <a rel="prev" href="{{.RelPermalink}}" title="{{- .Title -}}">
+            <span>&lt; {{with .Params.description }}{{.}}{{else}}{{ .Params.Title }}{{end}}</span>
+        </a>
+        {{end}}
+        {{with .NextInSection}}
+        <a rel="next" href="{{.RelPermalink}}" title="{{- .Title -}}">
+            <span>{{with .Params.description }}{{.}}{{else}}{{ .Params.Title }}{{end}} &gt;</span>
+        </a>
+        {{end}}
+    </nav>
+
+</article>
+{{ end }}
 

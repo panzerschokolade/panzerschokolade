@@ -1,5 +1,5 @@
+{{ $this := . }}
 {{ with $res := .Resources.Get "flyer" }}
-    {{ with $res.Resize (printf "%dx%d webp" .Width .Height) }}
-        <img src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}"></img>
-    {{ end }}
+{{/*{{ with $res.Resize (printf "%dx%d webp" .Width .Height) }}*/}}
+<img src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="{{ $this.File.ContentBaseName }}"></img>
 {{ end }}

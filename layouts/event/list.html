@@ -23,14 +23,14 @@
 
 {{ define "main" }}
 <ol class="events">
-    {{ range .Pages }}
-    {{ .Scratch.Set "sizes" "400 300 200" }}
-    <li>
-        <a href="{{ .Permalink }}" title="{{ .Params.description }}">
-            <!-- { { .Scratch.Set "format" "webm" }} -->
-            {{ partial "flyer" . }}
-        </a>
-    </li>
+    {{ range $page := .Pages }}
+        {{ with .Resources.Get "flyer" }}
+        <li>
+            <a href="{{ $page.Permalink }}" title="{{ $page.Params.description }}">
+                {{ partial "flyer" $page }}
+            </a>
+        </li>
+    {{ end }}
     {{ end }}
 </ol>
 {{ end }}
