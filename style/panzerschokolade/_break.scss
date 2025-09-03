@@ -1,0 +1,57 @@
+@use "sass:map";
+
+/** plutonika/breakbpoints **/
+
+$points: (
+  xs: 32rem,
+  // ~512px
+  sm: 48rem,
+  // ~768px
+  md: 64rem,
+  // ~1024px
+  lg: 80rem,
+  // ~1280px
+  xl: 90rem // ~1440px
+  ) !default;
+
+@mixin min($breakpoint, $logic: false) {
+  @if($logic) {
+    @media #{$logic} and (min-width: map.get($map: $points, $key: $breakpoint)) {
+      @content;
+    }
+  }
+
+  @else {
+    @media (min-width: map.get($map: $points, $key: $breakpoint)) {
+      @content;
+    }
+  }
+}
+
+@mixin max($breakpoint, $logic: false) {
+  @if($logic) {
+    @media #{$logic} and (max-width: map.get($map: $points, $key: $breakpoint)) {
+      @content;
+    }
+  }
+
+  @else {
+    @media (max-width: map.get($map: $points, $key: $breakpoint)) {
+      @content;
+    }
+  }
+}
+
+@mixin minmax($min, $max, $logic: false) {
+  @if($logic) {
+    @media #{$logic} and (min-width: map.get($map: $points, $key: $min)) and (max-width: map.get($map: $points, $key: $max)) {
+      @content;
+    }
+  }
+
+  @else {
+    @media (min-width: map.get($map: $points, $key: $min)) and (max-width: map.get($map: $points, $key: $max)) {
+      @content;
+    }
+  }
+}
