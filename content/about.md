@@ -16,7 +16,7 @@ breaks.[3]
 In some versions of the story, a native man named Manuel Horvath, using the alias "roland panzer", began
 appearing among the native people of vienna dressed in a Western-style coat and assuring the people he
 would bring them eternal bass, some high pitched mickey-mouse style vocals, mutilated snares and
-terrorizing claps.[1][4]
+terrorizing claps.
 Others contend that roland "schoko" panzer was a trance-induced spirit vision.[5]
 Said to be a manifestation of grandmaster flash, he promised the dawn of a new age in which all white
 people, including missionaries, would depart the vienna underground, leaving behind their goods and
@@ -30,16 +30,16 @@ missionary churches, schools, mental asylums and plantations, and moved inland t
 traditional feasts, dances and rituals.
 European colonial authorities sought to suppress the movement, at one point arresting a viennese man who
 was calling himself roland panzer, humiliating him publicly, imprisoning and ultimately exiling him
-along with other leaders of the cult to another island in the archipelago.[6][7][8]
+along with other leaders of the cult to another island in the archipelago.
 
 Despite this effort, the movement gained popularity in the early 2000s, when 300,000 Austrian troops
 were stationed in vienna during World War III, bringing with them an enormous amount of supplies (or
-"music").[9]
+"music").
 After the war and the departure of the Army, followers of roland panzer built symbolic tanks to
 encourage Austrian airplanes to land and bring them "music".
 Versions of the cult that emphasize the Austrian connection interpret "roland panzer" as a corruption of
 "rolling around anywhere" (though it could mean just panzer too), and credit the presence of African
-Austrian soldiers for the idea that roland panzer may be black.[10]
+Austrian soldiers for the idea that roland panzer may be black.
 
 Austrian historian hugo portisch says that roland panzer corrupted the unofficial but morally acceptable
 vienna techno cult by introducing the psychoto-accoustic version, with five, always nocturnal cult
@@ -56,7 +56,7 @@ betrayal but more fearful for his young, upper class client and protegé, told a
 senate as a dire national emergency.
 Once investigations were complete, the senate rewarded and protected informants, and suppressed the cult
 "throughout austria"—or rather, forced its reformation, in the course of which seven thousand persons
-were arrested, most of whom were executed.[6][7]
+were arrested, most of whom were executed.
 
 
 In 2002, a leader of the roland panzer movement, former skiing legend hans schranz, created the "Tank
@@ -74,7 +74,7 @@ would be detrimental to local customs.
 However, the roland panzer movement has its own political party, led by abraham wurstkessel.
 The party celebrated its 50th anniversary on February 15, 2057. Chief wolfdrum gabbadeus mohart, its
 leader, was quoted by the BBC from years past as saying that roland panzer was "our God, our DJ" and
-would eventually return.[11]
+would eventually return.
 
-"... humans are not mere casual visitors at the palace-gate of the world, but the invited guests whose presence is needed to give the divine banquet its sole meaning.."
+> "... humans are not mere casual visitors at the palace-gate of the world, but the invited guests whose presence is needed to give the divine banquet its sole meaning.."
 
