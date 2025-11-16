@@ -12,14 +12,16 @@ enableRobotsTXT = true
 newcontenteditor = "nvim"
 
 [imaging]
-    quality = 90
+quality = 90
 
 [outputs]
-    home = ["HTML"]
-    section = ["HTML"]
-    page = ["HTML"]
+home = ["HTML"]
+section = ["HTML"]
+page = ["HTML"]
+
+[params]
+service_url = "https://panzerschokolade.klingt.org/service"
 
 [params.social]
-    twitter = "eichhorny"
-    mixcloud = "panzerschokolade"
-
+twitter = "eichhorny"
+mixcloud = "panzerschokolade"
