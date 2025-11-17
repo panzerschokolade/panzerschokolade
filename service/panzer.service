@@ -1,0 +1,24 @@
+[Unit]
+Description=Panzerschokolade Service
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/tong/app/panzerservice
+ExecStart=/home/tong/app/panzerservice/panzerservice
+Restart=on-failure
+RestartSec=5s
+EnvironmentFile=/home/tong/app/panzerservice/env
+
+User=tong
+Group=tong
+
+# optional hardening
+NoNewPrivileges=yes
+PrivateTmp=yes
+#ProtectSystem=full
+#ProtectHome=yes
+MemoryDenyWriteExecute=yes
+
+[Install]
+WantedBy=multi-user.target
