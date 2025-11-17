@@ -19,10 +19,11 @@ import (
 )
 
 var (
-	db     *sql.DB
-	dbPath = getEnv("DB_PATH", "")
+	db *sql.DB
 
-	baseURL = getEnv("BASE_URL", "")
+	baseURL    = getEnv("BASE_URL", "")
+	dbPath     = getEnv("DB_PATH", "")
+	adminEmail = getEnv("ADMIN_EMAIL", "")
 
 	smtpServer = getEnv("SMTP_SERVER", "")
 	smtpUser   = getEnv("SMTP_USER", "")
@@ -36,7 +37,11 @@ var (
 	urlUnsubError       = getEnv("URL_UNSUB_ERROR", "")
 	urlUnsubRequested   = getEnv("URL_UNSUB_REQUESTED", "")
 
-	adminEmail = getEnv("ADMIN_EMAIL", "")
+	confirmSubject = getEnv("CONFIRM_SUBJECT", "")
+	confirmBody    = getEnv("CONFIRM_BODY", "")
+
+	welcomeSubject = getEnv("WELCOME_SUBJECT", "")
+	welcomeBody    = getEnv("WELCOME_BODY", "")
 )
 
 func main() {
@@ -108,8 +113,8 @@ func subscribeHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	confirmURL := fmt.Sprintf("%s/service/newsletter/confirm?token=%s", baseURL, tokenConfirm)
-	err = sendMail(email, "Confirm your subscription",
-		fmt.Sprintf("Click to confirm:\n\n%s\n\nIf you didn't request, ignore.", confirmURL))
+	err = sendMail(email, confirmSubject,
+		fmt.Sprintf(confirmBody, confirmURL))
 	if err != nil {
 		http.Error(w, "send error", 500)
 		log.Println(err)
@@ -143,6 +148,20 @@ func confirmHandler(w http.ResponseWriter, r *http.Request) {
 	if n == 0 {
 		http.Redirect(w, r, urlConfirmError, http.StatusFound)
 		return
+	}
+
+	var email string
+	err = db.QueryRow("SELECT email FROM subscribers WHERE token_confirm = ?", token).Scan(&email)
+	if err != nil {
+		log.Println("Failed to retrieve email for token", token, ":", err)
+		http.Redirect(w, r, urlConfirmError, http.StatusFound)
+		return
+	}
+
+	// Send welcome email to user
+	err = sendMail(email, welcomeSubject, welcomeBody)
+	if err != nil {
+		log.Println("Failed to send welcome email to", email, ":", err)
 	}
 
 	http.Redirect(w, r, urlConfirmSuccess, http.StatusFound)
@@ -192,6 +211,22 @@ func unsubscribeHandler(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, urlUnsubError, http.StatusFound)
 		return
 	}
+
+	var email string
+	err = db.QueryRow("SELECT email FROM subscribers WHERE token_unsub = ?", token).Scan(&email)
+	if err != nil {
+		log.Println("Failed to retrieve email for token", token, "during unsubscription:", err)
+		// Continue to redirect to success page to avoid leaking information
+	} else {
+		// Send notification to admin
+		adminSubject := fmt.Sprintf("Newsletter Unsubscription: %s", email)
+		adminBody := fmt.Sprintf("Email: %s has unsubscribed.", email)
+		err = sendMail(adminEmail, adminSubject, adminBody)
+		if err != nil {
+			log.Println("Failed to send admin unsubscription notification email:", err)
+		}
+	}
+
 	http.Redirect(w, r, urlUnsubSuccess, http.StatusFound)
 }
 
