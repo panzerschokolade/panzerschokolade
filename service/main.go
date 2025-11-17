@@ -19,20 +19,24 @@ import (
 )
 
 var (
-	db                  *sql.DB
-	baseURL             = getEnv("BASE_URL", "https://panzerschokolade.klingt.org")
-	smtpServer          = getEnv("SMTP_SERVER", "mail.your-server.de:465")
-	smtpUser            = getEnv("SMTP_USER", "panzerschokolade@disktree.net")
-	smtpPass            = getEnv("SMTP_PASS", "")
-	fromEmail           = getEnv("FROM_EMAIL", "noreply@panzerschokolade.klingt.org")
-	dbPath              = getEnv("DB_PATH", "./subs.db")
-	urlSubscribeSuccess = getEnv("URL_SUBSCRIBE_SUCCESS", "/newsletter/pending/")
-	urlConfirmSuccess   = getEnv("URL_CONFIRM_SUCCESS", "/newsletter/confirmed/")
-	urlConfirmError     = getEnv("URL_CONFIRM_ERROR", "/newsletter/error/?reason=confirm")
-	urlUnsubSuccess     = getEnv("URL_UNSUB_SUCCESS", "/newsletter/unsubscribed/")
-	urlUnsubError       = getEnv("URL_UNSUB_ERROR", "/newsletter/error/?reason=unsub")
-	urlUnsubRequested   = getEnv("URL_UNSUB_REQUESTED", "/newsletter/unsubscribe-requested/")
-	adminEmail          = getEnv("ADMIN_EMAIL", "admin@disktree.net")
+	db     *sql.DB
+	dbPath = getEnv("DB_PATH", "")
+
+	baseURL = getEnv("BASE_URL", "")
+
+	smtpServer = getEnv("SMTP_SERVER", "")
+	smtpUser   = getEnv("SMTP_USER", "")
+	smtpPass   = getEnv("SMTP_PASS", "")
+	fromEmail  = getEnv("FROM_EMAIL", "")
+
+	urlSubscribeSuccess = getEnv("URL_SUBSCRIBE_SUCCESS", "")
+	urlConfirmSuccess   = getEnv("URL_CONFIRM_SUCCESS", "")
+	urlConfirmError     = getEnv("URL_CONFIRM_ERROR", "")
+	urlUnsubSuccess     = getEnv("URL_UNSUB_SUCCESS", "")
+	urlUnsubError       = getEnv("URL_UNSUB_ERROR", "")
+	urlUnsubRequested   = getEnv("URL_UNSUB_REQUESTED", "")
+
+	adminEmail = getEnv("ADMIN_EMAIL", "")
 )
 
 func main() {
