@@ -11,7 +11,7 @@
 <script>
     const videos = [{{ range $res := .Resources.Match "videos/*.mp4" }}"{{.Permalink}}",{{ end }}];
     const video = document.body.querySelector("#tv");
-    let index = 0;
+    let index = Math.floor(Math.random() * videos.length);
     video.src = videos[index];
     function playPrevVideo() {
         video.src = videos[index = (index === 0) ? videos.length-1 : index-1];
@@ -22,5 +22,6 @@
     document.body.oncontextmenu = e => { e.preventDefault(); playPrevVideo(); return false; }
     document.body.onclick = e => playNextVideo();
     window.onkeydown = e => playNextVideo();
+    video.onended = e => playNextVideo();
 </script>
 {{ end }}
