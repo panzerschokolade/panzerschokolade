@@ -1,10 +1,25 @@
-{{ define "main" }} {{- .Content -}}
-<form
-  action="{{ .Site.Params.service_url }}/newsletter/subscribe"
-  method="POST"
->
-  <input type="email" name="email" placeholder="..." required />
-  <button type="submit">Subscribe</button>
-</form>
-<a href="/newsletter/unsubscribe">Unsubscribe</a>
+{{ define "main" }}
+<article>
+  <h2>{{ .Title }}</h2>
+  <div>{{- .Content -}}</div>
+  <form
+    action="{{ .Site.Params.service_url }}/newsletter/subscribe"
+    method="POST"
+  >
+    <input type="email" name="email" placeholder="email ..." required />
+    <button type="submit">Subscribe</button>
+  </form>
+  <a href="/newsletter/unsubscribe">Unsubscribe</a>
+  <!-- <img src="hand.gif" /> -->
+</article>
+<style>
+  body {
+    background-image: url("{{ (resources.Get "img/hand.gif").Permalink }}");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-color: #111;
+  }
+</style>
 {{ end }}

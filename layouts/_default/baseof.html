@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{$.Site.LanguageCode}}">
+<html lang="{{ $.Site.LanguageCode | default " en" }}">
     <head>
         {{ $root := .Site.BaseURL }}
         {{ $url := urls.Parse $root }}
@@ -11,14 +11,12 @@
         <meta name="publisher" content="{{ .Site.Params.publisher }}">
         <meta name="title" content="{{ .Site.Title }}">
         <meta name="mobile-web-app-capable" content="yes">
-        <meta name="keywords" content="{{ with .Params.Keywords }}{{ delimit . ", " }}{{ else }}{{ .Site.Params.Keywords }}{{ end }}">
-        <meta name="description" content='{{ .Param "description" }}'>
+        <meta name="keywords" content="{{ delimit (.Params.keywords | default .Site.Params.keywords) "," }}">
+        <meta name="description" content="{{ with .Params.description }}{{- . -}}{{ else }}{{- .Site.Params.description -}}{{ end }}">
         {{ template "_internal/opengraph.html" . }}
         {{ template "_internal/schema.html" . }}
 
         <title>{{block "title" .}}{{ .Site.Title }}{{ end }}{{ with .Page.Title }} - {{.}}{{end}}</title>
-
-        <style>{{ os.ReadFile "README.md" }}</style>
 
         <link rel="icon" type="image/png" href="{{$root}}/favicon.png">
         <link rel="stylesheet" href="{{$root}}/style.css">

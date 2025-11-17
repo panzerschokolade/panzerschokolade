@@ -1,13 +1,23 @@
 {{ define "main" }}
 <article>
-  <h1>{{ .Title }}</h1>
-  <p>Enter your email address to receive an unsubscribe link.</p>
+  <h2>{{ .Title }}</h2>
+  <div>{{- .Content -}}</div>
   <form
     action="{{ .Site.Params.service_url }}/newsletter/request-unsubscribe"
     method="POST"
   >
-    <input type="email" name="email" required />
-    <button type="submit">Request Unsubscribe Link</button>
+    <input type="email" name="email" placeholder="email ..." required />
+    <button type="submit">unsubscribe</button>
   </form>
 </article>
+<style>
+  body {
+    /* background-image: url("{{ (resources.Get "img/jazz.jpg").Permalink }}"); */
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-color: #111;
+  }
+</style>
 {{ end }}

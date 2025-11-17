@@ -3,7 +3,8 @@ form {
   flex-direction: column;
   gap: 1rem;
   max-width: 400px;
-  margin: 2rem auto;
+  margin-bottom: 2rem;
+  // margin: 2rem auto;
 }
 
 input[type="email"],
@@ -32,6 +33,7 @@ button[type="submit"] {
   border-color: var(--acc);
   color: var(--bg);
   font-weight: bold;
+  text-transform: uppercase;
 
   &:hover,
   &:focus {

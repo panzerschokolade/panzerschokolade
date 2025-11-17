@@ -1,4 +1,9 @@
 {{ $page := . }}
 {{ range .Site.Menus.nav }}
-    <!--<a href="{{ .URL }}" class="{{ if $page.IsMenuCurrent "nav" . }}active{{ end }}">{{ .Name }}</a>-->
+  {{ if $page.IsMenuCurrent "nav" . }}
+  <span>{{ .Name }}</span>
+  {{ else }}
+      <a href="{{ .URL }}" class="{{ if $page.IsMenuCurrent "nav" . }}active{{ end }}">{{ .Name }}</a>
+  {{ end }}
+    <!-- <a href="{{ .URL }}" class="{{ if $page.IsMenuCurrent "nav" . }}active{{ end }}">{{ .Name }}</a> -->
 {{ end }}

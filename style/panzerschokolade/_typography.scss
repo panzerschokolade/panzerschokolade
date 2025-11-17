@@ -1,43 +1,52 @@
 @use "break";
 
 :root {
-    --font-size: 16px;
-    @include break.max(md) {
-      --font-size: 13px;
-    }
+  --font-size: 16px;
+  @include break.max(md) {
+    --font-size: 13px;
+  }
 }
 
 html {
-	font-size: var(--font-size);
-    font-family: monospace;
-    font-style: normal;
+  font-size: var(--font-size);
+  font-family: monospace;
+  font-style: normal;
 }
 
 a {
-    text-decoration: none;
+  // text-decoration: none;
 }
 
-h1, h2, h3, h4 {
-    //line-height: 2em;
-    margin: 1em 0 1em 0;
+hr {
+  margin: 4rem 0;
+  border: none; 
+  border-top: 2px solid #ff0000;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  //line-height: 2em;
+  margin: 1em 0 2em 0;
 }
 h1 {
-    font-size: 4rem;
+  font-size: 4rem;
 }
 h2 {
-    font-size: 3rem;
-    letter-spacing: -0.05em;
+  font-size: 3rem;
+  letter-spacing: -0.05em;
 }
 h3 {
-    font-size: 2rem;
-    letter-spacing: -2px;
+  font-size: 2rem;
+  letter-spacing: -2px;
 }
 h4 {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
 p,
 ol,
 ul {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }

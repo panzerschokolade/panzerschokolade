@@ -1,14 +1,22 @@
 :root {
-    --bg: #000;
-    --fg: #fee;
-    --acc: red; //ed2c3e
+  --bg: #000;
+  --fg: #fee;
+  --acc: red; //ed2c3e
+
+  --magenta: #c60041;
+  --yellow: #f8ed01;
 }
 
 body {
-    background: var(--bg);
-    color: var(--fg);
+  background: var(--bg);
+  color: var(--fg);
+}
+
+::selection {
+  background: var(--magenta);
+  color: var(--yellow);
 }
 
 a {
-    color: var(--fg);
+  color: var(--fg);
 }
