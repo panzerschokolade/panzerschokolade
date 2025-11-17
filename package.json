@@ -4,14 +4,16 @@
   "description": "blumenkraft",
   "private": true,
   "scripts": {
-    "clean": "rm -rf public && rm -f static/style.css*",
-    "dev:style": "sass style/main.scss static/style.css --watch",
+    "clean:site": "rm -rf public && rm -f static/style.css*",
+    "clean:service": "rm -f service/panzerservice",
+    "clean": "npm run clean:site && npm run clean:service",
     "build:style": "sass style/main.scss static/style.css --no-source-map --style compressed",
-    "build:hugo": "hugo",
-    "build:service": "cd service && GOOS=linux GOARCH=amd64 CGO_ENABLED=1 go build -trimpath -ldflags '-s -w' -o panzerservice .",
-    "build": "npm run build:style && npm run build:hugo && npm run build:service",
+    "build:site": "hugo",
+    "build:service": "cd service && GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -trimpath -ldflags '-s -w' -o panzerservice .",
+    "build": "npm run build:style && npm run build:site && npm run build:service",
+    "dev:style": "sass style/main.scss static/style.css --watch",
     "start": "hugo server -D",
-    "publish": "./publish.sh"
+    "deploy": "./script/deploy"
   },
   "repository": {
     "type": "git",

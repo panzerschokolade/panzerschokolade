@@ -10,5 +10,6 @@ static/style.css*
 .hugo_build.lock
 nginx.conf
 publish.sh
+env
 *.db
 *.env
