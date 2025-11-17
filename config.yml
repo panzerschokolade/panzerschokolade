@@ -1,0 +1,27 @@
+baseURL: "https://panzerschokolade.klingt.org"
+languageCode: "en-us"
+defaultContentLanguage: "en"
+title: "Panzerschokolade"
+description: "Ewige Blumenkraft"
+
+buildFuture: true
+disableHugoGeneratorInject: true
+disablePathToLower: true
+enableRobotsTXT: true
+newcontenteditor: "nvim"
+
+imaging:
+  quality: 90
+
+outputs:
+  home: ["HTML"]
+  section: ["HTML"]
+  page: ["HTML"]
+
+params:
+  keywords:
+    - "panzerkunst"
+  service_url: "https://panzerschokolade.klingt.org/service"
+  social:
+    twitter: "eichhorny"
+    mixcloud: "panzerschokolade"
