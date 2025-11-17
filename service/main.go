@@ -23,7 +23,7 @@ var (
 	baseURL             = getEnv("BASE_URL", "https://panzerschokolade.klingt.org")
 	smtpServer          = getEnv("SMTP_SERVER", "mail.your-server.de:465")
 	smtpUser            = getEnv("SMTP_USER", "panzerschokolade@disktree.net")
-	smtpPass            = getEnv("SMTP_PASS", "91FmNOugI7LG7176")
+	smtpPass            = getEnv("SMTP_PASS", "")
 	fromEmail           = getEnv("FROM_EMAIL", "noreply@panzerschokolade.klingt.org")
 	dbPath              = getEnv("DB_PATH", "./subs.db")
 	urlSubscribeSuccess = getEnv("URL_SUBSCRIBE_SUCCESS", "/newsletter/pending/")
