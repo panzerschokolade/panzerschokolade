@@ -143,14 +143,6 @@ func subscribeHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Send notification to admin
-	adminSubject := fmt.Sprintf("New newsletter subscriber: %s", email)
-	adminBody := fmt.Sprintf("Email: %s<br>IP Address: %s", email, ip)
-	err = sendMail(adminEmail, adminSubject, adminBody)
-	if err != nil {
-		log.Println("Failed to send admin notification email:", err)
-	}
-
 	http.Redirect(w, r, urlSubscribeSuccess, http.StatusFound)
 }
 
@@ -172,10 +164,10 @@ func confirmHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var email string
-	err = db.QueryRow("SELECT email FROM subscribers WHERE token_confirm = ?", token).Scan(&email)
+	var email, ip string
+	err = db.QueryRow("SELECT email, ip_address FROM subscribers WHERE token_confirm = ?", token).Scan(&email, &ip)
 	if err != nil {
-		log.Println("Failed to retrieve email for token", token, ":", err)
+		log.Println("Failed to retrieve email and IP for token", token, ":", err)
 		http.Redirect(w, r, urlConfirmError, http.StatusFound)
 		return
 	}
@@ -185,6 +177,16 @@ func confirmHandler(w http.ResponseWriter, r *http.Request) {
 	err = sendMail(email, welcomeSubject, fmt.Sprintf(welcomeBody, unsubURL))
 	if err != nil {
 		log.Println("Failed to send welcome email to", email, ":", err)
+	}
+
+	// Send subscription notification to admin
+	if adminEmail != "" {
+		adminSubject := fmt.Sprintf("New confirmed subscriber: %s", email)
+		adminBody := fmt.Sprintf("Email: %s<br>IP Address: %s", email, ip)
+		err = sendMail(adminEmail, adminSubject, adminBody)
+		if err != nil {
+			log.Println("Failed to send admin notification email:", err)
+		}
 	}
 
 	http.Redirect(w, r, urlConfirmSuccess, http.StatusFound)
