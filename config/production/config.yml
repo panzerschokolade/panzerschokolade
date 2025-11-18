@@ -1,0 +1,7 @@
+baseURL: "https://panzerschokolade.klingt.org"
+cleandestinationdir: true
+
+minify:
+  minifyOutput: true
+  keepComments: false
+  keepConditionalComments: false
