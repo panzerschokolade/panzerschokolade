@@ -18,8 +18,8 @@
 
         <title>{{block "title" .}}{{ .Site.Title }}{{ end }}{{ with .Page.Title }} - {{.}}{{end}}</title>
 
-        <link rel="icon" type="image/png" href="{{$root}}/favicon.png">
-        <link rel="stylesheet" href="{{$root}}/style.css">
+        <link rel="icon" type="image/png" href="{{$root}}favicon.png">
+        <link rel="stylesheet" href="{{$root}}style.css">
         <link rel="alternate" href="event/index.xml" type="application/atom+xml" title="panzerschokolade"/>
 
         <script src="{{ (resources.Get "js/app.js").Permalink }}" async></script>
@@ -27,6 +27,8 @@
         {{ range $js := .Params.customJS }}
         <script src="{{ $.Site.BaseURL }}/{{ $js }}"></script>
         {{ end }}
+
+		{{ block "schema" . }}{{ end }}
 
     </head>
 	<body>

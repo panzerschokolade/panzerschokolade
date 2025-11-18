@@ -1,0 +1,41 @@
+{{ $url := print .Site.BaseURL "event/" .File.ContentBaseName }}
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MusicEvent",
+    "name": "{{- .Title -}}",
+    "identifier": "{{- .Title -}}",
+    "startDate": "{{ .Date.Format "2006-01-02" }}",
+    "endDate": "{{ .Date.Format "2006-01-02" }}",
+	"description": "mayhem",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "organizer": {
+        "@type": "Organization",
+        "name": "panzerschokolade",
+        "url": "{{ .Site.Params.contact.web }}"
+    },
+    "location": {
+        "@type": "Place",
+		"name": "Unknown"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "url": "{{ $url }}",
+    {{ with .Params.tags }}"keywords": {{.}},{{ end }}
+	{{ with .Params.artists }}
+    "performer": [
+      {{ range . }}
+      { "@type": "Person", "name": "{{- . -}}" },
+      {{ end }}
+    ],
+    {{ end }}
+    {{ with .Resources.Get "flyer" }}
+    "image": [
+        "{{ .Permalink }}"
+	]
+    {{ end }}
+  }
+</script>

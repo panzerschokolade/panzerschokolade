@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /js/
+Disallow: /styleguide/
+Disallow: /tv/
+
+Sitemap: https://panzerschokolade.klingt.org/sitemap.xml
+

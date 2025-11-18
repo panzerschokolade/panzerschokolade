@@ -1,15 +1,18 @@
+{{ define "schema" }}{{ partial "schema/event" . }}{{ end }}
+
 {{ define "main" }}
 <article class="event">
 
     {{ with .Resources.Get "flyer" }}
-    <!-- <img class="flyer" src="{{ .Permalink }}"></img> -->
+    <img class="flyer" src="{{ .Permalink }}"></img>
     {{ end }}
 
     {{ if .Params.mixcloud }}
     {{ partial "mixcloud" . }}
     {{ end }}
-  
-    <script>
+
+  <!--
+  <script>
         const VIDEOS = [{{ range $res := .Resources.Match "photos/*.mp4" }}"{{ .Permalink }}",{{ end }}];
         if( VIDEOS.length > 0) {
             const video = document.createElement("video");
@@ -40,7 +43,7 @@
             video.onended = _ => playNextVideo();
         }
     </script>
-
+-->
     <ul class="gallery">
         {{ range $res := .Resources.Match "photos/*.jpg" }}
         <li>
@@ -68,7 +71,7 @@
                     <img src="{{ $res.RelPermalink }}" alt="">
 
                 </picture>
-                <figcaption>DDDDDDDDDDDDDDDDDDDDDDDDDDD</figcaption>
+                <figcaption></figcaption>
             </figure>
         </li>
         {{ end }}
