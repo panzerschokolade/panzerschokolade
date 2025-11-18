@@ -13,3 +13,4 @@ publish.sh
 env
 *.db
 *.env
+service/env
