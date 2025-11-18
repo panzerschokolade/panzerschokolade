@@ -108,41 +108,42 @@ func subscribeHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if err == nil && currentStatus == "active" {
-		// User is already active, redirect to confirmation page.
-		http.Redirect(w, r, urlConfirmSuccess, http.StatusFound)
-		return
+	// Only send a confirmation email if the user is new or has unsubscribed.
+	// For active or pending users, we do nothing but show the same success page
+	// to prevent leaking information about who is subscribed.
+	if err == sql.ErrNoRows || currentStatus == "unsubscribed" {
+		ip := r.Header.Get("X-Real-IP")
+		if ip == "" {
+			ip, _, _ = net.SplitHostPort(r.RemoteAddr)
+		}
+
+		tokenConfirm := genToken()
+		tokenUnsub := genToken()
+
+		// upsert: if exists, update tokens & set pending again
+		_, err = db.Exec(`
+		INSERT INTO subscribers(email, status, token_confirm, token_unsub, ip_address)
+		VALUES (?, 'pending', ?, ?, ?)
+		ON CONFLICT(email)
+		DO UPDATE SET status='pending', token_confirm=excluded.token_confirm, token_unsub=excluded.token_unsub, confirmed_at=NULL, unsubscribed_at=NULL, ip_address=excluded.ip_address
+		`, email, tokenConfirm, tokenUnsub, ip)
+		if err != nil {
+			http.Error(w, "db error", 500)
+			log.Println(err)
+			return
+		}
+
+		// Send confirmation email
+		confirmURL := fmt.Sprintf("%s/service/newsletter/confirm?token=%s", baseURL, tokenConfirm)
+		err = sendMail(email, confirmSubject, fmt.Sprintf(confirmBody, confirmURL))
+		if err != nil {
+			http.Error(w, "send error", 500)
+			log.Println(err)
+			return
+		}
 	}
 
-	ip := r.Header.Get("X-Real-IP")
-	if ip == "" {
-		ip, _, _ = net.SplitHostPort(r.RemoteAddr)
-	}
-
-	tokenConfirm := genToken()
-	tokenUnsub := genToken()
-
-	// upsert: if exists, update tokens & set pending again
-	_, err = db.Exec(`
-	INSERT INTO subscribers(email, status, token_confirm, token_unsub, ip_address)
-	VALUES (?, 'pending', ?, ?, ?)
-	ON CONFLICT(email)
-	DO UPDATE SET status='pending', token_confirm=excluded.token_confirm, token_unsub=excluded.token_unsub, confirmed_at=NULL, unsubscribed_at=NULL, ip_address=excluded.ip_address
-	`, email, tokenConfirm, tokenUnsub, ip)
-	if err != nil {
-		http.Error(w, "db error", 500)
-		log.Println(err)
-		return
-	}
-	confirmURL := fmt.Sprintf("%s/service/newsletter/confirm?token=%s", baseURL, tokenConfirm)
-	err = sendMail(email, confirmSubject,
-		fmt.Sprintf(confirmBody, confirmURL))
-	if err != nil {
-		http.Error(w, "send error", 500)
-		log.Println(err)
-		return
-	}
-
+	// In all cases, redirect to the same success page to prevent address sniffing.
 	http.Redirect(w, r, urlSubscribeSuccess, http.StatusFound)
 }
 
