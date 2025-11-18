@@ -99,6 +99,21 @@ func subscribeHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	var currentStatus string
+	err := db.QueryRow("SELECT status FROM subscribers WHERE email = ?", email).Scan(&currentStatus)
+	if err != nil && err != sql.ErrNoRows {
+		// A real db error occurred
+		http.Error(w, "db query error", 500)
+		log.Println(err)
+		return
+	}
+
+	if err == nil && currentStatus == "active" {
+		// User is already active, redirect to confirmation page.
+		http.Redirect(w, r, urlConfirmSuccess, http.StatusFound)
+		return
+	}
+
 	ip := r.Header.Get("X-Real-IP")
 	if ip == "" {
 		ip, _, _ = net.SplitHostPort(r.RemoteAddr)
@@ -108,7 +123,7 @@ func subscribeHandler(w http.ResponseWriter, r *http.Request) {
 	tokenUnsub := genToken()
 
 	// upsert: if exists, update tokens & set pending again
-	_, err := db.Exec(`
+	_, err = db.Exec(`
 	INSERT INTO subscribers(email, status, token_confirm, token_unsub, ip_address)
 	VALUES (?, 'pending', ?, ?, ?)
 	ON CONFLICT(email)
