@@ -33,6 +33,7 @@ var (
 	urlSubscribeSuccess = getEnv("URL_SUBSCRIBE_SUCCESS", "")
 	urlConfirmSuccess   = getEnv("URL_CONFIRM_SUCCESS", "")
 	urlConfirmError     = getEnv("URL_CONFIRM_ERROR", "")
+	urlUnsub            = getEnv("URL_UNSUB", "")
 	urlUnsubSuccess     = getEnv("URL_UNSUB_SUCCESS", "")
 	urlUnsubError       = getEnv("URL_UNSUB_ERROR", "")
 	urlUnsubRequested   = getEnv("URL_UNSUB_REQUESTED", "")
@@ -42,6 +43,12 @@ var (
 
 	welcomeSubject = getEnv("WELCOME_SUBJECT", "")
 	welcomeBody    = getEnv("WELCOME_BODY", "")
+
+	unsubscribeSubject = getEnv("UNSUBSCRIBE_SUBJECT", "")
+	unsubscribeBody    = getEnv("UNSUBSCRIBE_BODY", "")
+
+	unsubscribedSubject = getEnv("UNSUBSCRIBED_SUBJECT", "")
+	unsubscribedBody    = getEnv("UNSUBSCRIBED_BODY", "")
 )
 
 func main() {
@@ -122,8 +129,8 @@ func subscribeHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Send notification to admin
-	adminSubject := fmt.Sprintf("New Newsletter Subscriber: %s", email)
-	adminBody := fmt.Sprintf("Email: %s\nIP Address: %s", email, ip)
+	adminSubject := fmt.Sprintf("New newsletter subscriber: %s", email)
+	adminBody := fmt.Sprintf("Email: %s<br>IP Address: %s", email, ip)
 	err = sendMail(adminEmail, adminSubject, adminBody)
 	if err != nil {
 		log.Println("Failed to send admin notification email:", err)
@@ -159,7 +166,8 @@ func confirmHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Send welcome email to user
-	err = sendMail(email, welcomeSubject, welcomeBody)
+	unsubURL := fmt.Sprintf("%s/%s", baseURL, urlUnsub)
+	err = sendMail(email, welcomeSubject, fmt.Sprintf(welcomeBody, unsubURL))
 	if err != nil {
 		log.Println("Failed to send welcome email to", email, ":", err)
 	}
@@ -179,14 +187,12 @@ func requestUnsubscribeHandler(w http.ResponseWriter, r *http.Request) {
 	err := db.QueryRow("SELECT token_unsub FROM subscribers WHERE email = ? AND status = 'active'", email).Scan(&tokenUnsub)
 	if err == nil { // User found and is active
 		unsubURL := fmt.Sprintf("%s/service/newsletter/unsubscribe?token=%s", baseURL, tokenUnsub)
-		err = sendMail(email, "Unsubscribe from Panzerschokolade",
-			fmt.Sprintf("Click the link to unsubscribe:\n\n%s", unsubURL))
+		err = sendMail(email, unsubscribeSubject, fmt.Sprintf(unsubscribeBody, unsubURL))
 		if err != nil {
 			// Log the error but don't show it to the user, to prevent info leaks.
 			log.Println("sendMail error during unsubscribe request:", err)
 		}
 	} else if err != sql.ErrNoRows {
-		// A real db error occurred, log it.
 		log.Println("db.QueryRow error during unsubscribe request:", err)
 	}
 
@@ -218,9 +224,17 @@ func unsubscribeHandler(w http.ResponseWriter, r *http.Request) {
 		log.Println("Failed to retrieve email for token", token, "during unsubscription:", err)
 		// Continue to redirect to success page to avoid leaking information
 	} else {
+
+		// Send unsubscribed info to user
+		err = sendMail(email, unsubscribedSubject, unsubscribedBody)
+		if err != nil {
+			// Log the error but don't show it to the user, to prevent info leaks.
+			log.Println("sendMail error during unsubscribe request:", err)
+		}
+
 		// Send notification to admin
-		adminSubject := fmt.Sprintf("Newsletter Unsubscription: %s", email)
-		adminBody := fmt.Sprintf("Email: %s has unsubscribed.", email)
+		adminSubject := fmt.Sprintf("Newsletter unsubscription: %s", email)
+		adminBody := fmt.Sprintf("<p>Email: %s has unsubscribed.</p>", email)
 		err = sendMail(adminEmail, adminSubject, adminBody)
 		if err != nil {
 			log.Println("Failed to send admin unsubscription notification email:", err)
@@ -254,8 +268,10 @@ func validEmail(e string) bool {
 func sendMail(to, subject, body string) error {
 	msg := "From: " + fromEmail + "\r\n" +
 		"To: " + to + "\r\n" +
-		"Subject: " + subject + "\r\n\r\n" +
-		body + "\r\n"
+		"Subject: " + subject + "\r\n" +
+		"MIME-Version: 1.0\r\n" +
+		"Content-Type: text/html; charset=UTF-8\r\n\r\n" +
+		body
 
 	host, port, _ := net.SplitHostPort(smtpServer)
 	auth := smtp.PlainAuth("", smtpUser, smtpPass, host)
