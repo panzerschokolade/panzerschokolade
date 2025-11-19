@@ -1,11 +1,13 @@
 ---
 title: Events
-menu:
-  nav:
-    name: Events
-    weight: 100
-aliases: [mayhem]
+aliases: [mayhem, blumenkraft]
 outputs:
-- html
-- rss
+  - html
+  - rss
+sitemap:
+  changeFreq: monthly
+# menu:
+#   nav:
+#     name: Events
+#     weight: 100
 ---

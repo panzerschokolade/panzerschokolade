@@ -1,8 +1,9 @@
 ---
 title: "Subscription confirmed"
 rss_ignore: true
+sitemap:
+  disable: true
 ---
 
-## All set
-
-Your subscription has been confirmed. Thank you!
+Your newsletter subscription has been confirmed.  
+To unsubscribe visit [this link](https://panzerschokolade.klingt.org/newsletter/unsubscribe/).

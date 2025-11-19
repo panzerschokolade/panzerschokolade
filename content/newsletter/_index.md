@@ -1,7 +1,8 @@
 ---
 title: Newsletter
 layout: subscribe
-rss_ignore: true
+rss_ignore: tru
+aliases: [newsletter/subscribe]
 # menu:
 #   nav:
 #     name: Newsletter

@@ -1,10 +1,10 @@
 ---
-title: "Subscription Pending"
+title: "Subscription pending"
 type: page
 rss_ignore: true
+sitemap:
+  disable: true
 ---
 
-## Check your inbox
-
-Thank you for subscribing!  
-A confirmation email has been sent to your address. Please click the link in the email to activate your subscription.
+A confirmation email has been sent to your address.  
+Please click the link in the email to activate your subscription.
