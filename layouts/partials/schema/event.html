@@ -5,10 +5,15 @@
     "@type": "MusicEvent",
     "name": "{{- .Title -}}",
     "identifier": "{{- .Title -}}",
-    "startDate": "{{ .Date.Format "2006-01-02" }}",
-    "endDate": "{{ .Date.Format "2006-01-02" }}",
-	"description": "mayhem",
+    "startDate": "{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}",
+    "endDate": "{{ (.Date.AddDate 0 0 1).Format "2006-01-02" }}T06:00:00{{ .Date.Format "Z07:00" }}",
+	"description": "{{- .Params.description -}}",
     "eventStatus": "https://schema.org/EventScheduled",
+    {{ if .Params.online }}
+    "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
+    {{ else }}
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    {{ end }}
     "organizer": {
         "@type": "Organization",
         "name": "panzerschokolade",
@@ -16,8 +21,9 @@
     },
     "location": {
         "@type": "Place",
-		"name": "Unknown"
+		"name": "TBA"
     },
+    "isAccessibleForFree": true,
     "offers": {
       "@type": "Offer",
       "price": "0",
@@ -27,15 +33,21 @@
     {{ with .Params.tags }}"keywords": {{.}},{{ end }}
 	{{ with .Params.artists }}
     "performer": [
-      {{ range . }}
-      { "@type": "Person", "name": "{{- . -}}" },
+      {{ range $index, $element := . }}
+      { "@type": "Person", "name": "{{- . -}}" }{{ if ne (add $index 1) (len $) }},{{ end }}
       {{ end }}
     ],
-    {{ end }}
+	{{ else }}
+    "performer": { "@type": "PerformingGroup", "name": "Various" },
+	{{ end }}
     {{ with .Resources.Get "flyer" }}
     "image": [
         "{{ .Permalink }}"
-	]
+	],
     {{ end }}
+    "audience": {
+      "@type": "Audience",
+      "audienceType": "Adults"
+    }
   }
 </script>
