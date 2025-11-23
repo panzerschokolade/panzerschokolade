@@ -1,7 +1,8 @@
 @use "break";
 
 :root {
-  --font-size: 16px;
+  --font-size: 14px;
+  line-height: 1.625;
   @include break.max(md) {
     --font-size: 13px;
   }
@@ -19,27 +20,25 @@ a {
 
 hr {
   margin: 4rem 0;
-  border: none; 
-  border-top: 2px solid #ff0000;
+  border: none;
+  border-top: 1px solid var(--fg);
 }
 
 h1,
 h2,
 h3,
 h4 {
-  //line-height: 2em;
-  margin: 1em 0 2em 0;
+  line-height: 1.3em;
+  margin: 1em 0 1em 0;
 }
 h1 {
-  font-size: 4rem;
+  font-size: 3rem;
 }
 h2 {
-  font-size: 3rem;
-  letter-spacing: -0.05em;
+  font-size: 2rem;
 }
 h3 {
-  font-size: 2rem;
-  letter-spacing: -2px;
+  font-size: 1.5rem;
 }
 h4 {
   font-size: 1.5rem;
@@ -49,4 +48,11 @@ p,
 ol,
 ul {
   margin-bottom: 1rem;
+}
+
+blockquote {
+  margin: 2rem 0;
+  padding: 0 0 0 1rem;
+  border-left: 0.5rem solid var(--fg);
+  font-style: italic;
 }

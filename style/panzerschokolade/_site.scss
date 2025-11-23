@@ -16,8 +16,8 @@ body {
   background: black;
   color: white;
   > header {
-    display: none;
-    padding: 0.75rem 0.75rem;
+    // display: none;
+    // padding: 0.75rem 0.75rem;
   }
   > nav {
     display: flex;
@@ -41,17 +41,31 @@ body {
   }
   > main {
     width: 100%;
-    // background: yellow;
     // height: 100%;
+    // background: yellow;
   }
   > footer {
-    display: none;
-    justify-content: flex-start;
+    display: flex;
+    justify-content: flex-end;
     padding: 1rem;
-    font-size: 75%;
+    // font-size: 50%;
     text-transform: uppercase;
+    // background: var(--bg);
+    a {
+      text-decoration: none;
+    }
+  }
+  > aside {
+    position: fixed;
+    bottom: 1rem;
+    left: 1rem;
+    z-index: 1000;
+    padding: 1rem;
+    background: var(--cyan);
+    color: #0000ff;
+    display: none;
   }
 }
 
-@media screen and (min-width: breakpoint.$tablet) {
-}
+// @media screen and (min-width: breakpoint.$tablet) {
+// }
