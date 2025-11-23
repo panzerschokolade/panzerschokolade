@@ -1,0 +1,56 @@
+{{ define "main" }}
+
+    <video id="mayhem" src="" controls autoplay></video>
+    <script>       
+        //const VIDEOS = [{{ range $res := .Resources.Match "photos/*.mp4" }}"{{ .Permalink }}",{{ end }}];
+        const VIDEOS = [
+
+            {{ range where .Site.RegularPages "Section" "event" }}
+                {{ range $res := .Resources.Match "photos/*.mp4" }}"{{ .Permalink }}",{{ end }}
+            {{ end }}
+
+        ];
+        function shuffleArray(values) {
+          let index = values.length,
+            randomIndex;
+            while (index != 0) {
+                randomIndex = Math.floor(Math.random() * index);
+                index--;
+                // And swap it with the current element.
+                [values[index], values[randomIndex]] = [values[randomIndex], values[index]];
+            }
+            return values;
+        }
+        if( VIDEOS.length > 0) {
+            shuffleArray(VIDEOS); 
+            console.log(VIDEOS);
+            let isVideoPlaying = false;
+            let videoIndex = Math.floor(Math.random() * VIDEOS.length);
+            let video = document.querySelector("video#mayhem");
+            video.src = VIDEOS[0];
+            video.autopay = true;
+            video.controls = false;
+            function toggleVideoPlayback() {
+                if(isVideoPlaying) {
+                    video.pause();
+                    isVideoPlaying = false;
+                } else {
+                    video.play();
+                    isVideoPlaying = true;
+                }
+            }
+            function playNextVideo() {
+                console.log('play next video');
+                if(++videoIndex === VIDEOS.length) videoIndex = 0;
+                video.src= VIDEOS[videoIndex];
+                console.log(video.src);
+                isVideoPlaying = true;
+                video.play();
+            }
+            video.onclick = _ => playNextVideo();
+            video.onended = _ => playNextVideo();
+            //video.onend = _ => playNextVideo();
+        }
+    </script>
+{{ end }}
+
