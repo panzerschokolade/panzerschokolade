@@ -28,6 +28,7 @@ body {
     }
     > span {
       color: var(--acc);
+      cursor: default;
       &::before {
         content: "[";
       }
@@ -37,6 +38,10 @@ body {
     }
     > a {
       text-decoration: none;
+      border-bottom: none;
+      &:hover {
+        color: var(--cyan);
+      }
     }
   }
   > main {
@@ -53,6 +58,7 @@ body {
     // background: var(--bg);
     a {
       text-decoration: none;
+      border: none;
     }
   }
   > aside {

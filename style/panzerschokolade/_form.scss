@@ -23,7 +23,7 @@ input[type="email"] {
   &:focus {
     outline: none;
     border-color: var(--acc);
-    box-shadow: 0 0 8px var(--acc);
+    // box-shadow: 0 0 8px var(--acc);
   }
 }
 
@@ -41,7 +41,7 @@ button[type="submit"] {
     border-color: var(--fg);
     color: var(--bg);
     outline: none;
-    box-shadow: 0 0 8px var(--fg);
+    // box-shadow: 0 0 8px var(--fg);
   }
 
   &:active {

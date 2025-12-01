@@ -15,7 +15,8 @@ html {
 }
 
 a {
-  // text-decoration: none;
+  text-decoration: none;
+  border-bottom: 1px solid var(--fg);
 }
 
 hr {
