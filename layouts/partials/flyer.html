@@ -1,5 +1,21 @@
-{{ $this := . }}
-{{ with $res := .Resources.Get "flyer" }}
-{{/*{{ with $res.Resize (printf "%dx%d webp" .Width .Height) }}*/}}
-<img src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="{{ $this.File.ContentBaseName }}"></img>
-{{ end }}
+{{ $img := .image }}
+{{ $page := .page }}
+{{ $small  := $img.Resize "300x" }}
+{{ $medium := $img.Resize "600x" }}
+{{ $large  := $img.Resize "900x" }}
+<li>
+  <a href="{{ $page.Permalink }}">
+    <picture>
+      <img 
+        src="{{ $medium.RelPermalink }}"
+        srcset="
+          {{ $small.RelPermalink }} 300w,
+          {{ $medium.RelPermalink }} 600w,
+          {{ $large.RelPermalink }} 900w"
+        sizes="(max-width: 700px) 300px, 600px"
+        alt="{{ $page.File.ContentBaseName }}"
+        loading="lazy"
+      >
+    </picture>
+  </a>
+</li>
