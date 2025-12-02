@@ -53,6 +53,7 @@ class Panzerschokolade {
     "#0A9FDF",
     "#89B194",
   ];
+
   static getRandomQuote() {
     return Panzerschokolade.QUOTES[
       ((Panzerschokolade.QUOTES.length - 1) * Math.random()) | 0
@@ -63,13 +64,44 @@ class Panzerschokolade {
     const t = a[Math.floor(Math.random() * a.length)];
     window.document.title = t.toUpperCase();
   }
+
+  static styleElement;
+
+  static setRandomColor() {
+    const colorForground =
+      Panzerschokolade.COLORS[
+        Math.floor(Math.random() * Panzerschokolade.COLORS.length)
+      ];
+    let colorBackground;
+    do {
+      colorBackground =
+        Panzerschokolade.COLORS[
+          Math.floor(Math.random() * Panzerschokolade.COLORS.length)
+        ];
+    } while (colorBackground === colorForground);
+    if (!Panzerschokolade.styleElement) {
+      Panzerschokolade.styleElement = document.createElement("style");
+      document.head.appendChild(Panzerschokolade.styleElement);
+    }
+    Panzerschokolade.styleElement.textContent = `
+      ::selection {
+        background: ${colorBackground};
+        color: ${colorForground};
+      }`;
+  }
 }
 window.addEventListener(
   "load",
   (_) => {
     console.info("Mystery of mankind");
+
     Panzerschokolade.setRandomQuoteTitle();
     setInterval(Panzerschokolade.setRandomQuoteTitle, 3000);
+
+    Panzerschokolade.setRandomColor();
+    // window.onmousedown = (_) => {
+    //   Panzerschokolade.setRandomColor();
+    // };
   },
   false,
 );
