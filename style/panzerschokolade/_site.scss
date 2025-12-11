@@ -16,10 +16,12 @@ body {
   background: black;
   color: white;
   > header {
+    line-height: 1;
     // display: none;
     // padding: 0.75rem 0.75rem;
   }
   > nav {
+    line-height: 1;
     display: flex;
     padding: 0.75rem 0.75rem;
     text-transform: uppercase;
@@ -50,6 +52,7 @@ body {
     // background: yellow;
   }
   > footer {
+    line-height: 1;
     display: flex;
     justify-content: flex-end;
     padding: 1rem;

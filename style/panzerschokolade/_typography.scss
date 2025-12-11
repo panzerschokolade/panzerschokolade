@@ -2,7 +2,7 @@
 
 :root {
   --font-size: 14px;
-  line-height: 1.625;
+  line-height: 1.725;
   @include break.max(md) {
     --font-size: 13px;
   }
