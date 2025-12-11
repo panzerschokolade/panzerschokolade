@@ -5,6 +5,7 @@ title: "Panzerschokolade"
 description: "Ewige Blumenkraft"
 
 buildFuture: true
+rssLimit: 1000
 disableHugoGeneratorInject: true
 disablePathToLower: true
 enableRobotsTXT: true
