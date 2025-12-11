@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"log"
 	"net"
@@ -11,6 +12,9 @@ import (
 )
 
 func main() {
+	addr := flag.String("addr", ":8388", "host address")
+	flag.Parse()
+
 	cfg := newsletter.NewConfig()
 
 	// Create a new newsletter service instance
@@ -27,8 +31,10 @@ func main() {
 	http.HandleFunc("/service/newsletter/unsubscribe", h.unsubscribe)
 	http.HandleFunc("/service/newsletter/request-unsubscribe", h.requestUnsubscribe)
 
-	fmt.Println("Listening on :8388")
-	log.Fatal(http.ListenAndServe(":8388", nil))
+	http.HandleFunc("/service/live", HandleLiveStream)
+
+	fmt.Println("Starting service on:", *addr)
+	log.Fatal(http.ListenAndServe(*addr, nil))
 }
 
 type handler struct {
