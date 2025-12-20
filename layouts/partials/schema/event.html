@@ -34,7 +34,7 @@
 	{{ with .Params.artists }}
     "performer": [
       {{ range $index, $element := . }}
-      { "@type": "Person", "name": "{{- . -}}" }{{ if ne (add $index 1) (len $) }},{{ end }}
+      { "@type": "Person", "name": "{{- . -}}" }{{ if ne (add $index 1) (len .) }},{{ end }}
       {{ end }}
     ],
 	{{ else }}
