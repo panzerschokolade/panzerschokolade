@@ -1,47 +1,74 @@
 "use strict";
 
-const base_url = "https://panzerschokolade.klingt.org";
-const app_url = `${base_url}/hls`;
+const DOMAIN = "panzerschokolade.klingt.org";
+const BASE_URL = `https://${DOMAIN}`;
+const APP_URL = `${BASE_URL}/hls`;
+const STATS_URL = `${BASE_URL}/live/stat`;
 
 const params = new URLSearchParams(window.location.search);
-let streamName = params.get("stream");
-if (!streamName) streamName = "stream";
+let streamName = params.get("stream") || "stream";
+// const RTMP_URL = `rtmp://${DOMAIN}:1935/live/${streamName}`;
 
 const video = document.getElementById("video");
-// const caption = document.getElementById("caption");
 
-const src = `${base_url}/hls/${streamName}.m3u8`;
-if (video.canPlayType("application/vnd.apple.mpegurl")) {
-  video.src = src;
-} else if (Hls.isSupported()) {
-  const hls = new Hls();
-  hls.on(Hls.Events.ERROR, (e) => {
-    console.error(e);
-    //caption.textContent = "Failed to play";
-  });
-  hls.loadSource(src);
-  hls.attachMedia(video);
+function initVideo(src) {
+  if (video.canPlayType("application/vnd.apple.mpegurl")) {
+    video.src = src;
+  } else if (window.Hls && Hls.isSupported()) {
+    const hls = new Hls();
+    hls.on(Hls.Events.ERROR, (event, data) => {
+      console.error("HLS error:", event, data);
+      // Optionally show a user-friendly message
+    });
+    hls.loadSource(src);
+    hls.attachMedia(video);
+  } else {
+    console.error("HLS not supported in this browser");
+  }
 }
-/*
-//TODO: fetch active stream list from stats
-window.fetch("https://velak.klingt.org/live/stat").then((res) => {
-  res.text().then((str) => {
-    var xml = new window.DOMParser().parseFromString(str, "application/xml");
-    console.log(xml);
-    console.log(xml.firstChild.children.item(10));
-    var live = xml.firstChild.children
-      .item(10)
-      .children.item(0)
-      .children.item(1);
-    console.log(live.children);
-    for (var i = 0; i < live.children.length; i++) {
-      if (live.children[i].nodeName === "stream") {
-        var stream = live.children[i];
-        var name = stream.children.item(0).textContent;
-        var time = stream.children.item(1).textContent;
-        console.log(name, time);
-      }
-    }
+
+async function fetchServerStats() {
+  try {
+    const res = await fetch(STATS_URL);
+    if (!res.ok) throw new Error(`Failed to fetch stats: ${res.status}`);
+    const text = await res.text();
+    const xml = new DOMParser().parseFromString(text, "application/xml");
+    return xml;
+  } catch (err) {
+    console.error(err);
+    return null;
+  }
+}
+
+function parseActiveStreams(xml) {
+  if (!xml) return [];
+  const streams = [];
+  const liveNode = xml.querySelector("live");
+  if (!liveNode) return streams;
+  liveNode.querySelectorAll("stream").forEach((streamNode) => {
+    console.log("streamnode", streamNode);
+    const name = streamNode.querySelector("name")?.textContent;
+    const time = streamNode.querySelector("time")?.textContent;
+    //TODO: parse other fields
+    if (name) streams.push({ name, time });
   });
-});
-*/
+  return streams;
+}
+
+async function isStreamLive(name) {
+  const xml = await fetchServerStats();
+  const streams = parseActiveStreams(xml);
+  return streams.find((s) => s.name === name) || null;
+}
+
+(async () => {
+  const liveInfo = await isStreamLive(streamName);
+  if (!liveInfo) {
+    console.warn(`Stream "${streamName}" is not live.`);
+    window.alert("0 available live transmissions");
+    return;
+  }
+  console.log("Stream metadata:", liveInfo);
+  const src = `${APP_URL}/${streamName}.m3u8`;
+  initVideo(src);
+})();
