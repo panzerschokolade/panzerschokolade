@@ -72,5 +72,3 @@ The closing litany—still recited by surviving followers—summarises the entir
 > Neither is good, neither is bad.  
 > Two sides, one coin.  
 > So be it.
-
-[HUMANITY IS THE DEVIL](/process/humanity-is-the-devil)
