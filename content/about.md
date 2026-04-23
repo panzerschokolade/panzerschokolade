@@ -58,4 +58,6 @@ Its leader, **Chief Wolfdrum Gabbadeus Mohart**, was quoted by BBC stating that 
 
 > _"... humans are not mere casual visitors at the palace-gate of the world, but the invited guests whose presence is needed to give the divine banquet its sole meaning..."_
 
+---
+
 [THE LIE](/process/the-lie)
