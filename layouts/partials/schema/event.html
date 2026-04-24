@@ -21,7 +21,7 @@
     },
     "location": {
         "@type": "Place",
-		"name": "TBA"
+        "name": "{{ with .Params.location }}{{.}}{{else}}somewhere{{ end }}"
     },
     "isAccessibleForFree": true,
     "offers": {

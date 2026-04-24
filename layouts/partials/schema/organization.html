@@ -4,7 +4,7 @@
       "@type": "Organization",
       "name": "panzerschokolade",
       "url": {{ .Site.Params.contact.web }},
-      "email": {{ .Site.Params.contact.email }},
+      {{ with .Site.Params.contact.email }}"email": {{.}},{{end}}
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Vienna",
