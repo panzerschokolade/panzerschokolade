@@ -40,6 +40,9 @@ class Panzerschokolade {
     "Bad for health, good for education",
     "Fun ist ein Stahlbad",
     "Jetzt wächst zusammen ... was zusammen gehört",
+    "Was ist denn nun des Panzers Kern?",
+    "Die eine Kraft ... die stets nur gutes will ... und doch nur den Panzer schafft.",
+    "Wer nicht tanzt, spürt seine Ketten nicht"
   ];
   static COLORS = [
     "#388250",
@@ -70,13 +73,13 @@ class Panzerschokolade {
   static setRandomColor() {
     const colorForground =
       Panzerschokolade.COLORS[
-        Math.floor(Math.random() * Panzerschokolade.COLORS.length)
+      Math.floor(Math.random() * Panzerschokolade.COLORS.length)
       ];
     let colorBackground;
     do {
       colorBackground =
         Panzerschokolade.COLORS[
-          Math.floor(Math.random() * Panzerschokolade.COLORS.length)
+        Math.floor(Math.random() * Panzerschokolade.COLORS.length)
         ];
     } while (colorBackground === colorForground);
     if (!Panzerschokolade.styleElement) {
