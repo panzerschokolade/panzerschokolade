@@ -1,95 +1,122 @@
 {{ define "schema" }}{{ partial "schema/event" . }}{{ end }}
 
 {{ define "main" }}
-<article class="event">
+<article class="event-page">
 
-    {{ with .Resources.Get "flyer" }}
-    <img class="flyer" src="{{ .Permalink }}"></img>
-    {{ end }}
+    <!-- Hero Section -->
+    <header class="event-hero">
+        <div class="event-info">
+            <div class="event-badges">
+                {{ with .Date }}
+                <span class="badge badge-date">📅 {{ .Format "02.01.2006" }}</span>
+                {{ end }}
+                {{ with .Params.location }}
+                <span class="badge badge-location">📍 {{ . }}</span>
+                {{ end }}
+            </div>
 
-    {{ if .Params.mixcloud }}
-    {{ partial "mixcloud" . }}
-    {{ end }}
+            <h1 class="event-title">{{ .Title }}</h1>
 
-  <!--
-  <script>
-        const VIDEOS = [{{ range $res := .Resources.Match "photos/*.mp4" }}"{{ .Permalink }}",{{ end }}];
-        if( VIDEOS.length > 0) {
-            const video = document.createElement("video");
-            document.body.querySelector("body > main").append(video);
-            video.autopay = true;
-            video.controls = false;
-            video.src = VIDEOS[0];
-            let isVideoPlaying = false;
-            let videoIndex = Math.floor(Math.random() * VIDEOS.length);
-            function toggleVideoPlayback() {
-                if(isVideoPlaying) {
-                    video.pause();
-                    isVideoPlaying = false;
-                } else {
-                    video.play();
-                    isVideoPlaying = true;
-                }
-            }
-            function playNextVideo() {
-                console.log('play next video');
-                if(++videoIndex === VIDEOS.length) videoIndex = 0;
-                video.src= VIDEOS[videoIndex];
-                console.log(video.src);
-                isVideoPlaying = true;
-                video.play();
-            }
-            video.onclick = _ => playNextVideo();
-            video.onended = _ => playNextVideo();
-        }
-    </script>
--->
-    <ul class="gallery">
-        {{ range $res := .Resources.Match "photos/*.jpg" }}
-        <li>
-            <figure>
-                <picture>
+            {{ with .Params.description }}
+            <blockquote class="event-tagline">“{{ . }}”</blockquote>
+            {{ end }}
 
-                    {{ if ge $res.Width 500 }}
-                    {{ with $res.Resize "500x webp" }}
-                    <source srcset="{{ .RelPermalink }} 500w" media="(max-width: 500px)">
+            {{ with .Params.artists }}
+            <div class="event-lineup">
+                <ul class="artist-list">
+                    {{ range . }}
+                    <li class="artist-chip">{{ . }}</li>
                     {{ end }}
-                    {{ end }}
+                </ul>
+            </div>
+            {{ end }}
+        </div>
 
-                    {{ if ge $res.Width 1000 }}
-                    {{ with $res.Resize "1000x webp" }}
-                    <source srcset="{{ .RelPermalink }} 1000w" media="(max-width: 1000px)">
-                    {{ end }}
-                    {{ end }}
-
-                    {{ if ge $res.Width 2000 }}
-                    {{ with $res.Resize "2000x webp" }}
-                    <source srcset="{{ .RelPermalink }} 2000w" media="(max-width: 2000px)">
-                    {{ end }}
-                    {{ end }}
-
-                    <img src="{{ $res.RelPermalink }}" alt="">
-
-                </picture>
-                <figcaption></figcaption>
-            </figure>
-        </li>
+        {{ $flyerSrc := "" }}
+        {{ with .Resources.Get "flyer" }}
+            {{ $flyerSrc = .RelPermalink }}
+        {{ else }}
+            {{ with .Params.flyer }}
+                {{ $flyerSrc = . }}
+            {{ end }}
         {{ end }}
-    </ul>
 
+        {{ if $flyerSrc }}
+        <figure class="event-flyer-wrap">
+            <img class="event-flyer" src="{{ $flyerSrc }}" alt="{{ $.Title }} Flyer" loading="eager">
+        </figure>
+        {{ end }}
+    </header>
+
+    <!-- Audio / Mixcloud Highlight -->
+    {{ if .Params.mixcloud }}
+    <section class="event-audio">
+        <h2>Set / Audio</h2>
+        {{ partial "mixcloud" . }}
+    </section>
+    {{ end }}
+
+    <!-- Page Content (If any body text exists) -->
+    {{ if .Content }}
+    <section class="event-content">
+        {{ .Content }}
+    </section>
+    {{ end }}
+
+    <!-- Photo Gallery -->
+    {{ $photos := .Resources.Match "photos/*.jpg" }}
+    {{ if $photos }}
+    <section class="event-gallery-section">
+        <ul class="gallery">
+            {{ range $res := $photos }}
+            <li>
+                <figure>
+                    <picture>
+                        {{ if ge $res.Width 500 }}
+                        {{ with $res.Resize "500x webp" }}
+                        <source srcset="{{ .RelPermalink }} 500w" media="(max-width: 500px)">
+                        {{ end }}
+                        {{ end }}
+
+                        {{ if ge $res.Width 1000 }}
+                        {{ with $res.Resize "1000x webp" }}
+                        <source srcset="{{ .RelPermalink }} 1000w" media="(max-width: 1000px)">
+                        {{ end }}
+                        {{ end }}
+
+                        {{ if ge $res.Width 2000 }}
+                        {{ with $res.Resize "2000x webp" }}
+                        <source srcset="{{ .RelPermalink }} 2000w" media="(max-width: 2000px)">
+                        {{ end }}
+                        {{ end }}
+
+                        <img src="{{ $res.RelPermalink }}" alt="Event photo" loading="lazy">
+                    </picture>
+                    <figcaption></figcaption>
+                </figure>
+            </li>
+            {{ end }}
+        </ul>
+    </section>
+    {{ end }}
+
+    <!-- Next / Prev Event Navigation -->
     <nav class="prev_next">
-        {{with .PrevInSection}}
-        <a rel="prev" href="{{.RelPermalink}}" title="{{- .Title -}}">
-            <span>&lt; {{with .Params.description }}{{.}}{{else}}{{ .Params.Title }}{{end}}</span>
+        {{ with .PrevInSection }}
+        <a rel="prev" href="{{ .RelPermalink }}" title="{{ .Title }}" class="nav-card prev">
+            <span class="nav-label">&lt; Previous Event</span>
+            <span class="nav-title">{{ with .Params.description }}{{ . }}{{ else }}{{ .Params.Title }}{{ end }}</span>
         </a>
-        {{end}}
-        {{with .NextInSection}}
-        <a rel="next" href="{{.RelPermalink}}" title="{{- .Title -}}">
-            <span>{{with .Params.description }}{{.}}{{else}}{{ .Params.Title }}{{end}} &gt;</span>
+        {{ end }}
+        {{ with .NextInSection }}
+        <a rel="next" href="{{ .RelPermalink }}" title="{{ .Title }}" class="nav-card next">
+            <span class="nav-label">Next Event &gt;</span>
+            <span class="nav-title">{{ with .Params.description }}{{ . }}{{ else }}{{ .Params.Title }}{{ end }}</span>
         </a>
-        {{end}}
+        {{ end }}
     </nav>
 
 </article>
 {{ end }}
+
 

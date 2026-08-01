@@ -4,7 +4,7 @@
 {{ $medium := $img.Resize "600x" }}
 {{ $large  := $img.Resize "900x" }}
 <li>
-  <a href="{{ $page.Permalink }}">
+  <a href="{{ $page.RelPermalink }}">
     <picture>
       <img 
         src="{{ $medium.RelPermalink }}"

@@ -1,0 +1,16 @@
+{{ define "main" }}
+<video id="video" controls autoplay></video>
+<style>
+  article {
+    width: 100%;
+    height: 100%;
+  }
+  video {
+      width: 100%;
+      height: 100%;
+      background: black;
+  }
+</style>
+<script src="{{ (resources.Get "js/hls.js" | resources.Minify).RelPermalink }}"></script>
+<script src="{{ (resources.Get "js/live.js" | resources.Minify).RelPermalink }}"></script>
+{{ end }}
