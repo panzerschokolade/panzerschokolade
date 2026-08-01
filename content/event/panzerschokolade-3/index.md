@@ -1,5 +1,5 @@
 ---
-title: Panzerschokolade3
+title: Panzerschokolade#3
 description: "Language of Love - Mystery of Mankind"
 date: 2010-06-12
 resources:

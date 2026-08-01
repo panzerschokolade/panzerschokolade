@@ -7,4 +7,11 @@ resources:
     src: panzerschokolade-32.jpg
 location: "flucc decc"
 artists:
+  - dj shinsekai
+  - evren de concecao
+  - emr miranda
+  - faz og
+  - megadjmama
+  - mister bellini
+  - samuel
 ---
