@@ -137,14 +137,7 @@ video#mayhem {
                 font-size: 0.95rem;
                 text-transform: uppercase;
                 letter-spacing: 0.03em;
-                transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
                 cursor: default;
-
-                &:hover {
-                    border-color: var(--magenta, #fb0f94);
-                    background: rgba(251, 15, 148, 0.1);
-                    transform: translateY(-2px);
-                }
             }
         }
     }
