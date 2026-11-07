@@ -23,10 +23,13 @@
   "license": "ISC",
   "homepage": "https://github.com/panzerschokolade/panzerschokolade/blob/master/README.md",
   "devDependencies": {
-    "hugo-bin": "^0.149.2",
-    "sass": "^1.94.1"
+    "hugo-bin": "^0.167.0",
+    "sass": "^1.108.1"
   },
   "hugo-bin": {
     "buildTags": "extended"
+  },
+  "allowScripts": {
+    "hugo-bin@0.167.0": true
   }
 }
