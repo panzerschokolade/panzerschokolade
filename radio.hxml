@@ -1,5 +1,0 @@
--js static/radio.js
--main panzerschokolade.Radio
--cp sources
--dce full
--debug

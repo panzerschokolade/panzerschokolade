@@ -1,0 +1,2 @@
+#!/bin/bash
+sqlite3 service/subs.db "SELECT email FROM subscribers WHERE status = 'active';"

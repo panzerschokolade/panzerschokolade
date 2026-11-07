@@ -1,0 +1,5 @@
+#!/bin/sh
+rsync -avz public/** rrr:/home/tong/web/panzerschokolade/
+rsync -avz service/panzerservice service/env rrr:/home/tong/app/panzerservice
+# rsync -avz service/panzer.service rrr:/etc/systemd/system/panzer.service
+rsync -avz service/panzer.service rrr:/home/tong/app/panzerservice

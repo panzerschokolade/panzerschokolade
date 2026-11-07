@@ -1,0 +1,17 @@
+{
+  "name": "PANZERSCHOKOLADE",
+  "short_name": "panzerschokolade",
+  "description": "Mystery of mankind",
+  "start_url": "./?source=pwa",
+  "categories": ["music"],
+  "display": "browser",
+  "theme_color": "#000",
+  "background_color": "#000",
+  "icons": [
+    {
+        "src": "favicon.png",
+        "sizes": "any",
+        "purpose": "maskable any"
+    }
+  ]
+}

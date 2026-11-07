@@ -4,7 +4,8 @@ public/
 resources/
 service/panzerservice
 static/js/
-static/*.js*
+static/*.js
+static/*.js.map
 static/style.css*
 .hugo_build.lock
 nginx.conf

@@ -1,13 +1,8 @@
 ---
-title: Medication
+title: "Medication time"
 type: medication
-rss_ignore: true
 sitemap:
   disable: true
-# menu:
-#   nav:
-#     name: Medication
-#     weight: 500
 ---
 
 {{< html >}}

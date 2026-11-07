@@ -7,7 +7,7 @@
     <iframe width="100%" height="100%" src="about" frameborder="0"></iframe>
   </li>
   */}} 
-  {{ range $page := where .Site.RegularPages "Section" "event" }}
+  {{ range $page := where (where .Site.RegularPages "Section" "event") "Params.home" "!=" false }}
   {{ with .Resources.Get "flyer" }}
     {{ partial "flyer.html" (dict "page" $page "image" .) }}
   {{ end }}
