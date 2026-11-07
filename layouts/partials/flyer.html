@@ -3,7 +3,9 @@
 {{ $small  := $img.Resize "300x" }}
 {{ $medium := $img.Resize "600x" }}
 {{ $large  := $img.Resize "900x" }}
-<li>
+{{ $num := "" }}
+{{ with findRESubmatch `^Panzerschokolade#(\d+)$` $page.Title 1 }}{{ $num = index . 0 1 }}{{ end }}
+<li{{ with $num }} id="{{ . }}"{{ end }}>
   <a href="{{ $page.RelPermalink }}">
     <picture>
       <img 
@@ -13,6 +15,8 @@
           {{ $medium.RelPermalink }} 600w,
           {{ $large.RelPermalink }} 900w"
         sizes="(max-width: 700px) 300px, 600px"
+        width="{{ $medium.Width }}"
+        height="{{ $medium.Height }}"
         alt="{{ $page.File.ContentBaseName }}"
         loading="lazy"
       >
