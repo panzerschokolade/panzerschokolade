@@ -42,7 +42,8 @@ class Panzerschokolade {
     "Jetzt wächst zusammen ... was zusammen gehört",
     "Was ist denn nun des Panzers Kern?",
     "Die eine Kraft ... die stets nur gutes will ... und doch nur den Panzer schafft.",
-    "Wer nicht tanzt, spürt seine Ketten nicht"
+    "Wer nicht tanzt, spürt seine Ketten nicht",
+    "In deinem Umkreis"
   ];
   static COLORS = [
     "#388250",
