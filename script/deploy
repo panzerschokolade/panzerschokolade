@@ -1,5 +1,28 @@
 #!/bin/sh
-rsync -avz public/** rrr:/home/tong/web/panzerschokolade/
-rsync -avz service/panzerservice service/env rrr:/home/tong/app/panzerservice
-# rsync -avz service/panzer.service rrr:/etc/systemd/system/panzer.service
-rsync -avz service/panzer.service rrr:/home/tong/app/panzerservice
+set -eu
+
+cd "$(dirname "$0")/.."
+
+if [ ! -f deploy.env ]; then
+  echo "deploy.env not found, it needs DEPLOY_HOST, DEPLOY_USER, DEPLOY_WEB_DIR and DEPLOY_SERVICE_DIR" >&2
+  exit 1
+fi
+. ./deploy.env
+
+: "${DEPLOY_HOST:?missing in deploy.env}"
+: "${DEPLOY_USER:?missing in deploy.env}"
+: "${DEPLOY_WEB_DIR:?missing in deploy.env}"
+: "${DEPLOY_SERVICE_DIR:?missing in deploy.env}"
+
+# fill the machine specific values into the systemd unit
+tmp="$(mktemp -d)"
+trap 'rm -rf "$tmp"' EXIT
+unit="$tmp/panzer.service"
+sed -e "s|@DEPLOY_SERVICE_DIR@|$DEPLOY_SERVICE_DIR|g" \
+  -e "s|@DEPLOY_USER@|$DEPLOY_USER|g" \
+  service/panzer.service.in >"$unit"
+
+rsync -avz public/** "$DEPLOY_HOST:$DEPLOY_WEB_DIR/"
+rsync -avz service/panzerservice service/env "$DEPLOY_HOST:$DEPLOY_SERVICE_DIR"
+# rsync -avz "$unit" "$DEPLOY_HOST:/etc/systemd/system/panzer.service"
+rsync -avz "$unit" "$DEPLOY_HOST:$DEPLOY_SERVICE_DIR"

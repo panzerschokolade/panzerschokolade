@@ -4,14 +4,14 @@ After=network.target
 
 [Service]
 Type=simple
-WorkingDirectory=/home/tong/app/panzerservice
-ExecStart=/home/tong/app/panzerservice/panzerservice
+WorkingDirectory=@DEPLOY_SERVICE_DIR@
+ExecStart=@DEPLOY_SERVICE_DIR@/panzerservice
 Restart=on-failure
 RestartSec=5s
-EnvironmentFile=/home/tong/app/panzerservice/env
+EnvironmentFile=@DEPLOY_SERVICE_DIR@/env
 
-User=tong
-Group=tong
+User=@DEPLOY_USER@
+Group=@DEPLOY_USER@
 
 # optional hardening
 NoNewPrivileges=yes
