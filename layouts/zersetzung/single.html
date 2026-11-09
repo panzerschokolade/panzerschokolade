@@ -1,0 +1,71 @@
+{{ define "main" }}
+{{ $worklet := resources.Get "js/krch-worklet.js" | resources.Minify | resources.Fingerprint }}
+{{ $js := resources.Get "js/krch.js" | resources.Minify | resources.Fingerprint }}
+
+{{ $knobs := slice
+  (dict "name" "volume"   "label" "PSYCHOSE"      "min" 0   "max" 1    "step" 0.01 "value" 0.3)
+  (dict "name" "pitch"    "label" "ERLEUCHTUNG"   "min" 20  "max" 4000 "log" true "value" 80)
+  (dict "name" "chaos"    "label" "DRACHE"        "min" 0   "max" 1    "step" 0.01 "value" 0.3)
+  (dict "name" "fm"       "label" "ZART"          "min" 0   "max" 1    "step" 0.01 "value" 0.2)
+  (dict "name" "fold"     "label" "ZERSETZUNG"    "min" 0   "max" 1    "step" 0.01 "value" 0.2)
+  (dict "name" "bits"     "label" "DIÄT"          "min" 1   "max" 8    "step" 0.1  "value" 6)
+  (dict "name" "decimate" "label" "DEMENZ"         "min" 1   "max" 512  "log" true "value" 2)
+  (dict "name" "feedback" "label" "666"           "min" 0   "max" 1.2  "step" 0.01 "value" 0.3)
+  (dict "name" "stutter"  "label" "EWIGKEIT"      "min" 0   "max" 1    "step" 0.01 "value" 0.2)
+  (dict "name" "schrei"   "label" "EKSTASE"       "min" 0   "max" 1    "step" 0.01 "value" 0.1)
+}}
+
+<style>
+  #krch {
+    --metal: #3a3f3a;
+    --plate: #262a26;
+    max-width: 760px;
+    margin: 1rem auto;
+    padding: 1rem;
+    background: repeating-linear-gradient(45deg, var(--metal) 0 1px, var(--plate) 1px 2px);
+    border: 6px ridge #777;
+    font-family: monospace;
+    color: #eee;
+    text-transform: uppercase;
+    position: relative;
+  }
+  #krch .head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+  #krch h1 { margin: 0; font-size: 2rem; letter-spacing: 0.2em; color: var(--yellow); text-shadow: 3px 3px 0 var(--acc); }
+  #krch canvas { display: block; width: 100%; height: 120px; margin: 1rem 0; background: #010; border: 4px inset #555; }
+  #krch .knobs { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 0.75rem; margin: 1rem 0; }
+  #krch label { display: flex; flex-direction: column; gap: 0.2rem; padding: 0.4rem; background: #111a; border: 2px outset #666; }
+  #krch label b { font-size: 0.8rem; color: var(--yellow); }
+  #krch input[type=range] { width: 100%; accent-color: var(--acc); }
+  #krch .buttons { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+  #krch button { font: inherit; font-weight: bold; cursor: pointer; border: 4px outset #888; padding: 0.6rem 1rem; color: #fff; }
+  #krch [data-krch=power] { background: var(--acc); font-size: 1.6rem; padding: 0.8rem 1.6rem; border-radius: 50%; aspect-ratio: 1; }
+  #krch [data-krch=power][aria-pressed=true] { border-style: inset; background: #900; box-shadow: 0 0 24px var(--acc); }
+  #krch [data-krch=random] { background: var(--magenta); }
+</style>
+
+<div id="krch" data-worklet="{{ $worklet.RelPermalink }}">
+  <div class="head">
+    <h1>EICHLER 2000</h1>
+  </div>
+  <canvas aria-hidden="true"></canvas>
+  <div class="knobs">
+    {{ range $knobs }}
+    <label>
+      <b>{{ .label }}</b>
+      {{ if .log }}
+      <input type="range" name="{{ .name }}" min="0" max="1" step="0.001" data-min="{{ .min }}" data-max="{{ .max }}"
+        value="{{ div (math.Log (div (float .value) .min)) (math.Log (div (float .max) .min)) }}">
+      {{ else }}
+      <input type="range" name="{{ .name }}" min="{{ .min }}" max="{{ .max }}" step="{{ .step }}" value="{{ .value }}">
+      {{ end }}
+    </label>
+    {{ end }}
+  </div>
+  <div class="buttons">
+    <button type="button" data-krch="power" aria-pressed="false">AN/AUS</button>
+    <button type="button" data-krch="random">ZUFALL</button>
+  </div>
+</div>
+
+<script src="{{ $js.RelPermalink }}" defer></script>
+{{ end }}
